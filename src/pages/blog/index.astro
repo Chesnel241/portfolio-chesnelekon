@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title="Blog" description="Articles techniques de Chesnel Ekogha : cybersécurité automobile, infrastructure, retours d'expérience.">
+  <section class="section" style="border-top: none;">
+    <SectionHead label="posts" title="Articles" />
+    <div class="timeline">
+      {posts.map((post) => (
+        <ArticleRow
+          slug={post.id}
+          title={post.data.title}
+          excerpt={post.data.excerpt}
+          date={post.data.date}
+        />
+      ))}
+    </div>
+  </section>
+</Base>

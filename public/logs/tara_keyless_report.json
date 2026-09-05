@@ -1,0 +1,52 @@
+{
+  "system": "Keyless Entry & Passive Start (KESS)",
+  "standard": "ISO/SAE 21434 Clause 15 & Annex H",
+  "author": "Chesnel Ekogha",
+  "date": "2026-09-05T01:27:49.994553",
+  "results": [
+    {
+      "id": "TS-01",
+      "title": "Relay Attack on Keyless Fob (125kHz LF / 433MHz UHF)",
+      "asset": "Keyless Door Locking & Engine Start Signal",
+      "attack_path": "Attacker uses dual-transceiver relay RF hardware to extend key fob signal range up to 100m.",
+      "feasibility_score": 3,
+      "feasibility_rating": "MEDIUM",
+      "max_impact": "High",
+      "risk_level": "CRITICAL (Risk 5)",
+      "csg": "CSG-01: Protect against LF/UHF signal relay attacks using Time-of-Flight (UWB) distance bounding."
+    },
+    {
+      "id": "TS-02",
+      "title": "RF Replay Attack on Unencrypted Unlock Code",
+      "asset": "Rolling Code Counter & MAC Integrity",
+      "attack_path": "SDR (Software Defined Radio) captures rolling code frame and replays sequence during RF jam.",
+      "feasibility_score": 3,
+      "feasibility_rating": "MEDIUM",
+      "max_impact": "High",
+      "risk_level": "CRITICAL (Risk 5)",
+      "csg": "CSG-02: Ensure strict freshness value manager (FVM) and anti-replay counters on RF frames."
+    },
+    {
+      "id": "TS-03",
+      "title": "UDS SecurityAccess Key Bruteforce on Door ECU",
+      "asset": "ECU Firmware & Cryptographic Master Key",
+      "attack_path": "OBD-II diagnostic tool sends Seed-Key request 0x27 and bruteforces 16-bit key.",
+      "feasibility_score": 0,
+      "feasibility_rating": "HIGH",
+      "max_impact": "High",
+      "risk_level": "CRITICAL (Risk 5)",
+      "csg": "CSG-03: Implement 32-bit/128-bit HSM Seed-Key algorithm with exponential penalty delay per failed attempt."
+    },
+    {
+      "id": "TS-04",
+      "title": "CAN Frame Injection & Spoofing on Powertrain Bus",
+      "asset": "Engine Start Authorization CAN Message",
+      "attack_path": "Physical compromise of headlight/radar wiring harness to inject CAN ID 0x120 start command.",
+      "feasibility_score": 5,
+      "feasibility_rating": "MEDIUM",
+      "max_impact": "Severe",
+      "risk_level": "CRITICAL (Risk 5)",
+      "csg": "CSG-04: Mandate AUTOSAR SecOC (Secure Onboard Communication) with AES-CMAC authenticators on Start CAN frames."
+    }
+  ]
+}

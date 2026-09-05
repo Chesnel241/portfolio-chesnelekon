@@ -1,0 +1,20 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: Date;
+}
+const { slug, title, excerpt, date } = Astro.props as Props;
+
+const formatted = date.toLocaleDateString('fr-FR', {
+  year: 'numeric',
+  month: 'short',
+});
+---
+
+<a class="timeline-item" href={`/blog/${slug}`}>
+  <span class="timeline-item__date">{formatted}</span>
+  <h3>{title}</h3>
+  <p>{excerpt}</p>
+</a>

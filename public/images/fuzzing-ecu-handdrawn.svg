@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 480" width="100%" height="100%" style="background: transparent;">
+  <defs>
+    <filter id="sketch-filter" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+    
+    <marker id="sketch-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <style>
+    .hand-line { stroke: var(--ink-main, #334155); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; filter: url(#sketch-filter); }
+    .hand-dashed { stroke: var(--accent-cyan, #0284c7); stroke-width: 1.8; stroke-dasharray: 6,4; fill: none; filter: url(#sketch-filter); }
+    .hand-box { fill: var(--surface-card, #f8fafc); stroke: var(--ink-main, #475569); stroke-width: 2.2; filter: url(#sketch-filter); rx: 8px; }
+    .hand-title { font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif; font-weight: 700; fill: var(--ink-main, #0f172a); font-size: 16px; }
+    .hand-sub { font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif; font-size: 13px; fill: var(--ink-soft, #64748b); }
+    .hand-note { font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif; font-size: 12px; fill: #d97706; font-style: italic; }
+    .hand-alert { font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif; font-size: 12px; fill: #dc2626; font-weight: bold; }
+    .hand-green { font-family: 'Comic Sans MS', 'Caveat', cursive, sans-serif; font-size: 12px; fill: #16a34a; font-weight: bold; }
+  </style>
+
+  <!-- Title / Sketch Header -->
+  <text x="425" y="32" text-anchor="middle" class="hand-title" style="font-size: 20px; text-decoration: underline;">
+    ✏️ Schema d'Attaque Fuzzing CAN Bus & Strategie de Securisation ECU
+  </text>
+  <text x="425" y="52" text-anchor="middle" class="hand-sub">
+    [Banc de Test Automobile - Injecteur SocketCAN vs ECU Cible & SecOC]
+  </text>
+
+  <!-- Box 1: Fuzzing Station -->
+  <g transform="translate(40, 90)">
+    <rect class="hand-box" width="220" height="150" style="fill: rgba(14, 165, 233, 0.08);" />
+    <text x="110" y="30" text-anchor="middle" class="hand-title">💻 Fuzzing Station</text>
+    <text x="110" y="50" text-anchor="middle" class="hand-sub">(Python + SocketCAN)</text>
+    <path class="hand-line" d="M 20 65 L 200 65" stroke-dasharray="3,3" />
+    <text x="30" y="85" class="hand-sub">• Mutation Bit-Flip</text>
+    <text x="30" y="105" class="hand-sub">• Arbitration Flood (0x000)</text>
+    <text x="30" y="125" class="hand-sub">• UDS Fuzzer (0x27 / 0x11)</text>
+    <text x="110" y="142" text-anchor="middle" class="hand-note">~ USB-to-CAN Hardware ~</text>
+  </g>
+
+  <!-- Bus CAN Line (Twisted Pair) -->
+  <g transform="translate(300, 130)">
+    <path class="hand-line" d="M 0 20 C 50 10, 100 30, 150 20 C 200 10, 250 30, 290 20" stroke="#0284c7" stroke-width="3" />
+    <path class="hand-line" d="M 0 30 C 50 40, 100 20, 150 30 C 200 40, 250 20, 290 30" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,2" />
+    <text x="145" y="10" text-anchor="middle" class="hand-title" style="fill: #0284c7;">Bus CAN High / Low (500 kbps)</text>
+    <text x="145" y="55" text-anchor="middle" class="hand-note">Trame 0x27D / 0x7E0 (UDS Seed-Key)</text>
+  </g>
+
+  <!-- Arrow Fuzzer to Bus -->
+  <path class="hand-line" d="M 260 165 L 300 165" marker-end="url(#sketch-arrow)" stroke="#2563eb" stroke-width="2.5" />
+
+  <!-- Box 2: Target ECU -->
+  <g transform="translate(590, 90)">
+    <rect class="hand-box" width="220" height="150" style="fill: rgba(239, 68, 68, 0.08);" />
+    <text x="110" y="30" text-anchor="middle" class="hand-title">🚗 ECU Cible (Telemetrie)</text>
+    <text x="110" y="50" text-anchor="middle" class="hand-sub">(Gateway / BCM)</text>
+    <path class="hand-line" d="M 20 65 L 200 65" stroke-dasharray="3,3" />
+    <text x="30" y="85" class="hand-alert">⚠ Saturation CPU (Buffer Overflow)</text>
+    <text x="30" y="105" class="hand-alert">⚠ Latence 4.2s observée</text>
+    <text x="30" y="125" class="hand-alert">⚡ Bypass UDS 0x27 (Seed-Key)</text>
+  </g>
+
+  <!-- Arrow Bus to ECU -->
+  <path class="hand-line" d="M 550 165 L 590 165" marker-end="url(#sketch-arrow)" stroke="#2563eb" stroke-width="2.5" />
+
+  <!-- Lower Section: Anomaly Monitor & Remediation -->
+  <g transform="translate(100, 280)">
+    <rect class="hand-box" width="280" height="160" style="fill: rgba(245, 158, 11, 0.08);" />
+    <text x="140" y="30" text-anchor="middle" class="hand-title">🔍 Diagnostic & Analyse d'Anomalie</text>
+    <path class="hand-line" d="M 20 45 L 260 45" />
+    <text x="30" y="70" class="hand-sub">1. Analyse Tendance Fréquence (Packet Rate)</text>
+    <text x="30" y="95" class="hand-sub">2. Détection de Crash/Reset du Microcontrôleur</text>
+    <text x="30" y="120" class="hand-sub">3. Corrélation des codes UDS (NRC 0x12, 0x22)</text>
+    <text x="140" y="145" text-anchor="middle" class="hand-note">-> Extraction des PoC exploitables</text>
+  </g>
+
+  <!-- Arrow from ECU to Anomaly Monitor -->
+  <path class="hand-line" d="M 700 240 L 700 360 L 380 360" marker-end="url(#sketch-arrow)" stroke="#d97706" stroke-dasharray="5,3" />
+
+  <!-- Remediations Box -->
+  <g transform="translate(450, 280)">
+    <rect class="hand-box" width="310" height="160" style="fill: rgba(34, 197, 94, 0.08); stroke: #16a34a;" />
+    <text x="155" y="30" text-anchor="middle" class="hand-title" style="fill: #15803d;">🛡️ Mesures de Securisation ECU</text>
+    <path class="hand-line" d="M 20 45 L 290 45" stroke="#16a34a" />
+    <text x="30" y="70" class="hand-green">✔ SecOC (AUTOSAR Secure Onboard Comm)</text>
+    <text x="30" y="95" class="hand-green">✔ Rate Limiting UDS 0x27 (Lockout 60s)</text>
+    <text x="30" y="120" class="hand-green">✔ Hardware Security Module (HSM Key)</text>
+    <text x="30" y="145" class="hand-green">✔ CAN-FD Payload Whitelisting & Filtering</text>
+  </g>
+
+  <!-- Connection Monitor to Defense -->
+  <path class="hand-line" d="M 380 340 L 450 340" marker-end="url(#sketch-arrow)" stroke="#16a34a" stroke-width="2" />
+</svg>

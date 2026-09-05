@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" fill="none" width="120" height="140">
+  <defs>
+    <linearGradient id="shieldGradEthic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#040711"/>
+    </linearGradient>
+    <linearGradient id="shieldBorderEthic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="50%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer Shield Crest -->
+  <path d="M60 8 L108 26 V68 C108 98 84 122 60 132 C36 122 12 98 12 68 V26 L60 8 Z" 
+        fill="url(#shieldGradEthic)" 
+        stroke="url(#shieldBorderEthic)" 
+        stroke-width="3" 
+        stroke-linejoin="round"/>
+  <!-- Inner Shield Inset Line -->
+  <path d="M60 18 L98 33 V68 C98 92 78 112 60 120 C42 112 22 92 22 68 V33 L60 18 Z" 
+        fill="none" 
+        stroke="#3730a3" 
+        stroke-width="1.5" 
+        stroke-dasharray="4 2"/>
+  <!-- Central Star / Eagle Security Emblem -->
+  <polygon points="60,42 64.5,56 79,56 67.5,64.5 72,78.5 60,70 48,78.5 52.5,64.5 41,56 55.5,56" fill="#818cf8" stroke="#6366f1" stroke-width="1"/>
+  <!-- Checkmark Emblem Base -->
+  <path d="M48 88 L56 96 L72 80" stroke="#818cf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Tech Accent Dots -->
+  <circle cx="60" cy="112" r="3" fill="#818cf8"/>
+</svg>

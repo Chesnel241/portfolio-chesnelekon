@@ -1,0 +1,163 @@
+---
+interface Props {
+  title?: string;
+  type?: 'projet' | 'article' | 'lab';
+  date?: Date | string;
+}
+
+const { type = 'article', date } = Astro.props as Props;
+---
+
+<aside class="author-signature" aria-label="Signature de l'auteur">
+  <div class="signature-card">
+    <div class="avatar-container">
+      <img
+        src="/chesnel-ekogha.jpg"
+        alt="Photo de Chesnel Ekogha"
+        width="80"
+        height="80"
+        class="author-photo"
+      />
+      <span class="verified-badge" title="Auteur Vérifié">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+    </div>
+
+    <div class="author-info">
+      <div class="author-header">
+        <h3 class="author-name">Chesnel Ekogha</h3>
+        <span class="author-tag">Auteur & Concepteur</span>
+      </div>
+      <p class="author-role">
+        Ingénieur Cybersécurité Automobile & Systèmes Embarqués | Schaeffler / Vitesco
+      </p>
+      <p class="signature-note">
+        🔒 {type === 'lab' ? 'Laboratoire pratique' : type === 'projet' ? 'Projet technique' : 'Article de recherche'} conçu, exécuté et signé par Chesnel Ekogha.
+        {date && <span class="pub-date"> • Publié / Mis à jour le {typeof date === 'string' ? date : date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>}
+      </p>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .author-signature {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .signature-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent-cyan), #3b82f6);
+  }
+
+  .avatar-container {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .author-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(14, 165, 233, 0.25);
+  }
+
+  .verified-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: #10b981;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--surface-card);
+  }
+
+  .author-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .author-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+
+  .author-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink-main);
+    margin: 0;
+  }
+
+  .author-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(14, 165, 233, 0.12);
+    color: var(--accent-cyan);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(14, 165, 233, 0.25);
+  }
+
+  .author-role {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin: 0 0 0.5rem;
+  }
+
+  .signature-note {
+    font-size: 0.85rem;
+    color: var(--ink-muted, #64748b);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .pub-date {
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .signature-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.25rem;
+    }
+    .author-header {
+      justify-content: center;
+    }
+  }
+</style>

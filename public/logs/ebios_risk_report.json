@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-09-04T23:35:54.213103Z",
+  "methodology": "ANSSI EBIOS Risk Manager 2018",
+  "target_organization": "SIH - CHU M\u00e9tropolitain (OIV)",
+  "ateliers": {
+    "atelier_1_socle": {
+      "valeurs_metiers": [
+        "DPI",
+        "Pilotage M\u00e9dical",
+        "T\u00e9l\u00e9-m\u00e9decine"
+      ],
+      "impact_max": 4
+    },
+    "atelier_2_sources_risques": [
+      {
+        "sr": "Cybercriminalit\u00e9 organis\u00e9e",
+        "motivation": "Financi\u00e8re / Ransomware"
+      },
+      {
+        "sr": "APT d'\u00c9tat",
+        "motivation": "Espionnage / Sabotage"
+      }
+    ],
+    "atelier_3_scenarios_strategiques": [
+      {
+        "id": "SS-01",
+        "name": "Compromission Supply Chain VPN",
+        "vraisemblance": 3,
+        "impact": 4,
+        "niveau_risque": "CRITIQUE"
+      }
+    ],
+    "atelier_4_scenarios_operationnels": [
+      {
+        "id": "MO-01",
+        "mitre_techniques": [
+          "T1078",
+          "T1068",
+          "T1486"
+        ],
+        "faisabilite": 3
+      }
+    ],
+    "atelier_5_traitement": [
+      "MFA FIDO2",
+      "Zero-Trust Microsegmentation",
+      "PAM Admin Bastion",
+      "EDR / XDR Managed SOC"
+    ]
+  },
+  "risk_summary": {
+    "initial_risk_score": 12,
+    "residual_risk_score": 3,
+    "status": "ACCEPTABLE AFTER REMEDIATION"
+  }
+}

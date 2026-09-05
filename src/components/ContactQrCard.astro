@@ -1,0 +1,134 @@
+---
+// src/components/ContactQrCard.astro
+---
+
+<div class="contact-qr-card">
+  <div class="contact-main-info">
+    <div class="contact-badge-header">DISPONIBILITÉ ACTIVE</div>
+    <h3 class="contact-name">Chesnel Ekogha</h3>
+    <p class="contact-bio">
+      Ingénieur Cybersécurité Automobile basé à <strong>Toulouse</strong>, spécialisé en analyse de risques (ISO/SAE 21434, TARA, EBIOS RM) et homologation réglementaire (UNECE R155/R156). Disponible pour un poste en CDI (<strong>Mobile France entière</strong>).
+    </p>
+
+    <div class="contact-actions-row">
+      <a class="btn btn--gradient" href="mailto:ekoghachesneloff@gmail.com">
+        <span>Me contacter par Email</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </a>
+
+      <button class="btn btn--outline" id="btnOpenCvModalFooter" type="button">
+        <span>Visualiser le CV PDF</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </button>
+
+      <a class="btn btn--outline" href="https://www.linkedin.com/in/chesnelekogha" target="_blank" rel="noopener">
+        <span>LinkedIn</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- QR Code Sidebar for networking / interviews -->
+  <div class="contact-qr-box">
+    <div class="qr-code-frame">
+      <!-- 100% Scannable Real QR Code for LinkedIn Profile -->
+      <img src="/linkedin-qr.svg" alt="QR Code LinkedIn Chesnel Ekogha" width="120" height="120" style="display: block; border-radius: 4px;" />
+    </div>
+    <span class="qr-label">SCANNER POUR LINKEDIN</span>
+  </div>
+</div>
+
+<style>
+  .contact-qr-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: var(--card-shadow);
+  }
+
+  .contact-main-info {
+    flex: 1;
+  }
+
+  .contact-badge-header {
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    color: var(--accent-green);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .contact-bio {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-actions-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--chip-bg);
+    border: 1px solid var(--border-soft);
+    padding: 1.1rem;
+    border-radius: 16px;
+  }
+
+  .qr-code-frame {
+    padding: 0.4rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .qr-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    color: var(--accent-cyan);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .contact-qr-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .contact-qr-box {
+      align-self: center;
+      width: 100%;
+    }
+  }
+</style>

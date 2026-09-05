@@ -1,0 +1,22 @@
+/*
+  # HTTPS & HSTS Preload (ANSSI & OWASP Guidelines)
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  
+  # Anti-Clickjacking
+  X-Frame-Options: DENY
+  
+  # Anti-MIME Sniffing
+  X-Content-Type-Options: nosniff
+  
+  # Referrer Policy
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Cross-Origin Policies & Isolation
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  
+  # Feature & Hardware Access Policy
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), microphone=(), payment=(), usb=()
+  
+  # Content Security Policy (Strict OWASP Compliant)
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self';

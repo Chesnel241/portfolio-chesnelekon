@@ -1,0 +1,115 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+const {
+  title,
+  description = "Portfolio et Travaux de Recherche de Chesnel Ekogha - ingénieur cybersécurité, systèmes embarqués automobiles.",
+  image = "/chesnel-ekogha.jpg",
+} = Astro.props as Props;
+
+const shareImageUrl = new URL(image, Astro.url).href;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} - Chesnel Ekogha</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Chesnel Ekogha" />
+
+    <!-- Theme Detection Script (Prevents FOUC) -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (systemDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- Open Graph / LinkedIn Preview Meta Tags (Signed by Chesnel Ekogha) -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={`${title} - Signé Chesnel Ekogha | Ingénieur Cybersécurité`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={shareImageUrl} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Chesnel Ekogha - Cybersécurité Automobile" />
+    <meta property="article:author" content="Chesnel Ekogha" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} - Signé Chesnel Ekogha`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImageUrl} />
+
+    <!-- Structured Data JSON-LD for Recruiters & Search Engines -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Chesnel Ekogha",
+      "jobTitle": "Ingénieur Cybersécurité Automobile",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Schaeffler (ex-Vitesco Technologies)"
+      },
+      "alumniOf": [
+        { "@type": "EducationalOrganization", "name": "ESIEA" },
+        { "@type": "EducationalOrganization", "name": "ESGI" }
+      ],
+      "knowsAbout": [
+        "ISO/SAE 21434", "TARA", "UNECE R155/R156", "CSMS", "EBIOS RM", "CAN/CAN-FD", "Embedded Cybersecurity", "Pentest Linux"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Toulouse",
+        "addressCountry": "FR"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/chesnelekogha"
+      ]
+    })} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="wrap">
+      <slot />
+    </main>
+    <Footer />
+    <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+    <script>
+      declare global {
+        interface Window {
+          copyEmail: (email: string) => void;
+        }
+      }
+      window.copyEmail = function(email: string) {
+        navigator.clipboard.writeText(email).then(() => {
+          const toast = document.getElementById('toast');
+          if (toast) {
+            toast.textContent = '✓ Email copié dans le presse-papier';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+          }
+        });
+      };
+    </script>
+  </body>
+</html>

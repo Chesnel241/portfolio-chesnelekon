@@ -1,0 +1,134 @@
+---
+interface Props {
+  title: string;
+  url?: string;
+}
+
+const { title, url } = Astro.props as Props;
+---
+
+<div class="share-box">
+  <div class="share-box__title">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="18" cy="5" r="3"></circle>
+      <circle cx="6" cy="12" r="3"></circle>
+      <circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </svg>
+    <span>Partager cet article</span>
+  </div>
+
+  <div class="share-box__buttons">
+    <!-- LinkedIn Share CTA -->
+    <button 
+      class="share-btn share-btn--linkedin" 
+      id="btnShareLinkedIn" 
+      data-title={title}
+      data-url={url}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.6 1.6 0 1 0 1.6 1.6 1.6 1.6 0 0 0-1.6-1.6Z"/>
+      </svg>
+      <span>Partager sur LinkedIn</span>
+    </button>
+
+    <!-- Copy Link CTA -->
+    <button 
+      class="share-btn share-btn--copy" 
+      id="btnCopyArticleUrl"
+      data-url={url}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span id="btnCopyArticleText">Copier le lien</span>
+    </button>
+
+    <!-- X / Twitter CTA -->
+    <button 
+      class="share-btn share-btn--twitter" 
+      id="btnShareTwitter" 
+      data-title={title}
+      data-url={url}
+    >
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+      <span>Partager sur X</span>
+    </button>
+
+    <!-- Email CTA -->
+    <a 
+      class="share-btn share-btn--email" 
+      id="btnShareEmail" 
+      href={`mailto:?subject=${encodeURIComponent(title)}`}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+      <span>Envoyer par Email</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  function setupShareButtons() {
+    const currentUrl = window.location.href;
+
+    // LinkedIn
+    const btnLinkedIn = document.getElementById('btnShareLinkedIn');
+    if (btnLinkedIn) {
+      btnLinkedIn.addEventListener('click', () => {
+        const pageUrl = btnLinkedIn.getAttribute('data-url') || currentUrl;
+        const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+        window.open(shareUrl, '_blank', 'width=600,height=600');
+      });
+    }
+
+    // Twitter
+    const btnTwitter = document.getElementById('btnShareTwitter');
+    if (btnTwitter) {
+      btnTwitter.addEventListener('click', () => {
+        const pageUrl = btnTwitter.getAttribute('data-url') || currentUrl;
+        const pageTitle = btnTwitter.getAttribute('data-title') || document.title;
+        const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`;
+        window.open(shareUrl, '_blank', 'width=600,height=500');
+      });
+    }
+
+    // Copy Link
+    const btnCopy = document.getElementById('btnCopyArticleUrl');
+    const txtCopy = document.getElementById('btnCopyArticleText');
+    if (btnCopy) {
+      btnCopy.addEventListener('click', () => {
+        const targetUrl = btnCopy.getAttribute('data-url') || currentUrl;
+        navigator.clipboard.writeText(targetUrl).then(() => {
+          if (txtCopy) txtCopy.textContent = '✓ Lien copié !';
+          const toast = document.getElementById('toast');
+          if (toast) {
+            toast.textContent = '✓ Lien de l\'article copié dans le presse-papier !';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+          }
+          setTimeout(() => {
+            if (txtCopy) txtCopy.textContent = 'Copier le lien';
+          }, 2500);
+        });
+      });
+    }
+
+    // Email
+    const btnEmail = document.getElementById('btnShareEmail') as HTMLAnchorElement;
+    if (btnEmail) {
+      const subject = btnEmail.getAttribute('data-title') || document.title;
+      btnEmail.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(currentUrl)}`;
+    }
+  }
+
+  // Setup on page load
+  setupShareButtons();
+  document.addEventListener('astro:page-load', setupShareButtons);
+</script>

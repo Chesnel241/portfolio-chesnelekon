@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const allProjects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Base title="Projets" description="Réalisations techniques, recherches cybersécurité et projets de Chesnel Ekogha.">
+  <section class="section" style="border-top: none; padding-top: 2rem;">
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: var(--fs-3); margin-bottom: 0.5rem;">Projets & Réalisations</h1>
+      <p style="font-size: 1.05rem; color: var(--ink-soft); max-width: 48ch;">
+        Découvrez l'ensemble de mes travaux en analyse de risque automobile (TARA), fuzzing sur bus CAN, plateformes CTF et applications web.
+      </p>
+    </div>
+
+    <!-- Filter Bar -->
+    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem;" id="filterBar">
+      <button class="btn btn--gradient filter-btn active" data-filter="all">Tous les projets ({allProjects.length})</button>
+      <button class="btn btn--outline filter-btn" data-filter="cyber">Cybersécurité & ECU</button>
+      <button class="btn btn--outline filter-btn" data-filter="web">Web & CTF</button>
+      <button class="btn btn--outline filter-btn" data-filter="actif">Statut : Actif</button>
+      <button class="btn btn--outline filter-btn" data-filter="en cours">Statut : En cours</button>
+    </div>
+
+    <div class="sheet-grid" id="projectGrid">
+      {allProjects.map((project) => (
+        <ProjectCard
+          slug={project.id}
+          title={project.data.title}
+          summary={project.data.summary}
+          stack={project.data.stack}
+          status={project.data.status}
+          thumbnail={project.data.thumbnail}
+        />
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#projectGrid .sheet');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => {
+          b.classList.remove('btn--gradient');
+          b.classList.add('btn--outline');
+        });
+        btn.classList.remove('btn--outline');
+        btn.classList.add('btn--gradient');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach((card) => {
+          const status = card.getAttribute('data-status');
+          const category = card.getAttribute('data-category');
+
+          if (
+            filter === 'all' || 
+            status === filter || 
+            category === filter
+          ) {
+            (card as HTMLElement).style.display = 'flex';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</Base>

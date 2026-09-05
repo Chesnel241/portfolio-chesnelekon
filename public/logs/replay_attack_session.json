@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-09-04T23:36:32.828590Z",
+  "lab_name": "Replay Attack & Cryptographic Nonce Defense",
+  "vulnerable_system_result": {
+    "attack_type": "RF Fixed Code Replay",
+    "impact": "CRITICAL - Unauthorized Vehicle Access / Session Hijacking",
+    "success": true
+  },
+  "secured_system_result": {
+    "countermeasures": [
+      "HMAC-SHA256 Signature",
+      "Monotonic Nonce Tracking",
+      "Strict 30s Time Window"
+    ],
+    "replayed_packets_blocked": 1,
+    "success": false
+  }
+}

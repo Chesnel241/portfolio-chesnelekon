@@ -1,0 +1,259 @@
+---
+// src/components/AnimatedCodeCard.astro
+---
+
+<div class="code-card">
+  <div class="code-card__header">
+    <span class="code-dot code-dot--red"></span>
+    <span class="code-dot code-dot--yellow"></span>
+    <span class="code-dot code-dot--green"></span>
+    <span class="code-card__filename">engineer.ts</span>
+  </div>
+  <div class="code-card__content" id="animatedCodeContainer">
+    <!-- SSR Fallback: Rendered static content for instant visibility & SEO -->
+    <span class="code-line"><span class="code-keyword">const</span> engineer = &#123;</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">name</span>: <span class="code-str">'Chesnel Ekogha'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">role</span>: <span class="code-str">'Automotive Cybersecurity Engineer'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">company</span>: <span class="code-str">'Schaeffler (ex-Vitesco)'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">location</span>: <span class="code-str">'Toulouse, France'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">mobility</span>: <span class="code-str">'Mobile France entière'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">experience</span>: <span class="code-str">'3+ years'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">standards</span>: [<span class="code-str">'ISO/SAE 21434'</span>, <span class="code-str">'UNECE R155/R156'</span>, <span class="code-str">'CSMS'</span>, <span class="code-str">'EBIOS RM'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">protocols</span>: [<span class="code-str">'CAN/CAN-FD'</span>, <span class="code-str">'TCP/IP'</span>, <span class="code-str">'SocketCAN'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">tools</span>: [<span class="code-str">'Linux'</span>, <span class="code-str">'TARA'</span>, <span class="code-str">'Metasploit'</span>, <span class="code-str">'Nmap'</span>, <span class="code-str">'Burp Suite'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">webDev</span>: [<span class="code-str">'Astro'</span>, <span class="code-str">'TypeScript'</span>, <span class="code-str">'Node.js'</span>, <span class="code-str">'Docker'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">hireable</span>: <span class="code-bool">true</span></span>
+    <span class="code-line">&#125;;</span>
+  </div>
+</div>
+
+<style>
+  .code-card__filename {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    margin-left: auto;
+  }
+
+  :global(.code-line) {
+    display: block;
+    min-height: 1.5em;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  :global(.code-typing-cursor) {
+    display: inline-block;
+    width: 0.5em;
+    height: 1.1em;
+    background: var(--accent-cyan);
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    animation: blinkCursor 0.9s steps(1) infinite;
+  }
+
+  @keyframes blinkCursor {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  :global(#animatedCodeContainer.fade-out) {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+</style>
+
+<script>
+  interface Token {
+    text: string;
+    cls?: string;
+  }
+
+  const codeData: Token[][] = [
+    [
+      { text: 'const ', cls: 'code-keyword' },
+      { text: 'engineer = {' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'name', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'Chesnel Ekogha'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'role', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'Automotive Cybersecurity Engineer'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'company', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'Schaeffler (ex-Vitesco)'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'location', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'Toulouse, France'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'mobility', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'Mobile France entière'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'experience', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'3+ years'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'standards', cls: 'code-key' },
+      { text: ': [' },
+      { text: "'ISO/SAE 21434'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'UNECE R155/R156'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'CSMS'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'EBIOS RM'", cls: 'code-str' },
+      { text: '],' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'protocols', cls: 'code-key' },
+      { text: ': [' },
+      { text: "'CAN/CAN-FD'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'TCP/IP'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'SocketCAN'", cls: 'code-str' },
+      { text: '],' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'tools', cls: 'code-key' },
+      { text: ': [' },
+      { text: "'Linux'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'TARA'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Metasploit'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Nmap'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Burp Suite'", cls: 'code-str' },
+      { text: '],' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'webDev', cls: 'code-key' },
+      { text: ': [' },
+      { text: "'Astro'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'TypeScript'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Node.js'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Docker'", cls: 'code-str' },
+      { text: '],' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'hireable', cls: 'code-key' },
+      { text: ': ' },
+      { text: 'true', cls: 'code-bool' }
+    ],
+    [
+      { text: '};' }
+    ]
+  ];
+
+  function startCodeTypingAnimation() {
+    const container = document.getElementById('animatedCodeContainer');
+    if (!container) return;
+    const targetBox: HTMLElement = container;
+    let isCancelled = false;
+
+    async function sleep(ms: number) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function runLoop() {
+      while (!isCancelled) {
+        // Reset container
+        targetBox.classList.remove('fade-out');
+        targetBox.innerHTML = '';
+
+        // Create blinking cursor element
+        const cursor = document.createElement('span');
+        cursor.className = 'code-typing-cursor';
+        targetBox.appendChild(cursor);
+
+        // Process line by line
+        for (let l = 0; l < codeData.length; l++) {
+          if (isCancelled) return;
+          const lineTokens = codeData[l];
+          const lineDiv = document.createElement('div');
+          lineDiv.className = 'code-line';
+          targetBox.insertBefore(lineDiv, cursor);
+
+          for (const token of lineTokens) {
+            if (isCancelled) return;
+            const span = document.createElement('span');
+            if (token.cls) {
+              span.className = token.cls;
+            }
+            lineDiv.appendChild(span);
+
+            // Fast character typing
+            for (let c = 0; c < token.text.length; c++) {
+              if (isCancelled) return;
+              span.textContent += token.text[c];
+              // Fast typing delay: 10ms for chars
+              await sleep(10);
+            }
+          }
+          // Slight pause between lines
+          await sleep(25);
+        }
+
+        // Entire code is fully typed out!
+        // Stays fully displayed for 10 seconds (10,000ms)
+        await sleep(10000);
+
+        if (isCancelled) return;
+
+        // Smooth 350ms fade-out transition before resetting
+        targetBox.classList.add('fade-out');
+        await sleep(350);
+      }
+    }
+
+    runLoop();
+
+    return () => {
+      isCancelled = true;
+    };
+  }
+
+  // Init on DOM ready and Astro page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startCodeTypingAnimation);
+  } else {
+    startCodeTypingAnimation();
+  }
+
+  document.addEventListener('astro:page-load', startCodeTypingAnimation);
+</script>

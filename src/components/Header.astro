@@ -1,0 +1,38 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+const { pathname } = Astro.url;
+
+const links = [
+  { href: '/', label: 'Accueil' },
+  { href: '/projets', label: 'Projets' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <a class="site-header__name" href="/">
+      <img 
+        src="/chesnel-ekogha.jpg" 
+        alt="Chesnel Ekogha" 
+        width="32" 
+        height="32" 
+        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-green); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);"
+      />
+      <span>Chesnel Ekogha</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 1.25rem;">
+      <nav class="site-header__nav">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={pathname === link.href ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

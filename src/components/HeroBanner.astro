@@ -1,0 +1,36 @@
+---
+---
+
+<svg class="hero__banner" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f6feb" stop-opacity="0.35" />
+      <stop offset="55%" stop-color="#238636" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#8957e5" stop-opacity="0.28" />
+    </linearGradient>
+  </defs>
+  <path class="hero__banner-path" d="M0,120 C300,180 900,60 1200,140 L1200,0 L0,0 Z" fill="url(#heroGrad)"></path>
+</svg>
+
+<style>
+  .hero__banner-path {
+    transform-origin: 50% 50%;
+    animation: bannerDrift 16s ease-in-out infinite;
+  }
+
+  @keyframes bannerDrift {
+    0%,
+    100% {
+      transform: translateX(0) scaleY(1);
+    }
+    50% {
+      transform: translateX(-2%) scaleY(1.1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__banner-path {
+      animation: none;
+    }
+  }
+</style>

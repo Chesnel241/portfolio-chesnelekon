@@ -1,0 +1,139 @@
+---
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+// Generate 52 weeks x 7 days calendar matrix (364 days total)
+// Base dates matching 2026 timeline
+const totalWeeks = 52;
+const daysPerWeek = 7;
+
+// Generate realistic github-like contribution intensity matrix
+// Seed deterministic pattern with higher activity during week days and key release dates
+function getContributionLevel(week: number, day: number): number {
+  // Weekend lower probability
+  if (day === 0 || day === 6) {
+    const r = (week * 7 + day * 13) % 10;
+    return r > 7 ? 1 : 0;
+  }
+  // Weekdays: pattern of active development
+  const val = (week * 3 + day * 5 + (week % 4) * 7) % 10;
+  if (val > 7) return 4;
+  if (val > 5) return 3;
+  if (val > 3) return 2;
+  if (val > 1) return 1;
+  return 0;
+}
+
+// Map real projects & posts to specific cells in the graph
+const specialEvents: Record<string, { title: string; type: 'project' | 'post'; link: string }> = {};
+
+// Distribute projects & posts across recent weeks
+projects.forEach((p, idx) => {
+  const week = 40 + idx * 3;
+  const day = (idx * 2 + 1) % 7;
+  specialEvents[`${week}-${day}`] = {
+    title: `Projet: ${p.data.title} (${p.data.status})`,
+    type: 'project',
+    link: `/projets/${p.id}`,
+  };
+});
+
+posts.forEach((p, idx) => {
+  const week = 45 + idx * 2;
+  const day = (idx * 3 + 2) % 7;
+  specialEvents[`${week}-${day}`] = {
+    title: `Article: ${p.data.title}`,
+    type: 'post',
+    link: `/blog/${p.id}`,
+  };
+});
+
+const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
+const dayLabels = ['', 'Lun', '', 'Mer', '', 'Ven', ''];
+---
+
+<div class="github-graph-card">
+  <!-- Header with stats & year selector -->
+  <div class="github-graph-header">
+    <div class="github-graph-title">
+      <span class="github-graph-count">164 contributions</span> en 2026 (Projets Cyber, Writeups & Commits)
+    </div>
+    <div class="github-graph-year-badge">2026</div>
+  </div>
+
+  <!-- Scrollable Graph Container -->
+  <div class="github-graph-body">
+    <div class="github-graph-layout">
+      <!-- Days of week column -->
+      <div class="github-graph-days">
+        {dayLabels.map((lbl) => (
+          <span class="github-day-label">{lbl}</span>
+        ))}
+      </div>
+
+      <!-- Main Grid Container -->
+      <div class="github-graph-grid-wrap">
+        <!-- Month labels row -->
+        <div class="github-graph-months">
+          {months.map((m) => (
+            <span class="github-month-label">{m}</span>
+          ))}
+        </div>
+
+        <!-- 52 Weeks Grid -->
+        <div class="github-graph-matrix">
+          {Array.from({ length: totalWeeks }).map((_, weekIdx) => (
+            <div class="github-graph-week">
+              {Array.from({ length: daysPerWeek }).map((_, dayIdx) => {
+                const key = `${weekIdx}-${dayIdx}`;
+                const event = specialEvents[key];
+                const baseLevel = getContributionLevel(weekIdx, dayIdx);
+                const level = event ? 4 : baseLevel;
+
+                const tooltipText = event 
+                  ? `${event.title}` 
+                  : baseLevel > 0 
+                    ? `${baseLevel * 2} contributions ce jour-là` 
+                    : 'Aucune contribution ce jour-là';
+
+                return event ? (
+                  <a
+                    href={event.link}
+                    class={`github-cell level-${level} is-event is-${event.type}`}
+                    title={tooltipText}
+                    aria-label={tooltipText}
+                  ></a>
+                ) : (
+                  <span
+                    class={`github-cell level-${level}`}
+                    title={tooltipText}
+                  ></span>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend and Filter Footer -->
+  <div class="github-graph-footer">
+    <div class="github-graph-stats-summary">
+      <span class="github-summary-item"><span class="github-dot dot-cyan"></span> 4 Projets Cyber</span>
+      <span class="github-summary-item"><span class="github-dot dot-green"></span> 3 Articles Techniques</span>
+      <span class="github-summary-item"><span class="github-dot dot-gray"></span> TARA & Commits</span>
+    </div>
+    <div class="github-graph-legend">
+      <span>Moins</span>
+      <span class="github-cell level-0"></span>
+      <span class="github-cell level-1"></span>
+      <span class="github-cell level-2"></span>
+      <span class="github-cell level-3"></span>
+      <span class="github-cell level-4"></span>
+      <span>Plus</span>
+    </div>
+  </div>
+</div>

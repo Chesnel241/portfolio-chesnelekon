@@ -1,0 +1,281 @@
+{
+  "campaign": "ISO 21434 SocketCAN Fuzzing Test",
+  "engineer": "Chesnel Ekogha",
+  "date": "2026-09-05T01:27:43.043642",
+  "total_frames": 82,
+  "fps": 27.2,
+  "anomalies_count": 0,
+  "anomalies": [],
+  "logs": [
+    {
+      "timestamp": "2026-09-05T01:27:40.024222",
+      "elapsed": 0.0,
+      "can_id": "0x7E0",
+      "dlc": 8,
+      "payload": "00 80 00 00 00 00 00 00",
+      "ecu": "UDS Diagnostic Request (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.058721",
+      "elapsed": 0.034,
+      "can_id": "0x310",
+      "dlc": 8,
+      "payload": "FE 01 01 FF 80 00 00 FF",
+      "ecu": "Transmission Control Unit (TCU)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.092415",
+      "elapsed": 0.068,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "10 A1 D5 22 18 4C 59 99",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.130864",
+      "elapsed": 0.107,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "7F FE AA 7F FF AA 7F FE",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.164356",
+      "elapsed": 0.14,
+      "can_id": "0x7E8",
+      "dlc": 8,
+      "payload": "00 62 30 57 EF F4 DC 2B",
+      "ecu": "UDS Diagnostic Response (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.201888",
+      "elapsed": 0.178,
+      "can_id": "0x120",
+      "dlc": 8,
+      "payload": "00 00 00 00 00 00 04 00",
+      "ecu": "Engine Control Module (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.240342",
+      "elapsed": 0.216,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "D4 85 04 26 8C 5B C3 A9",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.278832",
+      "elapsed": 0.255,
+      "can_id": "0x310",
+      "dlc": 8,
+      "payload": "00 00 00 10 00 00 00 00",
+      "ecu": "Transmission Control Unit (TCU)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.314039",
+      "elapsed": 0.29,
+      "can_id": "0x7E8",
+      "dlc": 8,
+      "payload": "55 55 7F 01 FE AA FE 55",
+      "ecu": "UDS Diagnostic Response (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.351734",
+      "elapsed": 0.327,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "FF 80 00 80 AA FE 55 FE",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.387110",
+      "elapsed": 0.363,
+      "can_id": "0x7E0",
+      "dlc": 8,
+      "payload": "C8 BC 59 F1 F0 62 AA 84",
+      "ecu": "UDS Diagnostic Request (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.424577",
+      "elapsed": 0.4,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "11 01 65 11 C7 8B 5E 3B",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.461822",
+      "elapsed": 0.438,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "11 E2 E4 29 83 20 24 4C",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.499862",
+      "elapsed": 0.476,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "80 55 01 7F 80 7F 01 01",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.535119",
+      "elapsed": 0.511,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "22 5F 66 27 DD 3D 03 F6",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.573604",
+      "elapsed": 0.549,
+      "can_id": "0x7E8",
+      "dlc": 8,
+      "payload": "27 F8 97 78 B4 BD FF AD",
+      "ecu": "UDS Diagnostic Response (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.608641",
+      "elapsed": 0.584,
+      "can_id": "0x7E0",
+      "dlc": 8,
+      "payload": "3E F7 EA 5E 51 47 C0 69",
+      "ecu": "UDS Diagnostic Request (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.646335",
+      "elapsed": 0.622,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "00 00 00 80 00 00 00 00",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.684298",
+      "elapsed": 0.66,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "97 9D 4A 08 6E 36 77 5A",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.720920",
+      "elapsed": 0.697,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "AA 55 80 01 7F FE FF 7F",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.757707",
+      "elapsed": 0.733,
+      "can_id": "0x310",
+      "dlc": 8,
+      "payload": "00 00 00 40 00 00 00 00",
+      "ecu": "Transmission Control Unit (TCU)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.795307",
+      "elapsed": 0.771,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "00 20 00 00 00 00 00 00",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.831290",
+      "elapsed": 0.807,
+      "can_id": "0x7E0",
+      "dlc": 8,
+      "payload": "F2 4E C8 BD CC 4E B9 EE",
+      "ecu": "UDS Diagnostic Request (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.869568",
+      "elapsed": 0.845,
+      "can_id": "0x7E0",
+      "dlc": 8,
+      "payload": "55 FE FF FF 7F 7F 55 AA",
+      "ecu": "UDS Diagnostic Request (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.908144",
+      "elapsed": 0.884,
+      "can_id": "0x188",
+      "dlc": 8,
+      "payload": "F1 EF DC 8A EF 8A 32 DF",
+      "ecu": "Body Control Module (BCM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.942097",
+      "elapsed": 0.918,
+      "can_id": "0x120",
+      "dlc": 8,
+      "payload": "80 90 12 AB D3 A1 F9 6F",
+      "ecu": "Engine Control Module (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:40.980619",
+      "elapsed": 0.956,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "55 7F 00 00 00 01 AA 00",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:41.019101",
+      "elapsed": 0.995,
+      "can_id": "0x7E8",
+      "dlc": 8,
+      "payload": "D3 AB 15 EE BA E7 15 A1",
+      "ecu": "UDS Diagnostic Response (ECM)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:41.053549",
+      "elapsed": 1.029,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "FF 00 7F 7F 80 AA 00 00",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    },
+    {
+      "timestamp": "2026-09-05T01:27:41.091179",
+      "elapsed": 1.067,
+      "can_id": "0x244",
+      "dlc": 8,
+      "payload": "00 00 00 00 00 00 10 00",
+      "ecu": "Central Gateway (CGW)",
+      "status": "PASS"
+    }
+  ]
+}

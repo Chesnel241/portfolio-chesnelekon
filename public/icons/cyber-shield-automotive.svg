@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" fill="none" width="120" height="140">
+  <defs>
+    <linearGradient id="shieldGradAuto" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#040711"/>
+    </linearGradient>
+    <linearGradient id="shieldBorderAuto" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer Shield Crest -->
+  <path d="M60 8 L108 26 V68 C108 98 84 122 60 132 C36 122 12 98 12 68 V26 L60 8 Z" 
+        fill="url(#shieldGradAuto)" 
+        stroke="url(#shieldBorderAuto)" 
+        stroke-width="3" 
+        stroke-linejoin="round"/>
+  <!-- Inner Shield Inset Line -->
+  <path d="M60 18 L98 33 V68 C98 92 78 112 60 120 C42 112 22 92 22 68 V33 L60 18 Z" 
+        fill="none" 
+        stroke="#334155" 
+        stroke-width="1.5" 
+        stroke-dasharray="4 2"/>
+  <!-- Circuit Nodes / Automotive lines -->
+  <path d="M35 50 L50 50 L60 60 L70 50 L85 50" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="35" cy="50" r="3" fill="#38bdf8"/>
+  <circle cx="85" cy="50" r="3" fill="#38bdf8"/>
+  <!-- Central Lock / Emblem -->
+  <rect x="46" y="66" width="28" height="24" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M52 66 V58 C52 53.5 55.5 50 60 50 C64.5 50 68 53.5 68 58 V66" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <circle cx="60" cy="76" r="3" fill="#38bdf8"/>
+  <path d="M60 79 V83" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Base Tech Lines -->
+  <path d="M45 100 L60 108 L75 100" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none"/>
+</svg>

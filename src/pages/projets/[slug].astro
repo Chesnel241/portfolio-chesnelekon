@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import AuthorSignature from '../../components/AuthorSignature.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const statusClass = {
+  actif: 'status--actif',
+  'en cours': 'status--en-cours',
+  archivé: 'status--archive',
+}[project.data.status];
+---
+
+<Base title={project.data.title} description={project.data.summary}>
+  <article class="section" style="border-top: none; padding-top: 2rem;">
+    <a href="/projets" style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 1.5rem; text-decoration: none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span>Retour à la liste des projets</span>
+    </a>
+
+    <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem;">
+      {project.data.thumbnail && (
+        <Image
+          src={project.data.thumbnail}
+          alt={`Capture d'écran - ${project.data.title}`}
+          width={960}
+          height={480}
+          class="sheet__thumb"
+          style="margin: 0 0 1.5rem; max-width: 100%; height: auto; border-radius: var(--radius-md);"
+        />
+      )}
+
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+        <h1 style="font-size: var(--fs-3); margin: 0;">{project.data.title}</h1>
+        <span class={`status ${statusClass}`}>
+          <span class="dot" style={`background:${project.data.status === 'actif' ? '#10b981' : project.data.status === 'en cours' ? '#f59e0b' : '#64748b'}`}></span>
+          {project.data.status}
+        </span>
+      </div>
+
+      <p style="font-size: 1.1rem; color: var(--ink-soft); max-width: 48ch; margin-bottom: 1.5rem;">
+        {project.data.summary}
+      </p>
+
+      <div class="stack-row" style="margin-bottom: 1.5rem;">
+        {project.data.stack.map((s: string) => <span class="stack-chip">{s}</span>)}
+      </div>
+
+      {(project.data.githubUrl || project.data.demoUrl) && (
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          {project.data.githubUrl && (
+            <a class="btn btn--gradient" href={project.data.githubUrl} target="_blank" rel="noopener">
+              <span>Code source GitHub ↗</span>
+            </a>
+          )}
+          {project.data.demoUrl && (
+            <a class="btn btn--outline" href={project.data.demoUrl} target="_blank" rel="noopener">
+              <span>Voir la Démo ↗</span>
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+
+    <div class="prose" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem;">
+      <Content />
+    </div>
+
+    <AuthorSignature title={project.data.title} type="lab" />
+  </article>
+</Base>

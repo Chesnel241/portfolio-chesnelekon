@@ -1,0 +1,535 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ArticleRow from '../components/ArticleRow.astro';
+import TypingLine from '../components/TypingLine.astro';
+import ActivityMosaic from '../components/ActivityMosaic.astro';
+import IsoRoadInteractive from '../components/IsoRoadInteractive.astro';
+import VisionSection from '../components/VisionSection.astro';
+import ContactQrCard from '../components/ContactQrCard.astro';
+import AnimatedCodeCard from '../components/AnimatedCodeCard.astro';
+import { techIconUrl } from '../lib/badges';
+
+const allProjects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const recentPosts = allPosts.slice(0, 3);
+
+// Dedicated Standards & Methodologies keywords
+const standardsAndMethodologies = [
+  'ISO/SAE 21434',
+  'TARA (Threat Analysis)',
+  'CSMS',
+  'UNECE R155 / R156',
+  'EBIOS RM',
+  'CAN / CAN-FD'
+];
+
+// Focused Technical Tools & Languages stack
+const technicalToolsStack = [
+  'Linux',
+  'Metasploit',
+  'Nmap',
+  'Burp Suite',
+  'TCP/IP',
+  'SocketCAN',
+  'ICSim',
+  'Python',
+  'C/C++',
+  'Node.js',
+  'Docker Compose',
+  'Astro',
+  'TypeScript'
+];
+
+const toolsWithIcons = technicalToolsStack.map((tech) => ({ tech, icon: techIconUrl(tech) }));
+
+const typingLines = [
+  'TARA sous ISO/SAE 21434 & CSMS UNECE',
+  'Méthodologie EBIOS RM & Analyse de risque',
+  'Bus embarqué CAN/CAN-FD & SocketCAN',
+  'Audit Linux & Pentest (Metasploit, Nmap, Burp Suite)',
+];
+---
+
+<Base title="Accueil">
+  <section class="hero">
+    <div class="hero-grid">
+      <!-- Left Column: Typography & CTAs -->
+      <div>
+        <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem;">
+          <div style="position: relative; width: 90px; height: 90px; flex-shrink: 0;">
+            <img 
+              src="/chesnel-ekogha.jpg" 
+              alt="Chesnel Ekogha" 
+              width="90" 
+              height="90" 
+              style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(135deg, var(--accent-pink-bright), var(--accent-cyan-bright)) border-box; box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);"
+            />
+            <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-green); border: 2.5px solid var(--bg); box-shadow: 0 0 8px var(--accent-green);"></span>
+          </div>
+          <div>
+            <div class="hero__greeting" style="margin-bottom: 0.1rem;">Hello,</div>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Toulouse, France - Mobile France entière</span>
+          </div>
+        </div>
+
+        <h1>
+          This is <span class="text-pink">Chesnel Ekogha</span>, I'm an <span class="text-cyan">Automotive Cybersecurity Engineer.</span>
+        </h1>
+
+        <TypingLine lines={typingLines} />
+
+        <p class="hero__lede">
+          Analyse de risques (TARA sous ISO/SAE 21434, EBIOS RM), conformité réglementaire (UNECE R155/R156, CSMS) et tests d'intrusion (Linux, Metasploit, Nmap, Burp Suite, bus CAN/CAN-FD). 3+ ans d'expérience chez Schaeffler (ex-Vitesco Technologies).
+        </p>
+
+        <!-- Social Media Icons Row -->
+        <div class="social-row">
+          <a class="social-icon-btn" href="https://www.linkedin.com/in/chesnelekogha" target="_blank" rel="noopener" title="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a class="social-icon-btn" href="mailto:ekoghachesneloff@gmail.com" title="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a class="social-icon-btn" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener" title="Télécharger le CV">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+        </div>
+
+        <!-- Pill Action Buttons -->
+        <div class="hero__actions">
+          <a class="btn btn--gradient" href="mailto:ekoghachesneloff@gmail.com">
+            <span>Contactez-moi</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+          </a>
+          <button class="btn btn--outline" id="btnOpenCvModal" type="button">
+            <span>Aperçu CV (PDF)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
+          <a class="btn btn--outline" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener">
+            <span>Télécharger le CV</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+        </div>
+
+        <!-- Hero Impact Ribbon (Diverse Shapes, Colors, Zero Duplication) -->
+        <div class="hero-impact-ribbon">
+          <!-- Card 1: Experience Pill Badge -->
+          <div class="impact-card impact-card--pill">
+            <div class="impact-icon-box impact-icon--cyan">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h4l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            </div>
+            <div>
+              <div class="impact-val impact-val--cyan">3+ ans</div>
+              <div class="impact-lbl">Expérience Schaeffler (ex-Vitesco)</div>
+            </div>
+          </div>
+
+          <!-- Card 2: ECU Circular Dial Badge -->
+          <div class="impact-card impact-card--dial">
+            <div class="impact-icon-box impact-icon--green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+            </div>
+            <div>
+              <div class="impact-val impact-val--green">6 ECU</div>
+              <div class="impact-lbl">Calculateurs spécifiés (TARA & SecOC)</div>
+            </div>
+          </div>
+
+          <!-- Card 3: Standards Shield Badge -->
+          <div class="impact-card impact-card--shield">
+            <div class="impact-icon-box impact-icon--indigo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <div>
+              <div class="impact-val impact-val--indigo">100%</div>
+              <div class="impact-lbl">Traçabilité Exigences ISO 21434</div>
+            </div>
+          </div>
+
+          <!-- Card 4: Community & Location Dual Tag -->
+          <div class="impact-card impact-card--dual">
+            <div class="dual-row">
+              <span class="tag-pill tag-pill--indigo">
+                <strong>2</strong> Engagements (GEH & CESIA)
+              </span>
+              <span class="tag-pill tag-pill--location">
+                <span class="live-dot"></span>
+                <strong>Toulouse</strong> (Mobile France)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Animated Code Card Showcase -->
+      <div>
+        <AnimatedCodeCard />
+      </div>
+    </div>
+
+    <!-- Normes, Réglementations & Méthodologies -->
+    <div style="margin-top: 2rem;">
+      <p style="font-family: var(--font-mono); font-size: var(--fs-000); color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.5rem;">
+        // Normes, Réglementations & Méthodologies
+      </p>
+      <div class="methodology-row">
+        {standardsAndMethodologies.map((item) => (
+          <span class="badge--standard">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Outils & Langages Techniques Stack Chips -->
+    <div style="margin-top: 1rem;">
+      <p style="font-family: var(--font-mono); font-size: var(--fs-000); color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.5rem;">
+        // Outils & Langages Techniques
+      </p>
+      <div class="stack-row">
+        {toolsWithIcons.map(({ tech, icon }) => (
+          <span class="stack-chip">
+            {icon && <img src={icon} alt="" width="14" height="14" />}
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <p style="font-family: var(--font-mono); font-size: var(--fs-000); color: var(--ink-muted); margin-bottom: 0.5rem;">Activité & contributions cybersécurité</p>
+      <ActivityMosaic />
+    </div>
+  </section>
+
+  <section class="section" id="projets">
+    <SectionHead label="01" title="Projets Cybersécurité & Réalisations" linkHref="/projets" linkLabel="Tous les projets →" />
+    <div class="sheet-grid">
+      {allProjects.map((project) => (
+        <ProjectCard
+          slug={project.id}
+          title={project.data.title}
+          summary={project.data.summary}
+          stack={project.data.stack}
+          status={project.data.status}
+          thumbnail={project.data.thumbnail}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 02: Expériences Professionnelles & Engagements -->
+  <section class="section" id="experiences">
+    <SectionHead label="02" title="Parcours Professionnel & Engagements" />
+    
+    <!-- 02.1 Expérience en Entreprise -->
+    <div style="margin-bottom: 2rem;">
+      <p style="font-family: var(--font-mono); font-size: var(--fs-00); color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.75rem;">
+        // 02.1 Expérience en Entreprise (Industrie Automobile)
+      </p>
+
+      <div class="cyber-shield-list">
+        <!-- Schaeffler -->
+        <details class="cyber-shield-card" open>
+          <summary class="cyber-shield-summary">
+            <div class="cyber-shield-left">
+              <div class="cyber-shield-large-vector" title="Bouclier Cyber Automobile">
+                <img src="/icons/cyber-shield-automotive.svg" alt="Bouclier Cyber Vectoriel Schaeffler" width="72" height="84" />
+              </div>
+              <div class="cyber-shield-info">
+                <h3>
+                  Ingénieur Cybersécurité Automobile (Alternance)
+                  <span class="cyber-shield-company-tag">Schaeffler</span>
+                </h3>
+                <div class="cyber-shield-date">Mars 2023 - Août 2026 | Toulouse, France (ex-Vitesco Technologies)</div>
+              </div>
+            </div>
+            <div class="cyber-shield-trigger">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-5-5h10l-5 5z"></path></svg>
+              <span>Afficher le détail</span>
+            </div>
+          </summary>
+
+          <div class="cyber-shield-details">
+            <div class="cyber-dossier-grid">
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Analyses TARA</div>
+                <div class="cyber-dossier-metric__val">6+ ECU Moteur</div>
+              </div>
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Cadre Régl.</div>
+                <div class="cyber-dossier-metric__val">ISO/SAE 21434 & UNECE R155/R156</div>
+              </div>
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Traçabilité Exigences</div>
+                <div class="cyber-dossier-metric__val">Polarion / IMS / JIRA</div>
+              </div>
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Conformité CSMS</div>
+                <div class="cyber-dossier-metric__val">Revues SEC0 - SEC5</div>
+              </div>
+            </div>
+
+            <ul style="margin: 0; padding-left: 1.2rem; color: var(--ink-soft); font-size: var(--fs-00); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>Réalisation et mise à jour de <strong>plus de 6 TARA</strong> sur des calculateurs moteur (ECU) complexes : Item Definition, Scénarios de menaces, Attack Paths, et définition des Cybersecurity Goals.</li>
+              <li>Spécification et traçabilité rigoureuse des exigences de sécurité dans <strong>Polarion, IMS et JIRA</strong>.</li>
+              <li>Déploiement opérationnel du système de gestion de la cybersécurité (CSMS) : animation des jalons de sécurité <strong>SEC0 à SEC5</strong> et conformité réglementaire <strong>UNECE R155/R156</strong>.</li>
+              <li>Animation des revues <em>Security by Design</em> en lien étroit avec les ingénieurs Système, Architecture, Hardware, Software et Validation.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- 02.2 Bénévolat & Engagement Communautaire -->
+    <div>
+      <p style="font-family: var(--font-mono); font-size: var(--fs-00); color: #818cf8; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.75rem;">
+        // 02.2 Engagements, Bénévolat & Communauté Cyber
+      </p>
+
+      <div class="cyber-shield-list">
+        <!-- GEH & CESIA -->
+        <details class="cyber-shield-card">
+          <summary class="cyber-shield-summary">
+            <div class="cyber-shield-left">
+              <div class="cyber-shield-large-vector" title="Bouclier Cyber Engagement">
+                <img src="/icons/cyber-shield-ethic.svg" alt="Bouclier Cyber Vectoriel Ethic Hackers" width="72" height="84" />
+              </div>
+              <div class="cyber-shield-info">
+                <h3>
+                  Co-fondateur & Engagement CESIA
+                  <span class="cyber-shield-company-tag" style="color: #818cf8; background: rgba(129, 140, 248, 0.08); border-color: rgba(129, 140, 248, 0.2);">Gabon Ethical Hackers & CESIA</span>
+                </h3>
+                <div class="cyber-shield-date">2023 - Présent | France & International (Bénévolat)</div>
+              </div>
+            </div>
+            <div class="cyber-shield-trigger">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-5-5h10l-5 5z"></path></svg>
+              <span>Afficher le détail</span>
+            </div>
+          </summary>
+
+          <div class="cyber-shield-details">
+            <div class="cyber-dossier-grid">
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Distinction CTF</div>
+                <div class="cyber-dossier-metric__val">Lauréat Hacking International</div>
+              </div>
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Engagement CESIA</div>
+                <div class="cyber-dossier-metric__val">Assistant RSSI Bénévole</div>
+              </div>
+              <div class="cyber-dossier-metric">
+                <div class="cyber-dossier-metric__label">Impact Public</div>
+                <div class="cyber-dossier-metric__val">Audits Administrations & Baromètre</div>
+              </div>
+            </div>
+
+            <ul style="margin: 0; padding-left: 1.2rem; color: var(--ink-soft); font-size: var(--fs-00); display: flex; flex-direction: column; gap: 0.5rem;">
+              <li>Co-fondation du collectif <strong>Gabon Ethical Hackers (GEH)</strong>, lauréat d'un challenge international de hacking éthique et CTF.</li>
+              <li>Engagement bénévole en tant qu'<strong>Assistant RSSI au CESIA</strong> : réalisation d'audits de sécurité et d'évaluations de vulnérabilités pour des administrations publiques.</li>
+              <li>Participation active à la co-rédaction du Baromètre annuel de la cybersécurité et animation de sessions de sensibilisation aux risques cyber.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 03: Formations & Diplômes (Logos Officiels Interactifs) -->
+  <section class="section" id="formations">
+    <SectionHead label="03" title="Formations & Diplômes (Logos Officiels)" />
+    
+    <div class="school-grid">
+      <!-- ESIEA Card -->
+      <details class="school-card">
+        <summary style="list-style: none; cursor: pointer; width: 100%;">
+          <div class="school-card__logo-wrapper">
+            <img src="/logos/esiea.png" alt="Logo Officiel ESIEA" class="school-card__logo" />
+          </div>
+          <div class="school-card__title">ESIEA</div>
+          <div class="school-card__date">2023 - 2026 | Paris</div>
+          <div class="school-card__badge">Ingénieur Cybersécurité</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); margin-top: 0.25rem; font-weight: 600;">
+            [ Cliquez pour le détail ]
+          </div>
+        </summary>
+        <div class="school-card__details">
+          <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: var(--ink);">Diplôme d'Ingénieur Cybersécurité & Software Engineering</p>
+          <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.82rem; color: var(--ink-soft); display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>Cryptographie appliquée & Réseaux informatiques</li>
+            <li>Développement sécurisé & Microcontrôleurs embarqués</li>
+            <li>Conteneurisation Docker, CI/CD & DevSecOps</li>
+            <li>Programmation Java & Ingénierie Logicielles</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- ESGI Card -->
+      <details class="school-card">
+        <summary style="list-style: none; cursor: pointer; width: 100%;">
+          <div class="school-card__logo-wrapper">
+            <img src="/logos/esgi.svg" alt="Logo Officiel ESGI" class="school-card__logo" />
+          </div>
+          <div class="school-card__title">ESGI</div>
+          <div class="school-card__date">2022 - 2023 | Paris</div>
+          <div class="school-card__badge">Bachelor Sécurité Informatique</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); margin-top: 0.25rem; font-weight: 600;">
+            [ Cliquez pour le détail ]
+          </div>
+        </summary>
+        <div class="school-card__details">
+          <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: var(--ink);">Bachelor Sécurité Informatique (Systèmes & Réseaux)</p>
+          <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.82rem; color: var(--ink-soft); display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>Architecture & protocoles réseaux TCP/IP</li>
+            <li>Administration système Linux avancée</li>
+            <li>Audit de sécurité réseau & Hacking éthique</li>
+            <li>Pratique de la sécurité offensive et défense</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- Notre Dame de Grace Card -->
+      <details class="school-card">
+        <summary style="list-style: none; cursor: pointer; width: 100%;">
+          <div class="school-card__logo-wrapper">
+            <img src="/logos/ndg.jpg" alt="Logo Officiel Notre-Dame de Grâce" class="school-card__logo" style="opacity: 0.95" />
+          </div>
+          <div class="school-card__title">Lycée Notre-Dame de Grâce</div>
+          <div class="school-card__date">2020 - 2023 | Maubeuge</div>
+          <div class="school-card__badge">CPGE MPSI / MP</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); margin-top: 0.25rem; font-weight: 600;">
+            [ Cliquez pour le détail ]
+          </div>
+        </summary>
+        <div class="school-card__details">
+          <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: var(--ink);">Classe Préparatoire aux Grandes Écoles (CPGE)</p>
+          <ul style="margin: 0; padding-left: 1.1rem; font-size: 0.82rem; color: var(--ink-soft); display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>Filière Mathématiques, Physique & Sciences de l'Ingénieur</li>
+            <li>Rigueur d'analyse mathématique et algorithmique</li>
+            <li>Physique des signaux & Automatique des systèmes</li>
+            <li>Fondations scientifiques et modélisation complexe</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Section 04: Méthodologie & Processus d'Ingénierie -->
+  <section class="section" id="methodologie">
+    <SectionHead label="04" title="Méthodologie & Processus TARA (ISO/SAE 21434)" />
+    <IsoRoadInteractive />
+  </section>
+
+  <!-- Section 05: Vision & Principes d'Ingénierie -->
+  <section class="section" id="vision">
+    <SectionHead label="05" title="Vision & Principes d'Ingénierie" />
+    <VisionSection />
+  </section>
+
+  <!-- Section 06: Certifications & Normes Maîtrisées -->
+  <section class="section" id="certifications">
+    <SectionHead label="06" title="Certifications, Normes & Habilitations" />
+    
+    <div class="methodology-card-grid">
+      <div class="methodology-card">
+        <div class="methodology-card__step" style="color: var(--accent-cyan);">Norme Standard</div>
+        <h4>ISO/SAE 21434</h4>
+        <p>Road Vehicles - Cybersecurity Engineering. Spécialiste de la traçabilité des exigences et de la démarche TARA sur calculateurs embarqués.</p>
+      </div>
+
+      <div class="methodology-card">
+        <div class="methodology-card__step" style="color: var(--accent-cyan);">Règlements Homologation</div>
+        <h4>UNECE R155 & R156</h4>
+        <p>Conformité CSMS (Cybersecurity Management System) & SUMS (Software Update Management System) pour l'homologation véhicule.</p>
+      </div>
+
+      <div class="methodology-card">
+        <div class="methodology-card__step" style="color: #818cf8;">Méthodologie Risque</div>
+        <h4>EBIOS Risk Manager</h4>
+        <p>Méthodologie ANSSI d'analyse de risques pour le secteur public et les systèmes d'information d'importance vitale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 07: Articles Techniques -->
+  <section class="section" id="blog">
+    <SectionHead label="07" title="Articles Techniques" linkHref="/blog" linkLabel="Tous les articles →" />
+    <div class="timeline">
+      {recentPosts.map((post) => (
+        <ArticleRow
+          slug={post.id}
+          title={post.data.title}
+          excerpt={post.data.excerpt}
+          date={post.data.date}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 08: Contact & Disponibilité -->
+  <section class="section" id="a-propos">
+    <SectionHead label="08" title="Contact & Disponibilité" />
+    <ContactQrCard />
+  </section>
+
+  <!-- CV PDF Modal Preview Container -->
+  <div id="cvModal" class="cv-modal-backdrop" aria-hidden="true">
+    <div class="cv-modal-container">
+      <div class="cv-modal-header">
+        <h3>Aperçu du CV - Chesnel Ekogha (PDF)</h3>
+        <button class="cv-modal-close-btn" id="btnCloseCvModal" type="button" aria-label="Fermer la fenêtre">&times;</button>
+      </div>
+      <iframe src="/cv-chesnel-ekogha.pdf" class="cv-modal-iframe" title="CV Chesnel Ekogha PDF"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function setupCvModal() {
+      const modal = document.getElementById('cvModal');
+      const btnOpen = document.getElementById('btnOpenCvModal');
+      const btnOpenFooter = document.getElementById('btnOpenCvModalFooter');
+      const btnClose = document.getElementById('btnCloseCvModal');
+
+      const openModal = () => {
+        if (modal) {
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden', 'false');
+        }
+      };
+
+      const closeModal = () => {
+        if (modal) {
+          modal.classList.remove('is-open');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+      };
+
+      if (btnOpen) btnOpen.addEventListener('click', openModal);
+      if (btnOpenFooter) btnOpenFooter.addEventListener('click', openModal);
+      if (btnClose) btnClose.addEventListener('click', closeModal);
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    }
+
+    setupCvModal();
+    document.addEventListener('astro:page-load', setupCvModal);
+  </script>
+</Base>

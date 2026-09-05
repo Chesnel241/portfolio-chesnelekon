@@ -1,0 +1,37 @@
+{
+  "author": "Chesnel Ekogha",
+  "date": "2026-09-05T01:27:55.678828",
+  "sources": [
+    "CERT-FR",
+    "ANSSI Bulletins"
+  ],
+  "alerts": [
+    {
+      "id": "CERTFR-2026-ALE-004",
+      "target_sector": "Collectivit\u00e9s Territoriales / Mairies",
+      "threat_type": "Ransomware (LockBit 3.0 / Akira)",
+      "cvss": 9.8,
+      "impact": "CRITICAL",
+      "vector": "VPN SSL Vulnerability (Unpatched Fortinet/PaloAlto) & Phishing",
+      "mitigation": "Disable legacy SSL-VPN, mandate MFA & apply patch CERTFR-2026-AVI-142."
+    },
+    {
+      "id": "CERTFR-2026-ALE-003",
+      "target_sector": "\u00c9tablissements de Sant\u00e9 (CH / CHU)",
+      "threat_type": "DDoS & Data Exfiltration",
+      "cvss": 8.5,
+      "impact": "HIGH",
+      "vector": "Exposed Medical Imaging DICOM / PACS Endpoints",
+      "mitigation": "Isolate PACS networks via VLAN, enforce IP Whitelisting & Reverse-Proxy authentication."
+    },
+    {
+      "id": "CERTFR-2026-ALE-002",
+      "target_sector": "Minist\u00e8res & Administrations Centrales",
+      "threat_type": "APT Supply Chain Compromise",
+      "cvss": 9.1,
+      "impact": "CRITICAL",
+      "vector": "Compromised Third-Party IT Service Provider (MSSP)",
+      "mitigation": "Audit MSSP admin credentials, enforce PAM (Privileged Access Management) & EDR telemetry."
+    }
+  ]
+}

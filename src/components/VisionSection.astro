@@ -1,0 +1,147 @@
+---
+// src/components/VisionSection.astro
+---
+
+<div class="vision-container">
+  <div class="vision-header">
+    <span class="vision-subtitle">DISCIPLINE & SAVOIR-ÊTRE</span>
+    <h3 class="vision-title">Ma Vision & Principes d'Ingénierie</h3>
+    <p class="vision-intro">
+      La cybersécurité automobile ne s'arrête pas à la conformité théorique. Elle repose sur la capacité à concilier rigueur normative, contraintes matérielles de l'embarqué et travail collaboratif entre équipes système, hardware et logiciel.
+    </p>
+  </div>
+
+  <div class="vision-grid">
+    <!-- Pillar 1 -->
+    <div class="vision-card">
+      <div class="vision-icon-wrapper" style="color: var(--accent-cyan);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+      </div>
+      <h4>Security by Design Pragmatique</h4>
+      <p>
+        Intégrer les exigences de sécurité dès les premières étapes du cycle de développement en V (SEC0-SEC5). L'objectif est d'anticiper les menaces sans ralentir l'innovation ni la mise sur le marché.
+      </p>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="vision-card">
+      <div class="vision-icon-wrapper" style="color: var(--accent-green);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+      </div>
+      <h4>Pédagogie & Esprit d'Équipe</h4>
+      <p>
+        Savoir vulgariser les enjeux de la cybersécurité auprès des équipes système et projet. Construire un dialogue constructif et instaurer une culture de la sécurité partagée par tous les intervenants.
+      </p>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="vision-card">
+      <div class="vision-icon-wrapper" style="color: #818cf8;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+      </div>
+      <h4>Rigueur Normative & Preuves</h4>
+      <p>
+        Appliquer les référentiels normatifs (ISO/SAE 21434, EBIOS RM, UNECE R155/R156) avec méthode. Garantir une traçabilité 100% vérifiable des exigences pour l'homologation réglementaire.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .vision-container {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.25rem;
+    margin-top: 1.5rem;
+    box-shadow: var(--card-shadow);
+  }
+
+  .vision-header {
+    margin-bottom: 2rem;
+    max-width: 760px;
+  }
+
+  .vision-subtitle {
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    letter-spacing: 0.08em;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+  }
+
+  .vision-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0.3rem 0 0.75rem 0;
+  }
+
+  .vision-intro {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .vision-card {
+    background: var(--chip-bg);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .vision-card:hover {
+    transform: scale(1.02);
+    border-color: var(--border-active);
+    background: var(--chip-hover);
+  }
+
+  .vision-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--chip-bg);
+    border: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .vision-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .vision-card p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

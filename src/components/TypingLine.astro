@@ -1,0 +1,42 @@
+---
+interface Props {
+  lines: string[];
+}
+const { lines } = Astro.props as Props;
+---
+
+<p class="hero__typing" id="typingLine" data-lines={JSON.stringify(lines)}>{lines[0]}</p>
+<script>
+  const el = document.getElementById('typingLine');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (el && !reduceMotion) {
+    const lines: string[] = JSON.parse(el.dataset.lines || '[]');
+    let lineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function tick() {
+      const current = lines[lineIndex];
+      if (!deleting) {
+        charIndex++;
+        el!.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(tick, 1800);
+          return;
+        }
+      } else {
+        charIndex--;
+        el!.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          lineIndex = (lineIndex + 1) % lines.length;
+        }
+      }
+      setTimeout(tick, deleting ? 30 : 55);
+    }
+
+    setTimeout(tick, 900);
+  }
+</script>
