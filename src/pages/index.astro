@@ -109,12 +109,8 @@ const typingLines = [
             <span>Contactez-moi</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
           </a>
-          <button class="btn btn--outline" id="btnOpenCvModal" type="button">
-            <span>Aperçu CV (PDF)</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          </button>
-          <a class="btn btn--outline" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener">
-            <span>Télécharger le CV</span>
+          <a class="btn btn--outline" href="/cv-chesnel-ekogha.pdf" download="CV-Chesnel-Ekogha.pdf" target="_blank" rel="noopener">
+            <span>Télécharger le CV (PDF)</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           </a>
         </div>
@@ -481,70 +477,4 @@ const typingLines = [
     <SectionHead label="08" title="Contact & Disponibilité" />
     <ContactQrCard />
   </section>
-
-  <!-- CV PDF Modal Preview Container -->
-  <div id="cvModal" class="cv-modal-backdrop" aria-hidden="true">
-    <div class="cv-modal-container">
-      <div class="cv-modal-header">
-        <h3>Aperçu du CV - Chesnel Ekogha (PDF)</h3>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <a class="btn btn--outline" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
-            Plein écran ↗
-          </a>
-          <a class="btn btn--gradient" href="/cv-chesnel-ekogha.pdf" download="CV-Chesnel-Ekogha.pdf" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
-            Télécharger (PDF)
-          </a>
-          <button class="cv-modal-close-btn" id="btnCloseCvModal" type="button" aria-label="Fermer la fenêtre">&times;</button>
-        </div>
-      </div>
-      <object data="/cv-chesnel-ekogha.pdf" type="application/pdf" class="cv-modal-iframe" title="CV Chesnel Ekogha PDF">
-        <iframe src="/cv-chesnel-ekogha.pdf" class="cv-modal-iframe" title="CV Chesnel Ekogha PDF">
-          <div style="padding: 2rem; text-align: center; color: var(--ink-soft);">
-            <p>Votre navigateur ne supporte pas l'affichage PDF intégré.</p>
-            <a class="btn btn--gradient" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet</a>
-          </div>
-        </iframe>
-      </object>
-    </div>
-  </div>
-
-  <script>
-    function setupCvModal() {
-      const modal = document.getElementById('cvModal');
-      const btnOpen = document.getElementById('btnOpenCvModal');
-      const btnOpenFooter = document.getElementById('btnOpenCvModalFooter');
-      const btnClose = document.getElementById('btnCloseCvModal');
-
-      const openModal = () => {
-        if (modal) {
-          modal.classList.add('is-open');
-          modal.setAttribute('aria-hidden', 'false');
-        }
-      };
-
-      const closeModal = () => {
-        if (modal) {
-          modal.classList.remove('is-open');
-          modal.setAttribute('aria-hidden', 'true');
-        }
-      };
-
-      if (btnOpen) btnOpen.addEventListener('click', openModal);
-      if (btnOpenFooter) btnOpenFooter.addEventListener('click', openModal);
-      if (btnClose) btnClose.addEventListener('click', closeModal);
-
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeModal();
-        });
-      }
-
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-      });
-    }
-
-    setupCvModal();
-    document.addEventListener('astro:page-load', setupCvModal);
-  </script>
 </Base>

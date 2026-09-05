@@ -1570,85 +1570,6 @@ p {
   line-height: 1.55;
 }
 
-/* ---------- CV PDF Preview Modal ---------- */
-.cv-modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(4, 7, 17, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-[data-theme="light"] .cv-modal-backdrop {
-  background: rgba(15, 23, 42, 0.6);
-}
-
-.cv-modal-container {
-  width: 100%;
-  max-width: 900px;
-  height: 85vh;
-  background: var(--surface-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: var(--card-shadow-hover);
-}
-
-.cv-modal-header {
-  padding: 1rem 1.5rem;
-  background: var(--code-header-bg);
-  border-bottom: 1px solid var(--border-soft);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cv-modal-header h3 {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  color: var(--ink);
-}
-
-.cv-modal-close-btn {
-  background: var(--chip-bg);
-  border: 1px solid var(--border);
-  color: var(--ink);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: background 0.2s ease;
-}
-
-.cv-modal-close-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border-color: #ef4444;
-}
-
-.cv-modal-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 48em) {
@@ -1670,7 +1591,7 @@ p {
     color: #000000 !important;
     font-size: 12pt;
   }
-  .site-header, .site-footer, .hero__actions, .social-row, .github-graph-card, .cv-modal-backdrop, .share-box {
+  .site-header, .site-footer, .hero__actions, .social-row, .github-graph-card, .share-box {
     display: none !important;
   }
   .wrap {
