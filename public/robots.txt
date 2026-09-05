@@ -1,0 +1,14 @@
+# Robots.txt & Security Crawling Policy
+# Portfolio Cybersécurité - Chesnel Ekogha
+
+User-agent: *
+Allow: /
+Allow: /projets/
+Allow: /blog/
+Allow: /images/
+
+# Restrict raw log endpoints from aggressive search engine bots
+Disallow: /logs/
+
+# Security Policy Reference
+Security: https://portfolio-chesnelekon.vercel.app/.well-known/security.txt
