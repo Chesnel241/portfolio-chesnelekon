@@ -1,0 +1,759 @@
+---
+// src/components/KineticCyberHero.astro
+import AnimatedCodeCard from './AnimatedCodeCard.astro';
+---
+
+<div class="kinetic-hero-wrapper" id="kineticHero">
+  <!-- Ambient Glow Lights -->
+  <div class="kinetic-glow kinetic-glow--cyan"></div>
+  <div class="kinetic-glow kinetic-glow--amber"></div>
+
+  <!-- Background Animated CAN Bus Data Stream Rays -->
+  <div class="kinetic-data-tracks" aria-hidden="true">
+    <div class="data-ray data-ray--1"></div>
+    <div class="data-ray data-ray--2"></div>
+    <div class="data-ray data-ray--3"></div>
+  </div>
+
+  <div class="kinetic-grid">
+    <!-- Left Column: Monumental Dual-Tone Typography & Kinetic Speeds -->
+    <div class="kinetic-content">
+      <!-- Cyber Eyebrow with Pulsing Live Status -->
+      <div class="kinetic-eyebrow">
+        <span class="kinetic-live-pulse"></span>
+        <span class="kinetic-eyebrow__tag">// AUTOMOTIVE CYBERSECURITY ARCHITECT</span>
+        <span class="kinetic-eyebrow__loc">TOULOUSE, FR • MOBILE</span>
+      </div>
+
+      <!-- Monumental Stencil Dual-Tone Title (Inspiré Affiche 1) -->
+      <div class="kinetic-title-wrap">
+        <h1 class="kinetic-title">
+          <span class="stencil-split" data-text="CHESNEL">CHESNEL</span>
+          <span class="stencil-split stencil-split--accent" data-text="EKOGHA">EKOGHA</span>
+        </h1>
+        <!-- Kinetic Speed Trail Bands (Inspiré Affiche 3) -->
+        <div class="kinetic-speed-trail">
+          <span class="trail-bar trail-bar--cyan"></span>
+          <span class="trail-bar trail-bar--amber"></span>
+          <span class="trail-bar trail-bar--green"></span>
+        </div>
+      </div>
+
+      <!-- Elevated Subtitle with Drop-Shadow on Kinetic Bands -->
+      <div class="kinetic-sub-box">
+        <div class="kinetic-role-badge">INGÉNIEUR CYBERSÉCURITÉ SYSTÈMES EMBARQUÉS</div>
+        <p class="kinetic-lede">
+          Spécialiste de l'analyse de menaces <strong>TARA</strong> (ISO/SAE 21434, EBIOS RM), de la conformité réglementaire <strong>UNECE R155/R156</strong> et de la sécurisation physique et logique des <strong>calculateurs automobiles (ECU, Bus CAN/CAN-FD, SecOC)</strong>.
+        </p>
+      </div>
+
+      <!-- Kinetic Speed Badges Row -->
+      <div class="kinetic-tags-band">
+        <div class="kinetic-tag kinetic-tag--cyan">
+          <span class="tag-marker"></span>
+          <span>ISO/SAE 21434</span>
+        </div>
+        <div class="kinetic-tag kinetic-tag--amber">
+          <span class="tag-marker"></span>
+          <span>TARA & EBIOS RM</span>
+        </div>
+        <div class="kinetic-tag kinetic-tag--purple">
+          <span class="tag-marker"></span>
+          <span>UNECE R155 / CSMS</span>
+        </div>
+        <div class="kinetic-tag kinetic-tag--green">
+          <span class="tag-marker"></span>
+          <span>Bus CAN / CAN-FD</span>
+        </div>
+      </div>
+
+      <!-- Kinetic Action CTAs -->
+      <div class="kinetic-actions">
+        <a class="btn-kinetic btn-kinetic--primary" href="mailto:ekoghachesneloff@gmail.com">
+          <span class="btn-kinetic__content">
+            <span>Contacter Chesnel</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+          </span>
+        </a>
+
+        <a class="btn-kinetic btn-kinetic--secondary" href="/cv-chesnel-ekogha.pdf" download="CV-Chesnel-Ekogha.pdf" target="_blank" rel="noopener">
+          <span class="btn-kinetic__content">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Télécharger le CV (PDF)</span>
+          </span>
+        </a>
+
+        <a class="btn-kinetic-icon" href="https://www.linkedin.com/in/chesnelekogha" target="_blank" rel="noopener" title="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Ribbon with Speed Striping -->
+      <div class="kinetic-metrics-strip">
+        <div class="metric-item">
+          <div class="metric-val text-cyan">3+ ans</div>
+          <div class="metric-lbl">Schaeffler (ex-Vitesco)</div>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <div class="metric-val text-green">6 ECU</div>
+          <div class="metric-lbl">TARA & Sécurisation</div>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <div class="metric-val text-amber">100%</div>
+          <div class="metric-lbl">ISO 21434 Traçabilité</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: 3D Perspective Photo Stage & Interactive Elements (Inspiré Affiche 2) -->
+    <div class="kinetic-stage">
+      <div class="perspective-container" id="perspectiveStage">
+        <!-- 3D Runway Grid Plane (Sol en perspective) -->
+        <div class="perspective-runway">
+          <div class="runway-grid"></div>
+          <div class="runway-text-tunnel">
+            <span>ISO 21434 • CSMS • UNECE R155 • CAN BUS • TARA • SECOC</span>
+          </div>
+        </div>
+
+        <!-- 3D Monolith Card with Chesnel's Portrait -->
+        <div class="portrait-monolith">
+          <div class="monolith-frame">
+            <img 
+              src="/chesnel-ekogha.jpg" 
+              alt="Chesnel Ekogha - Ingénieur Cybersécurité Automobile" 
+              class="monolith-photo"
+              width="420"
+              height="500"
+            />
+            <!-- Gradient Light Sheen -->
+            <div class="monolith-sheen"></div>
+
+            <!-- Overlaid Status Badge (Physical Elevation) -->
+            <div class="monolith-badge">
+              <span class="verified-dot"></span>
+              <div>
+                <div class="monolith-badge__title">Chesnel Ekogha</div>
+                <div class="monolith-badge__sub">Schaeffler (ex-Vitesco) • CDI Dispo</div>
+              </div>
+            </div>
+
+            <!-- Floating ECU Orbit Badge 1 -->
+            <div class="floating-satellite satellite--1">
+              <span class="satellite-icon">🛡️</span>
+              <span>CSMS Homologation</span>
+            </div>
+
+            <!-- Floating ECU Orbit Badge 2 -->
+            <div class="floating-satellite satellite--2">
+              <span class="satellite-icon">⚡</span>
+              <span>CAN-FD Fuzzing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Terminal Code Card Embedded at Base -->
+      <div class="kinetic-terminal-toggle-wrap">
+        <AnimatedCodeCard />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Base Container with Dot-Matrix Pattern */
+  .kinetic-hero-wrapper {
+    position: relative;
+    background-color: #060911;
+    background-image: radial-gradient(rgba(0, 242, 254, 0.12) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 28px;
+    padding: 3rem 2.5rem;
+    margin: 1.5rem 0 3rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Ambient Glow Light Orbs */
+  .kinetic-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .kinetic-glow--cyan {
+    top: -100px;
+    left: 10%;
+    width: 380px;
+    height: 380px;
+    background: rgba(0, 242, 254, 0.15);
+  }
+  .kinetic-glow--amber {
+    bottom: -80px;
+    right: 15%;
+    width: 320px;
+    height: 320px;
+    background: rgba(255, 184, 0, 0.1);
+  }
+
+  /* Animated Background Data Rays (CAN Bus Differential Signals) */
+  .kinetic-data-tracks {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .data-ray {
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    opacity: 0.25;
+  }
+  .data-ray--1 {
+    top: 22%;
+    background: linear-gradient(90deg, transparent, #00f2fe 30%, transparent 60%);
+    animation: canStream 4s linear infinite;
+  }
+  .data-ray--2 {
+    top: 55%;
+    background: linear-gradient(90deg, transparent, #ffb800 40%, transparent 70%);
+    animation: canStream 6s linear infinite reverse;
+  }
+  .data-ray--3 {
+    top: 82%;
+    background: linear-gradient(90deg, transparent, #10b981 25%, transparent 55%);
+    animation: canStream 5s linear infinite;
+  }
+
+  @keyframes canStream {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Two Column Main Grid */
+  .kinetic-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* Eyebrow & Status */
+  .kinetic-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    padding: 0.4rem 0.9rem;
+    border-radius: 980px;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(10px);
+  }
+  .kinetic-live-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .kinetic-eyebrow__tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #00f2fe;
+    letter-spacing: 0.08em;
+  }
+  .kinetic-eyebrow__loc {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: #94a3b8;
+  }
+
+  /* Monumental Title with Stencil Dual-Tone Split (Affiche 1) */
+  .kinetic-title-wrap {
+    margin-bottom: 1.5rem;
+  }
+  .kinetic-title {
+    font-family: var(--font-body);
+    font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* Stencil Cutout Effect */
+  .stencil-split {
+    display: block;
+    background: linear-gradient(135deg, #ffffff 50%, rgba(255, 255, 255, 0.4) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5));
+  }
+
+  .stencil-split--accent {
+    background: linear-gradient(135deg, #00f2fe 50%, #ffb800 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 25px rgba(0, 242, 254, 0.35));
+  }
+
+  /* Kinetic Speed Trail Bands (Affiche 3) */
+  .kinetic-speed-trail {
+    display: flex;
+    gap: 6px;
+    margin-top: 0.85rem;
+  }
+  .trail-bar {
+    height: 4px;
+    border-radius: 980px;
+    box-shadow: 0 0 10px currentColor;
+  }
+  .trail-bar--cyan {
+    width: 90px;
+    background: #00f2fe;
+    color: #00f2fe;
+  }
+  .trail-bar--amber {
+    width: 45px;
+    background: #ffb800;
+    color: #ffb800;
+  }
+  .trail-bar--green {
+    width: 25px;
+    background: #10b981;
+    color: #10b981;
+  }
+
+  /* Subtitle & Lede */
+  .kinetic-sub-box {
+    margin-bottom: 1.5rem;
+  }
+  .kinetic-role-badge {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+  }
+  .kinetic-lede {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 54ch;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+  }
+  .kinetic-lede strong {
+    color: #ffffff;
+  }
+
+  /* Kinetic Tag Bands */
+  .kinetic-tags-band {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: 2rem;
+  }
+  .kinetic-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+  .kinetic-tag:hover {
+    transform: translateY(-2px);
+  }
+  .tag-marker {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .kinetic-tag--cyan { color: #00f2fe; border-color: rgba(0, 242, 254, 0.3); }
+  .kinetic-tag--cyan .tag-marker { background: #00f2fe; box-shadow: 0 0 6px #00f2fe; }
+
+  .kinetic-tag--amber { color: #ffb800; border-color: rgba(255, 184, 0, 0.3); }
+  .kinetic-tag--amber .tag-marker { background: #ffb800; box-shadow: 0 0 6px #ffb800; }
+
+  .kinetic-tag--purple { color: #c084fc; border-color: rgba(192, 132, 252, 0.3); }
+  .kinetic-tag--purple .tag-marker { background: #c084fc; box-shadow: 0 0 6px #c084fc; }
+
+  .kinetic-tag--green { color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
+  .kinetic-tag--green .tag-marker { background: #34d399; box-shadow: 0 0 6px #34d399; }
+
+  /* Kinetic Buttons */
+  .kinetic-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .btn-kinetic {
+    position: relative;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.75rem 1.4rem;
+    border-radius: 980px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+
+  .btn-kinetic--primary {
+    background: linear-gradient(135deg, #0071e3 0%, #00f2fe 100%);
+    color: #ffffff !important;
+    box-shadow: 0 8px 24px rgba(0, 242, 254, 0.3);
+    border: none;
+  }
+  .btn-kinetic--primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0, 242, 254, 0.45);
+  }
+
+  .btn-kinetic--secondary {
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  .btn-kinetic--secondary:hover {
+    background: rgba(30, 41, 59, 0.95);
+    border-color: #00f2fe;
+    transform: translateY(-2px);
+  }
+
+  .btn-kinetic__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .btn-kinetic-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .btn-kinetic-icon:hover {
+    border-color: #00f2fe;
+    color: #00f2fe;
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
+  }
+
+  /* Metrics Ribbon */
+  .kinetic-metrics-strip {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .metric-val {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .metric-lbl {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+  .metric-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* ---------- Right Stage: 3D Perspective & Monolith (Affiche 2) ---------- */
+  .kinetic-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .perspective-container {
+    perspective: 1200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  /* 3D Runway Plane */
+  .perspective-runway {
+    position: absolute;
+    bottom: -15px;
+    width: 100%;
+    height: 120px;
+    transform: rotateX(65deg) translateZ(0);
+    transform-origin: bottom center;
+    border-radius: 12px;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(0, 242, 254, 0.05) 0%, rgba(0, 242, 254, 0.2) 100%);
+    border-bottom: 2px solid #00f2fe;
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.25);
+  }
+
+  .runway-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(90deg, rgba(0, 242, 254, 0.2) 1px, transparent 1px),
+      linear-gradient(rgba(0, 242, 254, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .runway-text-tunnel {
+    position: absolute;
+    bottom: 4px;
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #00f2fe;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Portrait Monolith Card */
+  .portrait-monolith {
+    position: relative;
+    z-index: 2;
+    transform: rotateY(-6deg) rotateX(3deg);
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .portrait-monolith:hover {
+    transform: rotateY(0deg) rotateX(0deg) translateY(-4px);
+  }
+
+  .monolith-frame {
+    position: relative;
+    width: 280px;
+    height: 330px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #090d16;
+    border: 2px solid transparent;
+    background: 
+      linear-gradient(#090d16, #090d16) padding-box,
+      linear-gradient(135deg, #00f2fe, #f43f5e 50%, #10b981) border-box;
+    box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.2);
+  }
+
+  .monolith-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    filter: contrast(1.05);
+  }
+
+  .monolith-sheen {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(6, 9, 17, 0.85) 100%);
+    pointer-events: none;
+  }
+
+  /* Physical Elevated Badges */
+  .monolith-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 0.65rem 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  }
+  .verified-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    flex-shrink: 0;
+  }
+  .monolith-badge__title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+  .monolith-badge__sub {
+    font-size: 0.68rem;
+    color: #38bdf8;
+    font-family: var(--font-mono);
+  }
+
+  /* Floating Satellites */
+  .floating-satellite {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(0, 242, 254, 0.35);
+    padding: 0.4rem 0.75rem;
+    border-radius: 980px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    animation: floatOrb 3.5s ease-in-out infinite alternate;
+  }
+  .satellite--1 {
+    top: 18px;
+    right: -15px;
+    border-color: rgba(255, 184, 0, 0.4);
+    color: #ffb800;
+  }
+  .satellite--2 {
+    bottom: 75px;
+    left: -20px;
+    animation-delay: -1.8s;
+    border-color: rgba(0, 242, 254, 0.4);
+    color: #00f2fe;
+  }
+
+  @keyframes floatOrb {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+  }
+
+  /* Embedded Terminal Wrap */
+  .kinetic-terminal-toggle-wrap {
+    width: 100%;
+  }
+
+  /* ---------- Responsive Breakpoints (< 960px & < 640px) ---------- */
+  @media (max-width: 960px) {
+    .kinetic-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .portrait-monolith {
+      transform: none;
+    }
+    .monolith-frame {
+      width: 260px;
+      height: 310px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .kinetic-hero-wrapper {
+      padding: 1.75rem 1.15rem;
+      border-radius: 20px;
+      margin: 1rem 0 2rem;
+    }
+    .kinetic-eyebrow {
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+    }
+    .kinetic-title {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+    .kinetic-lede {
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .kinetic-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .btn-kinetic {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    .btn-kinetic-icon {
+      width: 100%;
+      border-radius: 980px;
+      height: 42px;
+    }
+    .kinetic-metrics-strip {
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+    .metric-divider {
+      display: none;
+    }
+    .monolith-frame {
+      width: 220px;
+      height: 260px;
+      border-radius: 18px;
+    }
+    .satellite--1 {
+      right: -5px;
+      top: 10px;
+      font-size: 0.62rem;
+    }
+    .satellite--2 {
+      left: -5px;
+      bottom: 60px;
+      font-size: 0.62rem;
+    }
+  }
+</style>
