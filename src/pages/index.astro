@@ -487,9 +487,24 @@ const typingLines = [
     <div class="cv-modal-container">
       <div class="cv-modal-header">
         <h3>Aperçu du CV - Chesnel Ekogha (PDF)</h3>
-        <button class="cv-modal-close-btn" id="btnCloseCvModal" type="button" aria-label="Fermer la fenêtre">&times;</button>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <a class="btn btn--outline" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+            Plein écran ↗
+          </a>
+          <a class="btn btn--gradient" href="/cv-chesnel-ekogha.pdf" download="CV-Chesnel-Ekogha.pdf" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+            Télécharger (PDF)
+          </a>
+          <button class="cv-modal-close-btn" id="btnCloseCvModal" type="button" aria-label="Fermer la fenêtre">&times;</button>
+        </div>
       </div>
-      <iframe src="/cv-chesnel-ekogha.pdf" class="cv-modal-iframe" title="CV Chesnel Ekogha PDF"></iframe>
+      <object data="/cv-chesnel-ekogha.pdf" type="application/pdf" class="cv-modal-iframe" title="CV Chesnel Ekogha PDF">
+        <iframe src="/cv-chesnel-ekogha.pdf" class="cv-modal-iframe" title="CV Chesnel Ekogha PDF">
+          <div style="padding: 2rem; text-align: center; color: var(--ink-soft);">
+            <p>Votre navigateur ne supporte pas l'affichage PDF intégré.</p>
+            <a class="btn btn--gradient" href="/cv-chesnel-ekogha.pdf" target="_blank" rel="noopener">Ouvrir le PDF dans un nouvel onglet</a>
+          </div>
+        </iframe>
+      </object>
     </div>
   </div>
 
