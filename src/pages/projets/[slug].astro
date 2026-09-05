@@ -29,7 +29,7 @@ const statusClass = {
       <span>Retour à la liste des projets</span>
     </a>
 
-    <div style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem;">
+    <div class="project-detail-card">
       {project.data.thumbnail && (
         <Image
           src={project.data.thumbnail}
@@ -73,7 +73,7 @@ const statusClass = {
       )}
     </div>
 
-    <div class="prose" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem;">
+    <div class="prose project-detail-card">
       <Content />
     </div>
 

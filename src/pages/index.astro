@@ -63,20 +63,20 @@ const typingLines = [
     <div class="hero-grid">
       <!-- Left Column: Typography & CTAs -->
       <div>
-        <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.25rem;">
-          <div style="position: relative; width: 90px; height: 90px; flex-shrink: 0;">
+        <div class="hero__profile-row">
+          <div class="hero__avatar-box">
             <img 
               src="/chesnel-ekogha.jpg" 
               alt="Chesnel Ekogha" 
               width="90" 
               height="90" 
-              style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid transparent; background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(135deg, var(--accent-pink-bright), var(--accent-cyan-bright)) border-box; box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);"
+              class="hero__avatar-img"
             />
-            <span style="position: absolute; bottom: 2px; right: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-green); border: 2.5px solid var(--bg); box-shadow: 0 0 8px var(--accent-green);"></span>
+            <span class="hero__avatar-status"></span>
           </div>
           <div>
-            <div class="hero__greeting" style="margin-bottom: 0.1rem;">Hello,</div>
-            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Toulouse, France - Mobile France entière</span>
+            <div class="hero__greeting">Hello,</div>
+            <span class="hero__location-badge">Toulouse, France - Mobile France entière</span>
           </div>
         </div>
 

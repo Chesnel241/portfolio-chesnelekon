@@ -18,7 +18,7 @@ const allProjects = (await getCollection('projects')).sort(
     </div>
 
     <!-- Filter Bar -->
-    <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem;" id="filterBar">
+    <div class="filter-bar" id="filterBar">
       <button class="btn btn--gradient filter-btn active" data-filter="all">Tous les projets ({allProjects.length})</button>
       <button class="btn btn--outline filter-btn" data-filter="cyber">Cybersécurité & ECU</button>
       <button class="btn btn--outline filter-btn" data-filter="web">Web & CTF</button>

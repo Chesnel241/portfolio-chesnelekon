@@ -28,6 +28,35 @@
 </div>
 
 <style>
+  .code-card {
+    height: 420px;
+    min-height: 420px;
+    max-height: 420px;
+    display: flex;
+    flex-direction: column;
+    contain: layout style paint;
+  }
+
+  .code-card__content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  @media (max-width: 640px) {
+    .code-card {
+      height: 380px !important;
+      min-height: 380px !important;
+      max-height: 380px !important;
+    }
+    .code-card__content {
+      padding: 0.85rem 1rem;
+      font-size: 0.76rem;
+      line-height: 1.55;
+    }
+  }
+
   .code-card__filename {
     font-family: var(--font-mono);
     font-size: 0.75rem;
@@ -37,7 +66,7 @@
 
   :global(.code-line) {
     display: block;
-    min-height: 1.5em;
+    min-height: 1.55em;
     white-space: pre-wrap;
     word-break: break-word;
   }

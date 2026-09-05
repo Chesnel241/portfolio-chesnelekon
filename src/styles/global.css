@@ -291,6 +291,53 @@ p {
   }
 }
 
+.hero__profile-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero__avatar-box {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.hero__avatar-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(135deg, var(--accent-pink-bright), var(--accent-cyan-bright)) border-box;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+}
+
+.hero__avatar-status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  border: 2.5px solid var(--bg);
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+.hero__location-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  display: block;
+  line-height: 1.4;
+}
+
 .hero__greeting {
   font-size: 1.1rem;
   font-weight: 500;
@@ -423,6 +470,12 @@ p {
   border-radius: 20px;
   box-shadow: var(--card-shadow);
   overflow: hidden;
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  contain: layout style paint;
 }
 
 .code-card__header {
@@ -432,6 +485,7 @@ p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .code-dot {
@@ -444,11 +498,15 @@ p {
 .code-dot--green { background: #30d158; }
 
 .code-card__content {
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  flex: 1;
+  min-height: 0;
+  overflow-y: hidden;
   overflow-x: auto;
+  box-sizing: border-box;
 }
 
 .code-key { color: var(--accent-pink); }
@@ -886,11 +944,26 @@ p {
   color: var(--accent-cyan);
 }
 
+.filter-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
 /* ---------- Project Cards Grid ---------- */
 .sheet-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 1.5rem;
+}
+
+.project-detail-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 .sheet {
@@ -1571,16 +1644,289 @@ p {
 }
 
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive & Mobile Optimizations (< 768px / 48em) ---------- */
 @media (max-width: 48em) {
-  .hero h1 {
-    font-size: 2.5rem;
+  :root {
+    --gutter: 1rem;
   }
+
+  .wrap {
+    padding: 0 var(--gutter);
+  }
+
+  /* Header */
+  .site-header__name span {
+    font-size: 1rem;
+  }
+  .site-header__nav {
+    gap: 0.85rem;
+  }
+  .site-header__nav a {
+    font-size: 0.8rem;
+  }
+
+  /* Hero Typography & Spacing */
+  .hero {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero__profile-row {
+    gap: 0.9rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero__avatar-box,
+  .hero__avatar-img {
+    width: 76px !important;
+    height: 76px !important;
+  }
+
+  .hero__location-badge {
+    font-size: 0.72rem;
+  }
+
+  .hero h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.22;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero__typing {
+    font-size: 1.02rem;
+    min-height: 2.6em;
+    margin-bottom: 1rem;
+  }
+
+  .hero__lede {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .social-row {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero__actions {
+    gap: 0.75rem;
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.88rem;
+  }
+
+  /* Impact Ribbon: unified mobile cards */
+  .hero-impact-ribbon {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .impact-card {
+    border-radius: 16px !important;
+    padding: 0.85rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .impact-icon-box {
+    width: 38px;
+    height: 38px;
+  }
+
+  .impact-val {
+    font-size: 1.15rem;
+  }
+
+  .impact-lbl {
+    font-size: 0.72rem;
+  }
+
+  .dual-row {
+    gap: 0.4rem;
+  }
+
+  .tag-pill {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.75rem;
+    justify-content: center;
+  }
+
+  /* Animated Code Card Mobile Lock (Strict size stability) */
+  .code-card {
+    height: 380px !important;
+    min-height: 380px !important;
+    max-height: 380px !important;
+    border-radius: 16px;
+  }
+
+  .code-card__header {
+    padding: 0.65rem 1rem;
+  }
+
+  .code-card__content {
+    padding: 0.85rem 1rem;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  /* Badges & Stack Chips */
+  .methodology-row,
+  .stack-row {
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+  }
+
+  .badge--standard,
+  .stack-chip {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  /* GitHub Contribution Graph */
+  .github-graph-card {
+    padding: 1rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+  }
+
+  .github-graph-title {
+    font-size: 0.78rem;
+  }
+
+  .github-graph-stats-summary {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Sections & Headings */
+  .section {
+    padding: 2.25rem 0;
+  }
+
+  .section-head {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-head h2 {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  .section__link {
+    width: 100%;
+    margin-top: 0.2rem;
+  }
+
+  /* Filter Bar & Project Sheets */
+  .filter-bar {
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .filter-bar .btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+  }
+
   .sheet-grid {
     grid-template-columns: 1fr;
+    gap: 1.15rem;
   }
+
+  .sheet__content {
+    padding: 1.15rem;
+    gap: 0.7rem;
+  }
+
+  .sheet h3 {
+    font-size: 1.05rem;
+  }
+
+  .sheet__summary {
+    font-size: 0.88rem;
+  }
+
+  .project-detail-card {
+    padding: 1.25rem;
+    border-radius: 16px;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Cyber Shield Experience Cards */
+  .cyber-shield-summary {
+    padding: 1rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .cyber-shield-left {
+    gap: 0.85rem;
+  }
+
+  .cyber-shield-large-vector {
+    width: 48px;
+    height: 56px;
+  }
+
+  .cyber-shield-info h3 {
+    font-size: 1rem;
+    gap: 0.4rem;
+  }
+
+  .cyber-shield-trigger {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .cyber-shield-details {
+    padding: 0 1rem 1rem;
+  }
+
+  /* Timeline & Articles */
+  .timeline-item {
+    padding: 1.15rem;
+    border-radius: 16px;
+  }
+
+  /* Stats */
   .stats {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+
+  .stat {
+    padding: 1rem;
+    border-radius: 14px;
+  }
+
+  .stat__num {
+    font-size: 1.6rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 1.75rem 0;
+    margin-top: 2rem;
+  }
+
+  .site-footer__row {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
   }
 }
 
