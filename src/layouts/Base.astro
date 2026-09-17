@@ -3,18 +3,71 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
+type JsonLd = Record<string, unknown>;
+
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  /** Type Open Graph de la page ("website" par défaut, "article" pour le blog). */
+  ogType?: 'website' | 'article';
+  /** Date de publication ISO, utilisée pour les pages d'article. */
+  publishedTime?: string;
+  /**
+   * Donnée structurée JSON-LD propre au type de page (BlogPosting, CreativeWork...).
+   * Elle s'ajoute au schéma Person commun à tout le site.
+   */
+  schema?: JsonLd | JsonLd[];
 }
 const {
   title,
   description = "Portfolio, projets techniques et analyses de Chesnel Ekogha - ingénieur en cybersécurité automobile et systèmes embarqués.",
   image = "/images/og-banner.png",
+  ogType = 'website',
+  publishedTime,
+  schema,
 } = Astro.props as Props;
 
 const shareImageUrl = new URL(image, Astro.site ?? Astro.url).href;
+
+// Schéma Person commun à toutes les pages (identité de l'auteur du site).
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Chesnel Ekogha",
+  "jobTitle": "Ingénieur Cybersécurité Automobile",
+  "alumniOf": [
+    { "@type": "EducationalOrganization", "name": "ESIEA" },
+    { "@type": "EducationalOrganization", "name": "ESGI" }
+  ],
+  "knowsAbout": [
+    "Automotive Cybersecurity",
+    "ISO/SAE 21434",
+    "TARA",
+    "Security Requirements Engineering",
+    "UNECE R155/R156",
+    "CSMS",
+    "EBIOS RM",
+    "ECU Security",
+    "CAN/CAN-FD",
+    "UDS",
+    "Embedded Cybersecurity"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Toulouse",
+    "addressCountry": "FR"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/chesnelekogha"
+  ]
+};
+
+// Schéma Person + éventuel schéma spécifique à la page.
+const jsonLdBlocks: JsonLd[] = [
+  personSchema,
+  ...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
+];
 ---
 
 <!doctype html>
@@ -37,8 +90,16 @@ const shareImageUrl = new URL(image, Astro.site ?? Astro.url).href;
       })();
     </script>
 
+    <!-- Flux RSS des articles -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Articles de Chesnel Ekogha - Cybersécurité Automobile"
+      href={new URL('/rss.xml', Astro.site ?? Astro.url).href}
+    />
+
     <!-- Open Graph / LinkedIn Preview Meta Tags (Signed by Chesnel Ekogha) -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={`${title} - Signé Chesnel Ekogha | Ingénieur Cybersécurité`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={shareImageUrl} />
@@ -51,6 +112,7 @@ const shareImageUrl = new URL(image, Astro.site ?? Astro.url).href;
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Chesnel Ekogha - Cybersécurité Automobile" />
     <meta property="article:author" content="Chesnel Ekogha" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -59,43 +121,31 @@ const shareImageUrl = new URL(image, Astro.site ?? Astro.url).href;
     <meta name="twitter:image" content={shareImageUrl} />
 
     <!-- Structured Data JSON-LD for Recruiters & Search Engines -->
-    <script type="application/ld+json" is:inline set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Chesnel Ekogha",
-      "jobTitle": "Ingénieur Cybersécurité Automobile",
-      "alumniOf": [
-        { "@type": "EducationalOrganization", "name": "ESIEA" },
-        { "@type": "EducationalOrganization", "name": "ESGI" }
-      ],
-      "knowsAbout": [
-        "Automotive Cybersecurity",
-        "ISO/SAE 21434",
-        "TARA",
-        "Security Requirements Engineering",
-        "UNECE R155/R156",
-        "CSMS",
-        "EBIOS RM",
-        "ECU Security",
-        "CAN/CAN-FD",
-        "UDS",
-        "Embedded Cybersecurity"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Toulouse",
-        "addressCountry": "FR"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/chesnelekogha"
-      ]
-    })} />
+    {jsonLdBlocks.map((block) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(block)} />
+    ))}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Polices auto-hébergées : aucune requête vers Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/inter-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
   </head>
   <body>
