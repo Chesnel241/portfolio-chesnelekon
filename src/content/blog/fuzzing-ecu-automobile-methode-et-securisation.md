@@ -36,10 +36,6 @@ L'environnement utilisé ici ne comporte ni véhicule, ni calculateur physique, 
 
 C'est une limite importante à garder en tête pour la suite : un simulateur reproduit un protocole, pas le comportement d'un microcontrôleur embarqué sous contrainte. Il permet de travailler la méthode, pas de conclure sur la robustesse d'une implémentation réelle.
 
-![Capture Terminal - Session de Fuzzing CAN Bus simulée](/images/labs/can_bus_terminal.png)
-
-*Capture de démonstration illustrant l'interface du fuzzer, produite en environnement virtuel.*
-
 ---
 
 ## 3. La Méthodologie de Test Étape par Étape

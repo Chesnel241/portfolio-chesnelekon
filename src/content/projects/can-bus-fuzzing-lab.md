@@ -5,16 +5,12 @@ stack: ["Python", "python-can", "SocketCAN", "ICSim"]
 status: "en cours"
 nature: "simulation pédagogique"
 environment: "Environnement virtuel/local — aucun véhicule ou ECU physique"
-order: 0
+order: 1
 ---
 
 Ce laboratoire pédagogique illustre une démarche de fuzzing CAN / UDS dans un environnement entièrement virtuel basé sur Python, SocketCAN et ICSim.
 
 L'objectif n'est pas de présenter une vulnérabilité découverte sur un ECU réel, mais de comprendre comment construire une campagne de test, générer des trames anormales et analyser les comportements qu'un ingénieur rechercherait sur un véritable banc de validation.
-
-![Capture Terminal - Session de Fuzzing CAN Bus simulée](/images/labs/can_bus_terminal.png)
-
-*Capture de démonstration illustrant l'interface du fuzzer. La session a été produite en environnement virtuel ; aucun bus physique ni calculateur réel n'est impliqué.*
 
 ## Architecture & Mécanisme de Fuzzing
 

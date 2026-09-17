@@ -507,11 +507,22 @@
   let currentPosX = 140;
   let targetPosX = 140;
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function setVehiclePositionSmooth(targetX: number, duration: number = 800) {
     const startX = currentPosX;
     const startTime = performance.now();
 
     if (animFrameId) cancelAnimationFrame(animFrameId);
+
+    if (reduceMotion) {
+      currentPosX = targetX;
+      document
+        .getElementById('cadVehicle3D')
+        ?.setAttribute('transform', `translate(${targetX}, 200) rotate(0)`);
+      document.getElementById('cadTrailingLine')?.setAttribute('x2', String(targetX));
+      return;
+    }
 
     function stepAnim(time: number) {
       const elapsed = time - startTime;
@@ -665,9 +676,9 @@
       });
     }
 
-    // Scroll trigger
+    // Scroll trigger — an unrequested auto-advance is motion too
     const container = document.getElementById('isoRoadContainer');
-    if (container && 'IntersectionObserver' in window) {
+    if (!reduceMotion && container && 'IntersectionObserver' in window) {
       let triggered = false;
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

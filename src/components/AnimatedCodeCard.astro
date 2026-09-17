@@ -283,12 +283,24 @@
     };
   }
 
-  // Init on DOM ready and Astro page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startCodeTypingAnimation);
-  } else {
-    startCodeTypingAnimation();
+  // The SSR fallback already renders the full snippet, so skipping the
+  // animation leaves the card complete and readable.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let cancelTyping: (() => void) | undefined;
+
+  function bootCodeTypingAnimation() {
+    if (reduceMotion) return;
+    cancelTyping?.();
+    cancelTyping = startCodeTypingAnimation();
   }
 
-  document.addEventListener('astro:page-load', startCodeTypingAnimation);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootCodeTypingAnimation);
+  } else {
+    bootCodeTypingAnimation();
+  }
+
+  document.addEventListener('astro:page-load', bootCodeTypingAnimation);
+  document.addEventListener('astro:before-swap', () => cancelTyping?.());
 </script>
