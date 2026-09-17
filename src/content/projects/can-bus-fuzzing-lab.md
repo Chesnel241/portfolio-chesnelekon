@@ -30,7 +30,7 @@ Le fuzzer fonctionne selon trois modes complémentaires :
 L'extrait ci-dessous est une sortie de démonstration produite par le script sur une interface CAN virtuelle (`vcan`) :
 
 ```bash
-$ python3 labs/can_fuzzer/can_fuzzer.py --interface vcan0 --bitrate 500000 --packets 5000
+$ python3 labs/can_fuzzer/can_fuzzer.py --interface vcan0 --packets 5000
 ================================================================================
   AUTOMOTIVE CAN BUS FUZZER — PEDAGOGICAL SIMULATION
   Environment: SocketCAN / vcan

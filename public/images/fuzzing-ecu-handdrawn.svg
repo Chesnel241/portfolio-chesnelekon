@@ -45,7 +45,7 @@
   <g transform="translate(300, 130)">
     <path class="hand-line" d="M 0 20 C 50 10, 100 30, 150 20 C 200 10, 250 30, 290 20" stroke="#0284c7" stroke-width="3" />
     <path class="hand-line" d="M 0 30 C 50 40, 100 20, 150 30 C 200 40, 250 20, 290 30" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,2" />
-    <text x="145" y="10" text-anchor="middle" class="hand-title" style="fill: #0284c7;">Bus CAN virtuel (500 kbps)</text>
+    <text x="145" y="10" text-anchor="middle" class="hand-title" style="fill: #0284c7;">Bus CAN virtuel (vcan)</text>
     <text x="145" y="55" text-anchor="middle" class="hand-note">Trames simulees 0x27D / 0x7E0</text>
   </g>
 

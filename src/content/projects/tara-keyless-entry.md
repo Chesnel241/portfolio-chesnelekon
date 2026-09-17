@@ -1,7 +1,7 @@
 ---
 title: "TARA Keyless Entry (étude de cas)"
 summary: "Étude de cas pédagogique d'une TARA ISO/SAE 21434 appliquée à un système d'entrée et démarrage sans clé."
-stack: ["ISO/SAE 21434", "TARA", "Medini Analyze"]
+stack: ["ISO/SAE 21434", "TARA", "Python"]
 status: "archivé"
 nature: "simulation pédagogique"
 environment: "Environnement virtuel/local — aucun véhicule ou ECU physique"
