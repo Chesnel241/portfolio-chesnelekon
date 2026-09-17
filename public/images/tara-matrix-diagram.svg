@@ -6,7 +6,7 @@
   <circle cx="24" cy="21" r="5" fill="#ef4444"/>
   <circle cx="40" cy="21" r="5" fill="#eab308"/>
   <circle cx="56" cy="21" r="5" fill="#22c55e"/>
-  <text x="80" y="26" fill="#94a3b8" font-family="monospace" font-size="13" font-weight="600">ISO/SAE 21434 TARA Threat Analysis Matrix — Keyless Entry ECU</text>
+  <text x="80" y="26" fill="#94a3b8" font-family="monospace" font-size="13" font-weight="600">ISO/SAE 21434 TARA Threat Analysis Matrix - Keyless Entry ECU</text>
 
   <!-- Table Header -->
   <rect x="40" y="60" width="720" height="35" fill="#1e293b" rx="4"/>

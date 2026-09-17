@@ -33,7 +33,7 @@ $ python3 labs/vps_hardening/vps_audit_hardening.py --target vps-prod-toulouse-0
 ==================================================================================
   LINUX VPS HARDENING CHECKLIST (CloudHack Labs)
   Reference: project checklist inspired by ANSSI & CIS recommendations
-  Scope: this project's own VPS — not a conformity audit
+  Scope: this project's own VPS, not a conformity audit
 ==================================================================================
 
 CATEGORY               HARDENING CHECK                                  SEVERITY   STATUS

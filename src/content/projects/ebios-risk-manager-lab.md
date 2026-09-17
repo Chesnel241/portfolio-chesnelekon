@@ -4,7 +4,7 @@ summary: "Étude de cas pédagogique déroulant les 5 ateliers EBIOS Risk Manage
 stack: ["EBIOS RM", "ANSSI", "ISO 27005", "Python", "MITRE ATT&CK"]
 status: "actif"
 nature: "simulation pédagogique"
-environment: "Étude de cas fictive — aucun établissement ni système réel audité"
+environment: "Étude de cas fictive : aucun établissement ni système réel audité"
 order: 4
 ---
 
@@ -53,7 +53,7 @@ Le laboratoire déroule l'intégralité du processus d'analyse de risque ANSSI �
 ```bash
 $ python3 labs/ebios_rm/ebios_analysis.py
 =====================================================================================
-  EBIOS RISK MANAGER ENGINE — PEDAGOGICAL CASE STUDY
+  EBIOS RISK MANAGER ENGINE - PEDAGOGICAL CASE STUDY
   Scope: fictional hospital information system (no real organisation)
   Method reference: ANSSI EBIOS RM 2018 / ISO 27005 / NIS 2
 =====================================================================================
@@ -80,7 +80,7 @@ $ python3 labs/ebios_rm/ebios_analysis.py
   [M-03] Bastion d'Administration PAM
   [M-04] Détection EDR & SOC Managed 24/7
 
-  CASE STUDY COMPLETE — illustrative residual risk computed for the fictional model
+  CASE STUDY COMPLETE - illustrative residual risk computed for the fictional model
 [INFO] Demonstration report exported to public/logs/ebios_risk_report.json
 ```
 

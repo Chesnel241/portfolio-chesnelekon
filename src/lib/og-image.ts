@@ -37,7 +37,7 @@ const COLORS = {
   accent: '#2997ff',
 };
 
-const SIGNATURE = 'Chesnel Ekogha — Ingénieur Cybersécurité Automobile';
+const SIGNATURE = 'Chesnel Ekogha - Ingénieur Cybersécurité Automobile';
 
 type Node = {
   type: string;

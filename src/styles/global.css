@@ -314,7 +314,7 @@ article.prose > p:has(> img) {
   max-width: 100%;
 }
 
-/* Browsers without :has() keep the measure — readable, just not as wide. */
+/* Browsers without :has() keep the measure, readable, just not as wide. */
 .prose.project-detail-card > p > img,
 article.prose > p > img {
   margin-inline: auto;

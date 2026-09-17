@@ -2,7 +2,7 @@
   "nature": "simulation pédagogique",
   "donnees": "démonstration",
   "avertissement": "Données de démonstration produites par un lab pédagogique. Aucun véhicule, ECU physique, infrastructure tierce ou système de production n'a été sollicité. Ce fichier n'a aucune valeur d'audit.",
-  "lab": "Attaque par rejeu & contre-mesures — simulation logicielle",
+  "lab": "Attaque par rejeu & contre-mesures - simulation logicielle",
   "environnement": {
     "modele": "objets Python (émetteur / attaquant / récepteur)",
     "signal_radio": false,

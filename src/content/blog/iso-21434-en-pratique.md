@@ -32,12 +32,12 @@ C'est une confusion fréquente et lourde de conséquences en revue : le risque s
 
 **3. Outiller le raisonnement TARA.**
 
-Dans le cadre de l'étude de cas [TARA Keyless Entry](/projets/tara-keyless-entry) — un modèle pédagogique simplifié, sans lien avec un produit réel — un petit moteur Python sert à dérouler le calcul d'impact et de faisabilité sur un ensemble de scénarios et à en restituer le traitement :
+Dans le cadre de l'étude de cas [TARA Keyless Entry](/projets/tara-keyless-entry) (un modèle pédagogique simplifié, sans lien avec un produit réel), un petit moteur Python sert à dérouler le calcul d'impact et de faisabilité sur un ensemble de scénarios et à en restituer le traitement :
 
 ```bash
 $ python3 labs/tara_keyless/tara_engine.py --model pkes_case_study.json --report summary
 ================================================================================
-  TARA CASE STUDY ENGINE — PEDAGOGICAL SIMULATION
+  TARA CASE STUDY ENGINE - PEDAGOGICAL SIMULATION
   Real product: NO | Vehicle manufacturer: NONE (fictional model)
 ================================================================================
 [T01] Relay attack sur la communication clé/véhicule : Impact 4 | Feasibility 2 -> RISK 3
@@ -51,7 +51,7 @@ and risk-treatment reasoning. It is not a conformity assessment or
 type-approval evaluation.
 ```
 
-L'intérêt de l'outillage n'est pas le calcul lui-même — une feuille de calcul y suffirait — mais la **cohérence** : garantir qu'un scénario ajouté produit bien un objectif de cybersécurité, et que celui-ci porte une exigence traçable.
+L'intérêt de l'outillage n'est pas le calcul lui-même (une feuille de calcul y suffirait), mais la **cohérence** : garantir qu'un scénario ajouté produit bien un objectif de cybersécurité, et que celui-ci porte une exigence traçable.
 
 ## Ce que ça implique au quotidien pour l'ingénieur
 

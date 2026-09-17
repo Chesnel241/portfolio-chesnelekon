@@ -4,7 +4,7 @@ summary: "Étude de cas pédagogique d'une TARA ISO/SAE 21434 appliquée à un s
 stack: ["ISO/SAE 21434", "TARA", "Python"]
 status: "actif"
 nature: "simulation pédagogique"
-environment: "Environnement virtuel/local — aucun véhicule ou ECU physique"
+environment: "Environnement virtuel/local : aucun véhicule ou ECU physique"
 order: 0
 ---
 
@@ -21,7 +21,7 @@ Le modèle est volontairement simplifié et ne représente aucun produit, constr
 ![Matrice d'Analyse de Risque TARA Keyless Entry](/images/tara-matrix-diagram.svg)
 
 Le raisonnement suit les étapes de la méthodologie :
-1. **Item Definition** : périmètre du système PKES — antennes LF et RF, module PEPS, Body Control Module (BCM) et lien diagnostic.
+1. **Item Definition** : périmètre du système PKES : antennes LF et RF, module PEPS, Body Control Module (BCM) et lien diagnostic.
 2. **Asset Identification & Security Properties** : authenticité de la clé, confidentialité du secret partagé, intégrité des messages d'autorisation sur le réseau embarqué.
 3. **Damage & Threat Scenarios** : formulation des dommages (accès non autorisé au véhicule, vol) puis des scénarios de menace correspondants.
 4. **Attack Feasibility Rating** : évaluation par facteurs (temps requis, expertise, connaissance du système, fenêtre d'opportunité, équipement nécessaire).
@@ -33,7 +33,7 @@ Le raisonnement suit les étapes de la méthodologie :
 ```bash
 $ python3 labs/tara_keyless/tara_engine.py --model pkes_case_study.json --report full
 ================================================================================
-  TARA CASE STUDY ENGINE — PEDAGOGICAL SIMULATION
+  TARA CASE STUDY ENGINE - PEDAGOGICAL SIMULATION
   Scope: Keyless Entry & Passive Start (simplified model)
   Real product: NO | Vehicle manufacturer: NONE (fictional model)
 ================================================================================
@@ -65,7 +65,7 @@ type-approval evaluation.
 
 - **Raisonnement de bout en bout** : partir d'un dommage redouté, remonter aux scénarios de menace, puis descendre jusqu'à une exigence traçable.
 - **Cohérence du périmètre** : tous les scénarios retenus restent dans le champ du système PKES/BCM, ce qui est une condition de qualité d'une TARA.
-- **Discussion des mesures** : par exemple, l'Ultra-Wideband (IEEE 802.15.4z) avec mesure du temps de vol est souvent cité comme réponse aux attaques par relais — l'étude sert à comprendre pourquoi cette mesure adresse ce scénario précis, et non à affirmer un choix produit.
+- **Discussion des mesures** : par exemple, l'Ultra-Wideband (IEEE 802.15.4z) avec mesure du temps de vol est souvent cité comme réponse aux attaques par relais ; l'étude sert à comprendre pourquoi cette mesure adresse ce scénario précis, et non à affirmer un choix produit.
 - **Rapport de synthèse JSON de démonstration** : [public/logs/tara_keyless_report.json](/logs/tara_keyless_report.json).
 
 ### Note sur les Cybersecurity Assurance Levels (CAL)

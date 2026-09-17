@@ -2,9 +2,9 @@
   "nature": "simulation pédagogique",
   "donnees": "démonstration",
   "avertissement": "Données de démonstration produites par un lab pédagogique. Aucun véhicule, ECU physique, infrastructure tierce ou système de production n'a été sollicité. Ce fichier n'a aucune valeur d'audit.",
-  "etude": "TARA — Keyless Entry / Passive Start (PKES)",
+  "etude": "TARA - Keyless Entry / Passive Start (PKES)",
   "modele": "système fictif simplifié, ne représente aucun produit ni constructeur",
-  "referentiel": "ISO/SAE 21434 — démarche de concept",
+  "referentiel": "ISO/SAE 21434 - démarche de concept",
   "echelles": {
     "impact": {
       "Severe": 4,

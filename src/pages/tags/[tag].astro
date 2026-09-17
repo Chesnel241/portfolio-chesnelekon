@@ -35,13 +35,13 @@ const { tag, posts } = Astro.props;
 ---
 
 <Base
-  title={`Articles — ${tag}`}
+  title={`Articles - ${tag}`}
   description={`Tous les articles du blog de Chesnel Ekogha associés au tag ${tag}.`}
 >
   <section class="section" style="border-top: none;">
     <p class="tag-page__back"><a href="/tags">&larr; Tous les tags</a></p>
 
-    <SectionHead label={`tag/${tag}`} title={`Articles — ${tag}`} linkHref="/blog" linkLabel="Tous les articles →" />
+    <SectionHead label={`tag/${tag}`} title={`Articles - ${tag}`} linkHref="/blog" linkLabel="Tous les articles →" />
 
     <p class="tag-page__count">{articleCountLabel(posts.length)} avec ce tag.</p>
 

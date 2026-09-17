@@ -4,7 +4,7 @@ summary: "Simulation pédagogique d'une campagne de fuzzing CAN/UDS en Python av
 stack: ["Python", "python-can", "SocketCAN", "ICSim"]
 status: "en cours"
 nature: "simulation pédagogique"
-environment: "Environnement virtuel/local — aucun véhicule ou ECU physique"
+environment: "Environnement virtuel/local : aucun véhicule ou ECU physique"
 order: 1
 ---
 
@@ -28,7 +28,7 @@ L'extrait ci-dessous est une sortie de démonstration produite par le script sur
 ```bash
 $ python3 labs/can_fuzzer/can_fuzzer.py --interface vcan0 --packets 5000
 ================================================================================
-  AUTOMOTIVE CAN BUS FUZZER — PEDAGOGICAL SIMULATION
+  AUTOMOTIVE CAN BUS FUZZER - PEDAGOGICAL SIMULATION
   Environment: SocketCAN / vcan
   Real ECU: NO
   Physical vehicle: NO
@@ -55,6 +55,6 @@ $ python3 labs/can_fuzzer/can_fuzzer.py --interface vcan0 --packets 5000
 
 - **Détection de saturation** : le scénario simulé introduit artificiellement une augmentation de latence afin d'illustrer la manière dont un outil pourrait détecter un comportement anormal sur un bus chargé. Sur un banc réel, une telle observation ne serait qu'un point de départ : elle demanderait une instrumentation de l'ECU pour en établir la cause.
 - **Lecture d'un échange UDS** : les réponses simulées du service `0x27 SecurityAccess` servent à comprendre la logique challenge-response et les points d'attention qu'un ingénieur examinerait (prévisibilité de la graine, limitation des tentatives, temporisation).
-- **Structure d'un rapport de campagne** : un rapport JSON de démonstration est généré — [public/logs/can_fuzzing_session.json](/logs/can_fuzzing_session.json).
+- **Structure d'un rapport de campagne** : un rapport JSON de démonstration est généré : [public/logs/can_fuzzing_session.json](/logs/can_fuzzing_session.json).
 
 > Les valeurs, identifiants et comportements présentés ci-dessus sont des données de démonstration produites par le simulateur. Ils ne correspondent à aucun calculateur, produit ou constructeur réel, et ne constituent pas la description d'une vulnérabilité existante.

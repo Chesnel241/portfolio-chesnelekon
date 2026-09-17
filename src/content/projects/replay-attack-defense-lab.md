@@ -4,7 +4,7 @@ summary: "Simulation Python d'une attaque par rejeu et illustration de mécanism
 stack: ["Python", "Cryptography", "HMAC-SHA256", "Nonce"]
 status: "actif"
 nature: "simulation pédagogique"
-environment: "Simulation logicielle Python — aucun matériel radio, véhicule ou ECU physique"
+environment: "Simulation logicielle Python : aucun matériel radio, véhicule ou ECU physique"
 order: 5
 ---
 
@@ -37,7 +37,7 @@ La simulation se déroule en deux phases :
 ```bash
 $ python3 labs/replay_attack/replay_lab.py
 =====================================================================================
-  REPLAY ATTACK & ANTI-REPLAY DEFENSE — PEDAGOGICAL SIMULATION
+  REPLAY ATTACK & ANTI-REPLAY DEFENSE - PEDAGOGICAL SIMULATION
   Environment: pure Python model (sender / attacker / receiver objects)
   Radio hardware: NO | Real ECU: NO | Physical vehicle: NO
 =====================================================================================
@@ -60,7 +60,7 @@ $ python3 labs/replay_attack/replay_lab.py
                         (counter already consumed)
 
 =====================================================================================
-  SIMULATION COMPLETE — session log: public/logs/replay_attack_session.json
+  SIMULATION COMPLETE - session log: public/logs/replay_attack_session.json
 =====================================================================================
 ```
 

@@ -4,7 +4,7 @@ summary: "Prototype pédagogique d'ingestion et de corrélation de données CTI 
 stack: ["Python", "Linux", "Threat Intelligence", "Open source"]
 status: "en cours"
 nature: "prototype"
-environment: "Prototype local — jeux de données d'exemple, aucun flux opérationnel connecté"
+environment: "Prototype local : jeux de données d'exemple, aucun flux opérationnel connecté"
 order: 3
 ---
 
@@ -18,7 +18,7 @@ La démonstration utilise des jeux de données d'exemple et ne constitue pas un 
 
 ## Architecture Visée
 
-- **Sources envisagées** : bulletins CERT-FR, avis de sécurité ANSSI, flux RSS et API MISP — modélisés ici par des fichiers d'exemple locaux.
+- **Sources envisagées** : bulletins CERT-FR, avis de sécurité ANSSI, flux RSS et API MISP, modélisés ici par des fichiers d'exemple locaux.
 - **Normalisation CTI** : structuration au format **STIX2 / TAXII** avec enrichissement des vulnérabilités (score CVSS v3.1, vecteur d'attaque, disponibilité d'une preuve de concept publique).
 - **Corrélation EBIOS RM** : rapprochement entre les entrées ingérées et des scénarios de risque types du référentiel EBIOS Risk Manager.
 - **Frontend civique** : restitution lisible pour le citoyen comme pour le responsable SSI d'une collectivité.
@@ -28,7 +28,7 @@ La démonstration utilise des jeux de données d'exemple et ne constitue pas un 
 ```bash
 $ python3 labs/civic_cyber/civic_intel_scanner.py --source sample-dataset --enrich-ebios
 ================================================================================
-  CIVIC CYBER THREAT INTEL SCANNER — PEDAGOGICAL PROTOTYPE
+  CIVIC CYBER THREAT INTEL SCANNER - PEDAGOGICAL PROTOTYPE
   Data source: local sample dataset (no live feed connected)
   CERT-FR / ANSSI / MISP connectors: NOT ACTIVE
 ================================================================================
@@ -36,12 +36,12 @@ $ python3 labs/civic_cyber/civic_intel_scanner.py --source sample-dataset --enri
 [16:48:33] [INFO] Parsing demonstration advisories... (9 sample entries)
 [16:48:34] [INFO] Processing STIX2 JSON payload & EBIOS RM threat vector mapping...
 
-[[ AVIS DE SÉCURITÉ — DONNÉES DE DÉMONSTRATION ]]
+[[ AVIS DE SÉCURITÉ - DONNÉES DE DÉMONSTRATION ]]
   - DEMO-ADVISORY-001: Vulnérabilités multiples dans un hyperviseur (Severity: CRITICAL)
   - DEMO-ADVISORY-002: Injection SQL dans une application métier   (Severity: HIGH)
   - DEMO-ADVISORY-003: Exécution de code dans un navigateur        (Severity: MEDIUM)
 
-[[ VULNÉRABILITÉS — IDENTIFIANTS FICTIFS ]]
+[[ VULNÉRABILITÉS - IDENTIFIANTS FICTIFS ]]
   * CVE-20XX-XXXX | Sample hypervisor  | HIGH (8.8)    | CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
   * CVE-20XX-YYYY | Sample network OS  | CRITICAL (9.8)| CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
 
@@ -49,7 +49,7 @@ $ python3 labs/civic_cyber/civic_intel_scanner.py --source sample-dataset --enri
   S01: Accès illégitime aux données sensibles via faille logicielle | Impact: ÉLEVÉ
   S02: Déni de service distribué (DDoS) sur infrastructures critiques | Impact: CRITIQUE
 
-[[ INGESTION METRICS — SAMPLE DATASET ]]
+[[ INGESTION METRICS - SAMPLE DATASET ]]
   DEMO-IOC entries: 245 | DEMO advisories: 9 | DEMO events: 1,209
   Report Exported: public/logs/civic_intel_report.json
 ```
