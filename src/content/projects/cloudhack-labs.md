@@ -10,9 +10,9 @@ order: 2
 
 CloudHack Labs est une plateforme d'entraînement à la cybersécurité de type CTF (Capture The Flag), pensée pour progresser à travers des scénarios pratiques exécutés en conteneurs isolés.
 
-![Capture Terminal - Script d'Audit & Hardening VPS Linux](/images/labs/vps_hardening_terminal.png)
+![Architecture CloudHack Labs : navigateur, Traefik/Nginx, Next.js/Node.js, Dockerode, conteneurs CTF isolés](/images/diagrams/cloudhack-architecture.webp)
 
-*Capture illustrant l'exécution de la checklist de durcissement du projet.*
+*Architecture de la plateforme, du navigateur jusqu'aux conteneurs de challenge isolés.*
 
 ## Architecture & Isolation Conteneurs
 

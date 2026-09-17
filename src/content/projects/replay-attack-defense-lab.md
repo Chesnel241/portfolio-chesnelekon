@@ -12,9 +12,9 @@ Ce laboratoire est une simulation logicielle pédagogique. Il modélise un émet
 
 Aucun signal radio n'est émis ou capturé, et aucun équipement embarqué n'est sollicité : les trois rôles sont des objets Python échangeant des messages en mémoire.
 
-![Capture Terminal - Simulation d'Attaque par Rejeu & Défense Anti-Replay](/images/labs/replay_attack_terminal.png)
+![Comparaison entre un message statique rejouable et un message protégé par compteur, horodatage et authenticator](/images/diagrams/replay-fraicheur.webp)
 
-*Capture de démonstration de la simulation Python. Aucun signal radio n'est émis ni capturé.*
+*Les deux scénarios modélisés par la simulation : à gauche le message statique, à droite le message protégé.*
 
 ## Concept Illustré
 

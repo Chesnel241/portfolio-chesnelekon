@@ -200,6 +200,51 @@ p {
   text-decoration: underline;
 }
 
+/* ---------- Technical diagrams inside prose ---------- */
+.prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 1.75rem 0 0.6rem;
+}
+
+/*
+ * Wide diagrams carry dense tables and fine labels, so they need more room
+ * than the reading measure. Rather than let them burst out of the card, the
+ * body itself widens and its text children stay centred at the measure.
+ */
+.prose.project-detail-card,
+article.prose {
+  max-width: var(--wide);
+}
+
+.prose.project-detail-card > *,
+article.prose > * {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.prose.project-detail-card > p:has(> img),
+article.prose > p:has(> img) {
+  max-width: 100%;
+}
+
+/* Browsers without :has() keep the measure — readable, just not as wide. */
+.prose.project-detail-card > p > img,
+article.prose > p > img {
+  margin-inline: auto;
+}
+
+/* Caption: the italic line markdown puts right after an image */
+.prose p:has(> img) + p > em:only-child {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
 /* ---------- Text Highlights (Vibrant Approach Text Colors) ---------- */
 .text-cyan {
   color: var(--accent-cyan-bright);

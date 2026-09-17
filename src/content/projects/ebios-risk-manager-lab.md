@@ -12,9 +12,9 @@ order: 4
 
 Aucun établissement, OIV ou système réel n'a été audité. L'organisation, les valeurs métiers et les scénarios sont construits de toutes pièces pour travailler la méthode.
 
-![Capture Terminal - Moteur d'Analyse EBIOS Risk Manager ANSSI](/images/labs/ebios_rm_terminal.png)
+![Les cinq ateliers EBIOS Risk Manager et la question à laquelle chacun répond](/images/diagrams/ebios-rm-5-ateliers.webp)
 
-*Capture de démonstration du moteur d'analyse. Les données proviennent du cas d'école fictif décrit ci-dessous.*
+*Les cinq ateliers de la méthode, déroulés ici sur un cas d'école fictif.*
 
 ## Cadre et Déroulement des 5 Ateliers EBIOS RM
 

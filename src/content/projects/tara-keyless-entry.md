@@ -12,9 +12,9 @@ order: 0
 
 Le modèle est volontairement simplifié et ne représente aucun produit, constructeur ou équipement réel. Les valeurs de risque, chemins d'attaque et contre-mesures sont utilisés à des fins d'apprentissage.
 
-![Capture Terminal - Moteur d'Analyse TARA Python](/images/labs/tara_keyless_terminal.png)
+![Chaîne de traçabilité TARA du cas PKES : Damage Scenario, Threat Scenario, Attack Path, Cybersecurity Goal, Requirement, Vérification](/images/diagrams/tara-tracabilite-pkes.webp)
 
-*Capture de démonstration du moteur d'analyse. Les valeurs affichées proviennent du modèle fictif de l'étude de cas.*
+*Chaîne de traçabilité complète appliquée au modèle PKES fictif de cette étude de cas.*
 
 ## Démarche & Périmètre de l'Étude de Cas
 

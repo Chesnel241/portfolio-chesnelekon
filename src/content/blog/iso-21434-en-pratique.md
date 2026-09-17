@@ -8,9 +8,9 @@ draft: false
 
 L'ISO/SAE 21434 encadre la gestion de la cybersécurité tout au long du cycle de vie d'un véhicule : conception, développement, production, exploitation, jusqu'à la fin de vie. Sur le papier, c'est un cadre de gouvernance. En pratique, ça change concrètement la façon dont on écrit, on calcule le risque et on trace les exigences de sécurité.
 
-![Capture Terminal - Moteur d'Analyse TARA ISO/SAE 21434](/images/labs/tara_keyless_terminal.png)
+![Chaîne de traçabilité TARA : du Damage Scenario à la vérification](/images/diagrams/tara-tracabilite-pkes.webp)
 
-*Capture de démonstration issue de l'étude de cas pédagogique ; les valeurs proviennent d'un modèle fictif.*
+*La chaîne de traçabilité décrite dans cet article, appliquée au cas PKES fictif de l'étude de cas.*
 
 ## Trois piliers méthodologiques en ingénierie automobile
 

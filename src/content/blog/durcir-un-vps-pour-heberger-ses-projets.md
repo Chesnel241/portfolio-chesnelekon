@@ -10,10 +10,6 @@ Héberger soi-même ses projets web (comme la plateforme [CloudHack Labs](/proje
 
 Voici le guide de durcissement (hardening) appliqué sur mon serveur, vérifié par un script reprenant une **checklist personnelle inspirée des recommandations de l'ANSSI et des CIS Benchmarks**. Cette checklist couvre quelques contrôles clés ; elle ne constitue pas un audit de conformité ANSSI ou CIS.
 
-![Capture Terminal - Exécution de la checklist de durcissement VPS](/images/labs/vps_hardening_terminal.png)
-
-*Capture illustrant l'exécution de la checklist de durcissement du projet.*
-
 ## 1. Sécurisation de l'Accès SSH (`/etc/ssh/sshd_config`)
 
 L'accès SSH root par mot de passe est la première cible des bots. La première étape consiste à imposer l'authentification par clé publique Ed25519 uniquement et désactiver le login root.

@@ -12,9 +12,9 @@ Prototype pédagogique de traitement de données CTI destiné à illustrer l'ing
 
 La démonstration utilise des jeux de données d'exemple et ne constitue pas un flux opérationnel CERT-FR, ANSSI ou MISP. Aucun connecteur vers ces sources n'est actif dans le prototype.
 
-![Capture Terminal - Prototype CTI Secteur Public](/images/labs/civic_intel_terminal.png)
+![Chaîne de traitement CTI : sources d'exemple, ingestion, normalisation STIX2, enrichissement, corrélation EBIOS RM, restitution](/images/diagrams/cti-chaine-traitement.webp)
 
-*Capture de démonstration du prototype, alimentée par un jeu de données d'exemple local.*
+*La chaîne de traitement visée par le prototype, alimentée par des jeux de données d'exemple.*
 
 ## Architecture Visée
 
