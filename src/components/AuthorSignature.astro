@@ -18,7 +18,7 @@ const { type = 'article', date } = Astro.props as Props;
         height="80"
         class="author-photo"
       />
-      <span class="verified-badge" title="Auteur Vérifié">
+      <span class="verified-badge" title="Auteur">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
@@ -31,10 +31,16 @@ const { type = 'article', date } = Astro.props as Props;
         <span class="author-tag">Auteur & Concepteur</span>
       </div>
       <p class="author-role">
-        Ingénieur Cybersécurité Automobile & Systèmes Embarqués | Schaeffler / Vitesco
+        Ingénieur Cybersécurité Automobile & Systèmes Embarqués | ex-Schaeffler / Vitesco
       </p>
       <p class="signature-note">
-        🔒 {type === 'lab' ? 'Laboratoire pratique' : type === 'projet' ? 'Projet technique' : 'Article de recherche'} conçu, exécuté et signé par Chesnel Ekogha.
+        🔒 {
+          type === 'lab'
+            ? 'Simulation pédagogique conçue et documentée par Chesnel Ekogha.'
+            : type === 'projet'
+            ? 'Projet personnel conçu et documenté par Chesnel Ekogha.'
+            : 'Article technique rédigé par Chesnel Ekogha.'
+        }
         {date && <span class="pub-date"> • Publié / Mis à jour le {typeof date === 'string' ? date : date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>}
       </p>
     </div>

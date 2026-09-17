@@ -33,28 +33,25 @@ const standardsAndMethodologies = [
 
 // Focused Technical Tools & Languages stack
 const technicalToolsStack = [
+  'Medini Analyze',
+  'Polarion',
+  'IMS',
+  'JIRA',
   'Linux',
-  'Metasploit',
-  'Nmap',
-  'Burp Suite',
-  'TCP/IP',
-  'SocketCAN',
-  'ICSim',
+  'CAN/CAN-FD',
+  'UDS',
   'Python',
-  'C/C++',
-  'Node.js',
-  'Docker Compose',
-  'Astro',
-  'TypeScript'
+  'SocketCAN',
+  'Docker'
 ];
 
 const toolsWithIcons = technicalToolsStack.map((tech) => ({ tech, icon: techIconUrl(tech) }));
 
 const typingLines = [
-  'TARA sous ISO/SAE 21434 & CSMS UNECE',
-  'Méthodologie EBIOS RM & Analyse de risque',
-  'Bus embarqué CAN/CAN-FD & SocketCAN',
-  'Audit Linux & Pentest (Metasploit, Nmap, Burp Suite)',
+  'TARA • ISO/SAE 21434 • Cybersecurity Goals',
+  'Cybersecurity Requirements & Traçabilité',
+  'Security Assurance • Revues R&D • Risk Treatment',
+  'Architecture ECU • CAN/CAN-FD • UDS',
 ];
 ---
 
@@ -87,7 +84,12 @@ const typingLines = [
         <TypingLine lines={typingLines} />
 
         <p class="hero__lede">
-          Analyse de risques (TARA sous ISO/SAE 21434, EBIOS RM), conformité réglementaire (UNECE R155/R156, CSMS) et tests d'intrusion (Linux, Metasploit, Nmap, Burp Suite, bus CAN/CAN-FD). 3+ ans d'expérience chez Schaeffler (ex-Vitesco Technologies).
+          Ingénieur cybersécurité automobile avec 3+ ans d'expérience chez
+          Schaeffler (ex-Vitesco Technologies), spécialisé en analyse de risques
+          ISO/SAE 21434, TARA et ingénierie des exigences de cybersécurité.
+          Expérience d'accompagnement des équipes System, Architecture, Hardware,
+          Software et Validation dans le traitement des risques, la traçabilité
+          des exigences et les revues Security by Design.
         </p>
 
         <!-- Social Media Icons Row -->
@@ -134,8 +136,8 @@ const typingLines = [
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
             </div>
             <div>
-              <div class="impact-val impact-val--green">6 ECU</div>
-              <div class="impact-lbl">Calculateurs spécifiés (TARA & SecOC)</div>
+              <div class="impact-val impact-val--green">6+ TARA</div>
+              <div class="impact-lbl">Analyses sur ECU automobiles</div>
             </div>
           </div>
 
@@ -145,8 +147,8 @@ const typingLines = [
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
             </div>
             <div>
-              <div class="impact-val impact-val--indigo">100%</div>
-              <div class="impact-lbl">Traçabilité Exigences ISO 21434</div>
+              <div class="impact-val impact-val--indigo">SEC0-SEC5</div>
+              <div class="impact-lbl">Revues & traçabilité cybersécurité</div>
             </div>
           </div>
 
@@ -209,6 +211,11 @@ const typingLines = [
 
   <section class="section" id="projets">
     <SectionHead label="01" title="Projets Cybersécurité & Réalisations" linkHref="/projets" linkLabel="Tous les projets →" />
+    <p style="color: var(--ink-soft); font-size: var(--fs-00); max-width: 70ch; margin-bottom: 1.25rem;">
+      Ces travaux sont des <strong>projets personnels et simulations pédagogiques</strong>, réalisés
+      en environnement virtuel ou local pour approfondir les concepts techniques. Ils sont distincts
+      de mon expérience industrielle chez Schaeffler (ex-Vitesco Technologies), détaillée en <a href="#experiences" style="color: var(--accent-cyan);">section 02</a>.
+    </p>
     <div class="sheet-grid">
       {allProjects.map((project) => (
         <ProjectCard
@@ -217,6 +224,7 @@ const typingLines = [
           summary={project.data.summary}
           stack={project.data.stack}
           status={project.data.status}
+          nature={project.data.nature}
           thumbnail={project.data.thumbnail}
         />
       ))}
@@ -278,8 +286,9 @@ const typingLines = [
             <ul style="margin: 0; padding-left: 1.2rem; color: var(--ink-soft); font-size: var(--fs-00); display: flex; flex-direction: column; gap: 0.5rem;">
               <li>Réalisation et mise à jour de <strong>plus de 6 TARA</strong> sur des calculateurs moteur (ECU) complexes : Item Definition, Scénarios de menaces, Attack Paths, et définition des Cybersecurity Goals.</li>
               <li>Spécification et traçabilité rigoureuse des exigences de sécurité dans <strong>Polarion, IMS et JIRA</strong>.</li>
-              <li>Déploiement opérationnel du système de gestion de la cybersécurité (CSMS) : animation des jalons de sécurité <strong>SEC0 à SEC5</strong> et conformité réglementaire <strong>UNECE R155/R156</strong>.</li>
-              <li>Animation des revues <em>Security by Design</em> en lien étroit avec les ingénieurs Système, Architecture, Hardware, Software et Validation.</li>
+              <li>Contribution aux activités CSMS et aux revues projet <strong>SEC0 à SEC5</strong>, avec suivi des livrables et éléments attendus dans le contexte <strong>UNECE R155/R156</strong>.</li>
+              <li>Accompagnement des équipes System, Architecture, Hardware, Software et Validation dans l'analyse des risques, la définition des exigences, l'identification des écarts et le suivi des actions de traitement.</li>
+              <li>Participation aux revues <em>Security by Design</em> et à la préparation des éléments de preuve associés aux jalons de sécurité.</li>
             </ul>
           </div>
         </details>
@@ -401,7 +410,7 @@ const typingLines = [
             <img src="/logos/ndg.jpg" alt="Logo Officiel Notre-Dame de Grâce" class="school-card__logo" style="opacity: 0.95" />
           </div>
           <div class="school-card__title">Lycée Notre-Dame de Grâce</div>
-          <div class="school-card__date">2020 - 2023 | Maubeuge</div>
+          <div class="school-card__date">2020 - 2022 | Maubeuge</div>
           <div class="school-card__badge">CPGE MPSI / MP</div>
           <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); margin-top: 0.25rem; font-weight: 600;">
             [ Cliquez pour le détail ]
@@ -432,27 +441,27 @@ const typingLines = [
     <VisionSection />
   </section>
 
-  <!-- Section 06: Certifications & Normes Maîtrisées -->
+  <!-- Section 06: Référentiels, Réglementations & Méthodologies -->
   <section class="section" id="certifications">
-    <SectionHead label="06" title="Certifications, Normes & Habilitations" />
+    <SectionHead label="06" title="Référentiels, Réglementations & Méthodologies" />
     
     <div class="methodology-card-grid">
       <div class="methodology-card">
         <div class="methodology-card__step" style="color: var(--accent-cyan);">Norme Standard</div>
         <h4>ISO/SAE 21434</h4>
-        <p>Road Vehicles - Cybersecurity Engineering. Spécialiste de la traçabilité des exigences et de la démarche TARA sur calculateurs embarqués.</p>
+        <p>Road Vehicles - Cybersecurity Engineering. Expérience pratique de la TARA, des Cybersecurity Requirements et de la traçabilité dans un environnement de développement automobile.</p>
       </div>
 
       <div class="methodology-card">
         <div class="methodology-card__step" style="color: var(--accent-cyan);">Règlements Homologation</div>
         <h4>UNECE R155 & R156</h4>
-        <p>Conformité CSMS (Cybersecurity Management System) & SUMS (Software Update Management System) pour l'homologation véhicule.</p>
+        <p>Contribution à des activités de cybersécurité produit menées dans le contexte des exigences UNECE R155/R156 et du CSMS (Cybersecurity Management System) / SUMS (Software Update Management System).</p>
       </div>
 
       <div class="methodology-card">
         <div class="methodology-card__step" style="color: #818cf8;">Méthodologie Risque</div>
         <h4>EBIOS Risk Manager</h4>
-        <p>Méthodologie ANSSI d'analyse de risques pour le secteur public et les systèmes d'information d'importance vitale.</p>
+        <p>Méthodologie ANSSI d'analyse de risques, travaillée à travers une étude de cas pédagogique sur un système d'information critique fictif.</p>
       </div>
     </div>
   </section>

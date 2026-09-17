@@ -14,14 +14,15 @@
     <span class="code-line"><span class="code-keyword">const</span> engineer = &#123;</span>
     <span class="code-line">&nbsp;&nbsp;<span class="code-key">name</span>: <span class="code-str">'Chesnel Ekogha'</span>,</span>
     <span class="code-line">&nbsp;&nbsp;<span class="code-key">role</span>: <span class="code-str">'Automotive Cybersecurity Engineer'</span>,</span>
-    <span class="code-line">&nbsp;&nbsp;<span class="code-key">company</span>: <span class="code-str">'Schaeffler (ex-Vitesco)'</span>,</span>
     <span class="code-line">&nbsp;&nbsp;<span class="code-key">location</span>: <span class="code-str">'Toulouse, France'</span>,</span>
     <span class="code-line">&nbsp;&nbsp;<span class="code-key">mobility</span>: <span class="code-str">'Mobile France entière'</span>,</span>
     <span class="code-line">&nbsp;&nbsp;<span class="code-key">experience</span>: <span class="code-str">'3+ years'</span>,</span>
-    <span class="code-line">&nbsp;&nbsp;<span class="code-key">standards</span>: [<span class="code-str">'ISO/SAE 21434'</span>, <span class="code-str">'UNECE R155/R156'</span>, <span class="code-str">'CSMS'</span>, <span class="code-str">'EBIOS RM'</span>],</span>
-    <span class="code-line">&nbsp;&nbsp;<span class="code-key">protocols</span>: [<span class="code-str">'CAN/CAN-FD'</span>, <span class="code-str">'TCP/IP'</span>, <span class="code-str">'SocketCAN'</span>],</span>
-    <span class="code-line">&nbsp;&nbsp;<span class="code-key">tools</span>: [<span class="code-str">'Linux'</span>, <span class="code-str">'TARA'</span>, <span class="code-str">'Metasploit'</span>, <span class="code-str">'Nmap'</span>, <span class="code-str">'Burp Suite'</span>],</span>
-    <span class="code-line">&nbsp;&nbsp;<span class="code-key">webDev</span>: [<span class="code-str">'Astro'</span>, <span class="code-str">'TypeScript'</span>, <span class="code-str">'Node.js'</span>, <span class="code-str">'Docker'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">previousExperience</span>: <span class="code-str">'Schaeffler / Vitesco (2023-2026)'</span>,</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">focus</span>: [<span class="code-str">'TARA'</span>, <span class="code-str">'Security Requirements'</span>, <span class="code-str">'Security Assurance'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">standards</span>: [<span class="code-str">'ISO/SAE 21434'</span>, <span class="code-str">'UNECE R155/R156'</span>, <span class="code-str">'CSMS'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">automotive</span>: [<span class="code-str">'ECU'</span>, <span class="code-str">'CAN/CAN-FD'</span>, <span class="code-str">'UDS'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">tools</span>: [<span class="code-str">'Medini Analyze'</span>, <span class="code-str">'Polarion'</span>, <span class="code-str">'IMS'</span>, <span class="code-str">'JIRA'</span>],</span>
+    <span class="code-line">&nbsp;&nbsp;<span class="code-key">technicalLabs</span>: [<span class="code-str">'Python'</span>, <span class="code-str">'Linux'</span>, <span class="code-str">'SocketCAN'</span>],</span>
     <span class="code-line">&nbsp;&nbsp;<span class="code-key">hireable</span>: <span class="code-bool">true</span></span>
     <span class="code-line">&#125;;</span>
   </div>
@@ -120,13 +121,6 @@
     ],
     [
       { text: '  ' },
-      { text: 'company', cls: 'code-key' },
-      { text: ': ' },
-      { text: "'Schaeffler (ex-Vitesco)'", cls: 'code-str' },
-      { text: ',' }
-    ],
-    [
-      { text: '  ' },
       { text: 'location', cls: 'code-key' },
       { text: ': ' },
       { text: "'Toulouse, France'", cls: 'code-str' },
@@ -148,6 +142,24 @@
     ],
     [
       { text: '  ' },
+      { text: 'previousExperience', cls: 'code-key' },
+      { text: ': ' },
+      { text: "'Schaeffler / Vitesco (2023-2026)'", cls: 'code-str' },
+      { text: ',' }
+    ],
+    [
+      { text: '  ' },
+      { text: 'focus', cls: 'code-key' },
+      { text: ': [' },
+      { text: "'TARA'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Security Requirements'", cls: 'code-str' },
+      { text: ', ' },
+      { text: "'Security Assurance'", cls: 'code-str' },
+      { text: '],' }
+    ],
+    [
+      { text: '  ' },
       { text: 'standards', cls: 'code-key' },
       { text: ': [' },
       { text: "'ISO/SAE 21434'", cls: 'code-str' },
@@ -155,47 +167,41 @@
       { text: "'UNECE R155/R156'", cls: 'code-str' },
       { text: ', ' },
       { text: "'CSMS'", cls: 'code-str' },
-      { text: ', ' },
-      { text: "'EBIOS RM'", cls: 'code-str' },
       { text: '],' }
     ],
     [
       { text: '  ' },
-      { text: 'protocols', cls: 'code-key' },
+      { text: 'automotive', cls: 'code-key' },
       { text: ': [' },
+      { text: "'ECU'", cls: 'code-str' },
+      { text: ', ' },
       { text: "'CAN/CAN-FD'", cls: 'code-str' },
       { text: ', ' },
-      { text: "'TCP/IP'", cls: 'code-str' },
-      { text: ', ' },
-      { text: "'SocketCAN'", cls: 'code-str' },
+      { text: "'UDS'", cls: 'code-str' },
       { text: '],' }
     ],
     [
       { text: '  ' },
       { text: 'tools', cls: 'code-key' },
       { text: ': [' },
-      { text: "'Linux'", cls: 'code-str' },
+      { text: "'Medini Analyze'", cls: 'code-str' },
       { text: ', ' },
-      { text: "'TARA'", cls: 'code-str' },
+      { text: "'Polarion'", cls: 'code-str' },
       { text: ', ' },
-      { text: "'Metasploit'", cls: 'code-str' },
+      { text: "'IMS'", cls: 'code-str' },
       { text: ', ' },
-      { text: "'Nmap'", cls: 'code-str' },
-      { text: ', ' },
-      { text: "'Burp Suite'", cls: 'code-str' },
+      { text: "'JIRA'", cls: 'code-str' },
       { text: '],' }
     ],
     [
       { text: '  ' },
-      { text: 'webDev', cls: 'code-key' },
+      { text: 'technicalLabs', cls: 'code-key' },
       { text: ': [' },
-      { text: "'Astro'", cls: 'code-str' },
+      { text: "'Python'", cls: 'code-str' },
       { text: ', ' },
-      { text: "'TypeScript'", cls: 'code-str' },
+      { text: "'Linux'", cls: 'code-str' },
       { text: ', ' },
-      { text: "'Node.js'", cls: 'code-str' },
-      { text: ', ' },
-      { text: "'Docker'", cls: 'code-str' },
+      { text: "'SocketCAN'", cls: 'code-str' },
       { text: '],' }
     ],
     [

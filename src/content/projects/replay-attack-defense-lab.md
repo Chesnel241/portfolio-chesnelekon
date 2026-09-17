@@ -1,66 +1,74 @@
 ---
-title: "Lab Attaque par Rejeu & Cryptographie Anti-Replay"
-summary: "Démonstration expérimentale d'une attaque par rejeu sur protocole non sécurisé et mise en place de contre-mesures HMAC/Nonce."
-stack: ["Python", "Cryptography", "HMAC-SHA256", "Nonce", "ISO/IEC 27001", "RF Security"]
+title: "Lab Attaque par Rejeu & Contre-mesures Anti-Replay"
+summary: "Simulation Python d'une attaque par rejeu et illustration de mécanismes de fraîcheur et d'authentification."
+stack: ["Python", "Cryptography", "HMAC-SHA256", "Nonce"]
 status: "actif"
+nature: "simulation pédagogique"
+environment: "Simulation logicielle Python — aucun matériel radio, véhicule ou ECU physique"
 order: 5
 ---
 
-Laboratoire complet d'analyse de vulnérabilité aux **attaques par rejeu (Replay Attacks)** sur les protocoles radiofréquence (RF) et API Web, suivi du développement et de la validation de contre-mesures cryptographiques (**Horodatage, Monotonic Nonce et HMAC-SHA256**).
+Ce laboratoire est une simulation logicielle pédagogique. Il modélise un émetteur, un attaquant et un récepteur afin d'illustrer la différence entre un message statique rejouable et un message protégé par un authenticator et une information de fraîcheur.
 
-![Capture Terminal - Session d'Attaque par Rejeu & Défense Anti-Replay](/images/labs/replay_attack_terminal.png)
+Aucun signal radio n'est émis ou capturé, et aucun équipement embarqué n'est sollicité : les trois rôles sont des objets Python échangeant des messages en mémoire.
 
-## Concept & Vulnérabilité Traitée
+![Capture Terminal - Simulation d'Attaque par Rejeu & Défense Anti-Replay](/images/labs/replay_attack_terminal.png)
 
-Une **attaque par rejeu** consiste pour un attaquant à intercepter une transmission valide (jeton d'authentification API, trame radio de télécommande) et à la réémettre ultérieurement à l'identique pour usurper des privilèges sans connaître les secrets cryptographiques du système.
+*Capture de démonstration de la simulation Python. Aucun signal radio n'est émis ni capturé.*
 
-Ce laboratoire s'articule en deux phases expérimentales :
-1. **Phase 1 : Système Vulnérable à Code Fixe / Jeton Statique**
-   - Interception d'un paquet valide d'ouverture de session.
-   - Rejeu du paquet 10 minutes plus tard sur le récepteur/ECU.
-   - Constat : Le système valide la demande car il ne vérifie pas la fraîcheur du paquet (`200 OK`).
-2. **Phase 2 : Implémentation du Protocole Anti-Replay (HMAC + Nonce Monotone)**
-   - Ajout d'un compteur séquentiel à usage unique (**Nonce**), d'un horodatage Unix et d'une signature **HMAC-SHA256**.
-   - Rejeu exact de la trame capturée.
-   - Constat : Rejet immédiat par le récepteur (`REJECTED: Nonce already consumed`).
+## Concept Illustré
 
-## Traces d'Exécution du Lab (Python 3 CLI)
+Une **attaque par rejeu** consiste, pour un attaquant, à capter une transmission valide puis à la réémettre à l'identique pour obtenir le même effet, sans connaître les secrets cryptographiques du système.
+
+La simulation se déroule en deux phases :
+
+1. **Phase 1 : message statique, sans vérification de fraîcheur**
+   - Le modèle d'émetteur envoie un message valide au modèle de récepteur.
+   - L'attaquant conserve une copie exacte du message, puis la rejoue.
+   - Le récepteur simulé l'accepte, car rien dans le message ne permet de distinguer une émission légitime d'une copie.
+
+2. **Phase 2 : message protégé (compteur monotone + horodatage + HMAC-SHA256)**
+   - Le message transporte un compteur à usage unique, un horodatage et une signature.
+   - L'attaquant rejoue exactement la même trame.
+   - Le récepteur simulé la rejette : le compteur a déjà été consommé.
+
+## Exemple de sortie générée par la simulation
 
 ```bash
 $ python3 labs/replay_attack/replay_lab.py
 =====================================================================================
-  REPLAY ATTACK & ANTI-REPLAY DEFENSE LAB v1.5 (RF / Session Security)
-  Scenario: Fixed Code Signal Capture vs Cryptographic Nonce & Rolling Code Defense
-  Compliance: ISO/IEC 27001 / UNECE R155 / OWASP Anti-Replay Standards
+  REPLAY ATTACK & ANTI-REPLAY DEFENSE — PEDAGOGICAL SIMULATION
+  Environment: pure Python model (sender / attacker / receiver objects)
+  Radio hardware: NO | Real ECU: NO | Physical vehicle: NO
 =====================================================================================
 
-[PHASE 1] VULNERABLE SYSTEM TEST (Fixed Session Token / Static Code)
-  - Capturing legit RF unlock transmission from Alice to Vehicle ECU...
-  - Legitimate Transmission Sent: ID=KEY_REMOTE_0892 Code=0x9F4A8B12C3D4E5F6
-  [ECU RESPONSE]: 200 OK -> DOORS UNLOCKED (Valid Code)
+[PHASE 1] STATIC MESSAGE MODEL (no freshness check)
+  - Legitimate message sent: ID=SIM_SENDER_0892 Code=0x9F4A8B12C3D4E5F6
+  [SIMULATED RECEIVER]: ACCEPTED (valid code)
 
-  - Attacker Replaying Captured Packet 10 minutes later...
-  - Replayed Transmission Sent : ID=KEY_REMOTE_0892 Code=0x9F4A8B12C3D4E5F6
-  [VULNERABLE ECU RESPONSE]: 200 OK -> DOORS UNLOCKED! (CRITICAL VULNERABILITY DETECTED)
-  [ALERT] Replay Attack Succeeded! Static token accepted without freshness check.
+  - Attacker replays the captured message...
+  - Replayed message sent  : ID=SIM_SENDER_0892 Code=0x9F4A8B12C3D4E5F6
+  [SIMULATED RECEIVER]: ACCEPTED -> replay succeeds in this model
+  [NOTE] The static message carries nothing that proves freshness.
 
-[PHASE 2] ANTI-REPLAY COUNTERMEASURE TEST (Monotonic Nonce + HMAC-SHA256)
-  - Legitimate Transmission (Counter 1)...
-  [SECURE ECU VERIFICATION]: ACCEPTED: Authentic & Fresh Transmission
+[PHASE 2] PROTECTED MESSAGE MODEL (monotonic counter + HMAC-SHA256)
+  - Legitimate message sent (counter 1)...
+  [SIMULATED RECEIVER]: ACCEPTED (authentic and fresh)
 
-  - Attacker Replaying Legitimate Packet 1 (Exact Binary Copy)...
-  [SECURE ECU VERIFICATION]: REJECTED: Replay Attack Detected! Nonce already consumed.
-  (SECURITY PASS - ATTACK BLOCKED)
+  - Attacker replays the exact same message...
+  [SIMULATED RECEIVER]: Replay rejected in the simulated scenario
+                        (counter already consumed)
 
 =====================================================================================
-✔ REPLAY LAB COMPLETE: Anti-Replay Defense verified (100% Replay Mitigation)
-[INFO] Session log exported to public/logs/replay_attack_session.json
+  SIMULATION COMPLETE — session log: public/logs/replay_attack_session.json
 =====================================================================================
 ```
 
-## Résultats & Recommandations Industrielles
+## Ce que la simulation permet de travailler
 
-- **Rapport de session JSON** : Téléchargeable sur [public/logs/replay_attack_session.json](/logs/replay_attack_session.json).
-- **Mise en œuvre des défenses** :
-  - Utilisation de **Rolling Codes / Keeloq / AES-128 CCM** dans les systèmes RF embarqués.
-  - Utilisation des en-têtes HTTP `X-Nonce` et `X-Timestamp` signés par HMAC sur les API REST financières et critiques.
+- **Le rôle de la fraîcheur** : comprendre pourquoi un authenticator seul ne suffit pas, et pourquoi une information de fraîcheur (compteur, horodatage, nonce) est nécessaire pour distinguer une émission d'une copie.
+- **Le lien avec les mécanismes embarqués** : c'est le même raisonnement qui sous-tend les rolling codes des systèmes RF et la combinaison authenticator + Freshness Value d'AUTOSAR SecOC sur réseau embarqué.
+- **La transposition côté services web** : en-têtes de type nonce et horodatage signés sur des API critiques.
+- **Journal de session JSON de démonstration** : [public/logs/replay_attack_session.json](/logs/replay_attack_session.json).
+
+> Les identifiants, codes et résultats présentés sont des données de démonstration produites par le modèle Python. Le rejet du rejeu observé en phase 2 vaut pour ce scénario simulé et ne constitue pas une mesure d'efficacité sur un système réel.

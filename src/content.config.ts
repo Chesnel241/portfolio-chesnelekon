@@ -10,6 +10,10 @@ const projects = defineCollection({
       summary: z.string(),
       stack: z.array(z.string()),
       status: z.enum(['actif', 'en cours', 'archivé']),
+      nature: z
+        .enum(['projet personnel', 'simulation pédagogique', 'prototype'])
+        .default('projet personnel'),
+      environment: z.string().optional(),
       githubUrl: z.url().optional(),
       demoUrl: z.url().optional(),
       thumbnail: image().optional(),

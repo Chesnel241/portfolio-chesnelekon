@@ -8,11 +8,27 @@ interface Props {
   summary: string;
   stack: string[];
   status: 'actif' | 'en cours' | 'archivé';
+  nature?: 'projet personnel' | 'simulation pédagogique' | 'prototype';
   thumbnail?: ImageMetadata;
   githubUrl?: string;
   demoUrl?: string;
 }
-const { slug, title, summary, stack, status, thumbnail } = Astro.props as Props;
+const {
+  slug,
+  title,
+  summary,
+  stack,
+  status,
+  nature = 'projet personnel',
+  thumbnail,
+} = Astro.props as Props;
+
+// Short label making the nature of the work readable at a glance
+const natureLabel = {
+  'projet personnel': 'Projet personnel',
+  'simulation pédagogique': 'Simulation pédagogique',
+  prototype: 'Prototype',
+}[nature];
 
 const statusClass = {
   actif: 'status--actif',
@@ -66,6 +82,10 @@ const dotColor = langColors[primaryStack] ?? '#00f2fe';
       </span>
     </div>
     
+    <span class={`nature-badge nature-badge--${nature === 'simulation pédagogique' ? 'sim' : nature === 'prototype' ? 'proto' : 'perso'}`}>
+      {natureLabel}
+    </span>
+
     <p class="sheet__summary">{summary}</p>
     
     <div class="sheet__footer">

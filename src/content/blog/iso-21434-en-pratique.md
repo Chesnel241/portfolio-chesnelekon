@@ -10,40 +10,52 @@ L'ISO/SAE 21434 encadre la gestion de la cybersécurité tout au long du cycle d
 
 ![Capture Terminal - Moteur d'Analyse TARA ISO/SAE 21434](/images/labs/tara_keyless_terminal.png)
 
+*Capture de démonstration issue de l'étude de cas pédagogique ; les valeurs proviennent d'un modèle fictif.*
+
 ## Trois piliers méthodologiques en ingénierie automobile
 
 **1. La traçabilité stricte TARA -> Exigences -> Tests.**
-Chaque exigence de sécurité doit pouvoir remonter jusqu'à une menace identifiée (via une **TARA - Threat Analysis and Risk Assessment**) et descendre jusqu'à sa vérification sur banc de test ou bus CAN. Un identifiant d'exigence (ex: `SEC-REQ-PKES-042`) n'est pas juste une référence pratique : c'est une preuve d'audit opposable pour l'homologation UNECE R155.
+Chaque exigence de sécurité doit pouvoir remonter jusqu'à une menace identifiée (via une **TARA - Threat Analysis and Risk Assessment**) et descendre jusqu'à son activité de vérification. Un identifiant d'exigence (ex: `SEC-REQ-PKES-042`) n'est pas qu'une référence pratique : c'est ce qui rend la couverture du risque démontrable lors des revues et des activités de conformité menées dans le contexte UNECE R155.
 
 ![Exemple de Matrice de Risque TARA sous ISO/SAE 21434](/images/tara-matrix-diagram.svg)
 
-**2. Le calcul de risque et les niveaux CAL (Cybersecurity Assurance Level).**
+*Matrice d'illustration construite sur un modèle fictif, à des fins pédagogiques.*
+
+**2. La détermination du risque, et la place des CAL.**
 La TARA évalue chaque scénario de menace selon deux axes :
-- **Impact (Severe 4, Major 3, Moderate 2, Negligible 1)** : Sécurité des personnes, pertes financières, atteinte à la vie privée.
-- **Faisabilité d'attaque (High 1, Medium 2, Low 3, Very Low 4)** : Basée sur le temps d'attaque, l'expertise, les connaissances requises et le matériel.
+- **Impact (Severe 4, Major 3, Moderate 2, Negligible 1)** : Sécurité des personnes, pertes financières, atteinte à la vie privée, pertes opérationnelles.
+- **Faisabilité d'attaque (High 1, Medium 2, Low 3, Very Low 4)** : Basée sur le temps d'attaque, l'expertise, les connaissances requises, la fenêtre d'opportunité et le matériel.
 
-Le score combiné définit le niveau d'assurance requis (**CAL 1 à CAL 4**), qui impose la rigueur de développement et de revue du composant.
+La TARA permet de déterminer et traiter les risques à partir de l'impact et de la faisabilité d'attaque. L'ISO/SAE 21434 présente également, dans son annexe E informative, le concept de Cybersecurity Assurance Level (CAL) pour exprimer un niveau de rigueur d'assurance ; celui-ci n'est toutefois pas une simple conversion directe du score de risque.
 
-**3. Automatisation de l'évaluation TARA via CLI.**
+C'est une confusion fréquente et lourde de conséquences en revue : le risque se traite (réduction, transfert, acceptation, évitement), tandis qu'un CAL exprime le niveau de rigueur des activités d'assurance. Les deux notions se nourrissent l'une l'autre, mais lire un CAL directement dans une case de la matrice de risque n'est pas conforme à ce que dit la norme.
 
-Dans le cadre du projet [TARA Keyless Entry](/projets/tara-keyless-entry), un moteur d'évaluation en Python a été développé pour parser la topologie du système et calculer dynamiquement les scores de risque et le statut de conformité R155 :
+**3. Outiller le raisonnement TARA.**
+
+Dans le cadre de l'étude de cas [TARA Keyless Entry](/projets/tara-keyless-entry) — un modèle pédagogique simplifié, sans lien avec un produit réel — un petit moteur Python sert à dérouler le calcul d'impact et de faisabilité sur un ensemble de scénarios et à en restituer le traitement :
 
 ```bash
-$ python3 labs/tara_keyless/tara_engine.py --model V2G_system.json --report summary
+$ python3 labs/tara_keyless/tara_engine.py --model pkes_case_study.json --report summary
 ================================================================================
-  ISO/SAE 21434 & UNECE R155 TARA ENGINE v1.2.1
+  TARA CASE STUDY ENGINE — PEDAGOGICAL SIMULATION
+  Real product: NO | Vehicle manufacturer: NONE (fictional model)
 ================================================================================
-[T01] Relay Attack (Keyless Go)    : Impact 4 | Feasibility 2 -> RISK 3 [CAL 3] (Mitigated)
-[T02] UDS Seed-Key Bypass          : Impact 4 | Feasibility 1 -> RISK 4 [CAL 4] (Critical)
-[T06] Root Access (IVI OS / Linux) : Impact 4 | Feasibility 1 -> RISK 4 [CAL 4] (Critical)
+[T01] Relay attack sur la communication clé/véhicule : Impact 4 | Feasibility 2 -> RISK 3
+[T02] Replay / spoofing d'une commande d'ouverture   : Impact 4 | Feasibility 2 -> RISK 3
+[T03] Accès diagnostic UDS non autorisé au BCM/PEPS  : Impact 3 | Feasibility 3 -> RISK 2
 
-[ CAL 4 ] Threshold breached by Critical Threats: T02, T06.
-Compliance Check: UNECE R155 -> FAILED for CAL 4 requirements (Sec 7.3, Annex 5).
+Risk treatment recorded for each scenario (mitigate / accept / transfer / avoid).
+
+R155 context: this case study illustrates risk identification, traceability
+and risk-treatment reasoning. It is not a conformity assessment or
+type-approval evaluation.
 ```
+
+L'intérêt de l'outillage n'est pas le calcul lui-même — une feuille de calcul y suffirait — mais la **cohérence** : garantir qu'un scénario ajouté produit bien un objectif de cybersécurité, et que celui-ci porte une exigence traçable.
 
 ## Ce que ça implique au quotidien pour l'ingénieur
 
 Sur le terrain, la démarche ISO 21434 transforme les échanges entre équipes sécurité et équipes système :
-- Les exigences ne sont plus écrites de manière générique ("le système doit être sécurisé"), mais formulées comme des contre-mesures explicites adressant une menace identifiée (ex: "L'ECU Gateway doit rejeter toute demande UDS Security Access 0x27 après 3 tentatives infructueuses et déclencher une période de blocage de 60s").
+- Les exigences ne sont plus écrites de manière générique ("le système doit être sécurisé"), mais formulées comme des contre-mesures explicites adressant une menace identifiée, avec des valeurs fixées par la spécification du produit (ex: "L'ECU Gateway doit limiter le nombre de tentatives consécutives sur le service UDS SecurityAccess 0x27 et appliquer une temporisation de verrouillage après échec").
 - La matrice de traçabilité est tenue à jour en continu et versionnée dans les dépôts de code.
 

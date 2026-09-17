@@ -20,6 +20,20 @@ const statusClass = {
   'en cours': 'status--en-cours',
   archivé: 'status--archive',
 }[project.data.status];
+
+const nature = project.data.nature;
+
+const natureClass = {
+  'projet personnel': 'perso',
+  'simulation pédagogique': 'sim',
+  prototype: 'proto',
+}[nature];
+
+const natureLabel = {
+  'projet personnel': 'Projet personnel',
+  'simulation pédagogique': 'Simulation pédagogique',
+  prototype: 'Prototype',
+}[nature];
 ---
 
 <Base title={project.data.title} description={project.data.summary}>
@@ -47,11 +61,20 @@ const statusClass = {
           <span class="dot" style={`background:${project.data.status === 'actif' ? '#10b981' : project.data.status === 'en cours' ? '#f59e0b' : '#64748b'}`}></span>
           {project.data.status}
         </span>
+        <span class={`nature-badge nature-badge--${natureClass}`} style="margin-bottom: 0;">
+          {natureLabel}
+        </span>
       </div>
 
-      <p style="font-size: 1.1rem; color: var(--ink-soft); max-width: 48ch; margin-bottom: 1.5rem;">
+      <p style="font-size: 1.1rem; color: var(--ink-soft); max-width: 60ch; margin-bottom: 0.75rem;">
         {project.data.summary}
       </p>
+
+      {project.data.environment && (
+        <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-muted); margin-bottom: 1.5rem;">
+          {project.data.environment}
+        </p>
+      )}
 
       <div class="stack-row" style="margin-bottom: 1.5rem;">
         {project.data.stack.map((s: string) => <span class="stack-chip">{s}</span>)}
@@ -74,9 +97,31 @@ const statusClass = {
     </div>
 
     <div class="prose project-detail-card">
+      {nature === 'simulation pédagogique' && (
+        <div class="sim-notice">
+          <strong>Cadre pédagogique / simulation.</strong>{' '}
+          Ce projet a été réalisé dans un environnement virtuel ou simulé afin d'illustrer une
+          méthodologie de cybersécurité. Aucun test n'a été effectué sur un véhicule, un ECU
+          physique, une infrastructure tierce ou un système de production. Les logs et résultats
+          présentés sont des données de démonstration.
+        </div>
+      )}
+
+      {nature === 'prototype' && (
+        <div class="sim-notice">
+          <strong>Prototype pédagogique.</strong>{' '}
+          Ce projet est une maquette technique destinée à illustrer une chaîne de traitement. Les
+          jeux de données utilisés sont des exemples de démonstration et ne proviennent pas d'un
+          flux opérationnel réel.
+        </div>
+      )}
+
       <Content />
     </div>
 
-    <AuthorSignature title={project.data.title} type="lab" />
+    <AuthorSignature
+      title={project.data.title}
+      type={nature === 'simulation pédagogique' ? 'lab' : 'projet'}
+    />
   </article>
 </Base>

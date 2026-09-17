@@ -12,8 +12,14 @@ const allProjects = (await getCollection('projects')).sort(
   <section class="section" style="border-top: none; padding-top: 2rem;">
     <div style="margin-bottom: 2rem;">
       <h1 style="font-size: var(--fs-3); margin-bottom: 0.5rem;">Projets & Réalisations</h1>
-      <p style="font-size: 1.05rem; color: var(--ink-soft); max-width: 48ch;">
-        Découvrez l'ensemble de mes travaux en analyse de risque automobile (TARA), fuzzing sur bus CAN, plateformes CTF et applications web.
+      <p style="font-size: 1.05rem; color: var(--ink-soft); max-width: 60ch;">
+        Travaux personnels en analyse de risque automobile (TARA), fuzzing sur bus CAN,
+        plateformes CTF et applications web.
+      </p>
+      <p style="font-size: 0.92rem; color: var(--ink-muted); max-width: 70ch; margin-top: 0.75rem;">
+        Ces projets sont des <strong>simulations pédagogiques et projets personnels</strong> menés en
+        environnement virtuel ou local. Ils ne rendent pas compte de mon expérience industrielle
+        chez Schaeffler (ex-Vitesco Technologies), présentée sur la <a href="/#experiences" style="color: var(--accent-cyan);">page d'accueil</a>.
       </p>
     </div>
 
@@ -34,6 +40,7 @@ const allProjects = (await getCollection('projects')).sort(
           summary={project.data.summary}
           stack={project.data.stack}
           status={project.data.status}
+          nature={project.data.nature}
           thumbnail={project.data.thumbnail}
         />
       ))}

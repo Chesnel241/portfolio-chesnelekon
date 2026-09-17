@@ -8,9 +8,11 @@ draft: false
 
 Héberger soi-même ses projets web (comme la plateforme [CloudHack Labs](/projets/cloudhack-labs)) sur un VPS non aménagé expose immédiatement le serveur à des scans de ports automatisés, des attaques par force brute SSH et des tentatives d'exploitation de vulnérabilités Web.
 
-Voici le guide complet de durcissement (hardening) appliqué sur mon serveur de production, validé par un script d'audit automatisé respectant les recommandations de l'**ANSSI** et du **CIS Benchmark**.
+Voici le guide de durcissement (hardening) appliqué sur mon serveur, vérifié par un script reprenant une **checklist personnelle inspirée des recommandations de l'ANSSI et des CIS Benchmarks**. Cette checklist couvre quelques contrôles clés ; elle ne constitue pas un audit de conformité ANSSI ou CIS.
 
-![Capture Terminal - Session d'Audit de Sécurité VPS](/images/labs/vps_hardening_terminal.png)
+![Capture Terminal - Exécution de la checklist de durcissement VPS](/images/labs/vps_hardening_terminal.png)
+
+*Capture illustrant l'exécution de la checklist de durcissement du projet.*
 
 ## 1. Sécurisation de l'Accès SSH (`/etc/ssh/sshd_config`)
 
@@ -117,7 +119,7 @@ Exemple d'audit exécuté en production :
 
 ```bash
 $ python3 labs/vps_hardening/vps_audit_hardening.py
-✔ HARDENING AUDIT COMPLETE: 7/7 Checks Passed (100% Compliance Score)
+✔ 7/7 checks passed in the project hardening checklist
 Rapport d'audit disponible dans : public/logs/vps_hardening_audit.json
 ```
 

@@ -10,7 +10,7 @@ interface Props {
 }
 const {
   title,
-  description = "Portfolio et Travaux de Recherche de Chesnel Ekogha - ingénieur cybersécurité, systèmes embarqués automobiles.",
+  description = "Portfolio, projets techniques et analyses de Chesnel Ekogha - ingénieur en cybersécurité automobile et systèmes embarqués.",
   image = "/images/og-banner.png",
 } = Astro.props as Props;
 
@@ -64,16 +64,22 @@ const shareImageUrl = new URL(image, Astro.site ?? Astro.url).href;
       "@type": "Person",
       "name": "Chesnel Ekogha",
       "jobTitle": "Ingénieur Cybersécurité Automobile",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Schaeffler (ex-Vitesco Technologies)"
-      },
       "alumniOf": [
         { "@type": "EducationalOrganization", "name": "ESIEA" },
         { "@type": "EducationalOrganization", "name": "ESGI" }
       ],
       "knowsAbout": [
-        "ISO/SAE 21434", "TARA", "UNECE R155/R156", "CSMS", "EBIOS RM", "CAN/CAN-FD", "Embedded Cybersecurity", "Pentest Linux"
+        "Automotive Cybersecurity",
+        "ISO/SAE 21434",
+        "TARA",
+        "Security Requirements Engineering",
+        "UNECE R155/R156",
+        "CSMS",
+        "EBIOS RM",
+        "ECU Security",
+        "CAN/CAN-FD",
+        "UDS",
+        "Embedded Cybersecurity"
       ],
       "address": {
         "@type": "PostalAddress",
