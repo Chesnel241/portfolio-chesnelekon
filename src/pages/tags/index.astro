@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { articleCountLabel, collectTags, tagHref } from '../../lib/blog';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+const tags = collectTags(posts);
+---
+
+<Base
+  title="Tags"
+  description="Tous les thèmes abordés sur le blog de Chesnel Ekogha : cybersécurité automobile, ISO 21434, bus CAN, infrastructure et durcissement."
+>
+  <section class="section" style="border-top: none;">
+    <SectionHead label="tags" title="Tags" linkHref="/blog" linkLabel="Tous les articles →" />
+
+    <p class="tags-intro">
+      {tags.length} thèmes couverts par {articleCountLabel(posts.length)}. Sélectionnez un tag pour
+      n'afficher que les articles correspondants.
+    </p>
+
+    <ul class="tag-cloud">
+      {tags.map(({ tag, count }) => (
+        <li>
+          <a class="tag-cloud__item" href={tagHref(tag)}>
+            <span class="tag-cloud__name">{tag}</span>
+            <span class="tag-cloud__count">{articleCountLabel(count)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <style>
+    .tags-intro {
+      color: var(--ink-soft);
+      max-width: 60ch;
+      margin-bottom: 2rem;
+    }
+
+    .tag-cloud {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .tag-cloud__item {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.55rem 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface-card);
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .tag-cloud__item:hover,
+    .tag-cloud__item:focus-visible {
+      border-color: var(--accent-cyan);
+      background: var(--surface-hover);
+      transform: translateY(-1px);
+    }
+
+    .tag-cloud__name {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .tag-cloud__count {
+      font-family: var(--font-mono);
+      font-size: var(--fs-000);
+      color: var(--ink-muted);
+    }
+  </style>
+</Base>
