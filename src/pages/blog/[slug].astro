@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ShareBar from '../../components/ShareBar.astro';
 import AuthorSignature from '../../components/AuthorSignature.astro';
+import { readingTimeLabel, readingTimeMinutes, tagHref } from '../../lib/blog';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -20,15 +21,19 @@ const formatted = post.data.date.toLocaleDateString('fr-FR', {
   month: 'long',
   day: 'numeric',
 });
+
+const readingTime = readingTimeLabel(readingTimeMinutes(post.body ?? ''));
 ---
 
 <Base title={post.data.title} description={post.data.excerpt}>
   <article class="section prose" style="border-top: none;">
     <p><a href="/blog">&larr; Tous les articles</a></p>
-    <p class="hero__eyebrow">{formatted}</p>
+    <p class="hero__eyebrow">{formatted} &middot; {readingTime}</p>
     <h1>{post.data.title}</h1>
-    <div class="sheet__meta" style="margin-bottom: 1.5rem;">
-      {post.data.tags.map((t: string) => <span class="tag">{t}</span>)}
+    <div class="sheet__meta post__tags" style="margin-bottom: 1.5rem;">
+      {post.data.tags.map((t: string) => (
+        <a class="tag post__tag" href={tagHref(t)}>{t}</a>
+      ))}
     </div>
 
     <!-- Top Share CTA -->
@@ -43,3 +48,21 @@ const formatted = post.data.date.toLocaleDateString('fr-FR', {
     <ShareBar title={post.data.title} />
   </article>
 </Base>
+
+<style>
+  .post__tags {
+    gap: 0.45rem;
+  }
+
+  .post__tag {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .post__tag:hover,
+  .post__tag:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--ink);
+  }
+</style>

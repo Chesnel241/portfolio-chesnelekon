@@ -1,11 +1,15 @@
 ---
+import { readingTimeLabel, tagHref } from '../lib/blog';
+
 interface Props {
   slug: string;
   title: string;
   excerpt: string;
   date: Date;
+  tags?: string[];
+  readingTime?: number;
 }
-const { slug, title, excerpt, date } = Astro.props as Props;
+const { slug, title, excerpt, date, tags = [], readingTime } = Astro.props as Props;
 
 const formatted = date.toLocaleDateString('fr-FR', {
   year: 'numeric',
@@ -13,8 +17,76 @@ const formatted = date.toLocaleDateString('fr-FR', {
 });
 ---
 
-<a class="timeline-item" href={`/blog/${slug}`}>
-  <span class="timeline-item__date">{formatted}</span>
-  <h3>{title}</h3>
+<article class="timeline-item article-row" data-tags={tags.join('|')}>
+  <div class="article-row__meta">
+    <span class="timeline-item__date">{formatted}</span>
+    {readingTime !== undefined && (
+      <span class="article-row__reading">&middot; {readingTimeLabel(readingTime)}</span>
+    )}
+  </div>
+  <h3><a class="article-row__link" href={`/blog/${slug}`}>{title}</a></h3>
   <p>{excerpt}</p>
-</a>
+  {tags.length > 0 && (
+    <div class="sheet__meta article-row__tags">
+      {tags.map((tag) => (
+        <a class="tag article-row__tag" href={tagHref(tag)}>{tag}</a>
+      ))}
+    </div>
+  )}
+</article>
+
+<style>
+  /* La carte reste entièrement cliquable grâce au lien « étiré » du titre,
+     tout en laissant les tags cliquables au-dessus (z-index). */
+  .article-row {
+    position: relative;
+    display: block;
+  }
+
+  .article-row__meta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .article-row__reading {
+    font-family: var(--font-mono);
+    font-size: var(--fs-000);
+    color: var(--ink-muted);
+  }
+
+  .article-row__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .article-row__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+  }
+
+  .article-row:focus-within {
+    border-color: var(--accent-cyan);
+  }
+
+  .article-row__tags {
+    position: relative;
+    z-index: 1;
+    margin-top: 0.9rem;
+  }
+
+  .article-row__tag {
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .article-row__tag:hover,
+  .article-row__tag:focus-visible {
+    border-color: var(--accent-cyan);
+    color: var(--ink);
+  }
+</style>
