@@ -1,52 +1,115 @@
 {
-  "system": "Keyless Entry & Passive Start (KESS)",
-  "standard": "ISO/SAE 21434 Clause 15 & Annex H",
-  "author": "Chesnel Ekogha",
-  "date": "2026-09-05T01:27:49.994553",
-  "results": [
-    {
-      "id": "TS-01",
-      "title": "Relay Attack on Keyless Fob (125kHz LF / 433MHz UHF)",
-      "asset": "Keyless Door Locking & Engine Start Signal",
-      "attack_path": "Attacker uses dual-transceiver relay RF hardware to extend key fob signal range up to 100m.",
-      "feasibility_score": 3,
-      "feasibility_rating": "MEDIUM",
-      "max_impact": "High",
-      "risk_level": "CRITICAL (Risk 5)",
-      "csg": "CSG-01: Protect against LF/UHF signal relay attacks using Time-of-Flight (UWB) distance bounding."
+  "nature": "simulation pédagogique",
+  "donnees": "démonstration",
+  "avertissement": "Données de démonstration produites par un lab pédagogique. Aucun véhicule, ECU physique, infrastructure tierce ou système de production n'a été sollicité. Ce fichier n'a aucune valeur d'audit.",
+  "etude": "TARA — Keyless Entry / Passive Start (PKES)",
+  "modele": "système fictif simplifié, ne représente aucun produit ni constructeur",
+  "referentiel": "ISO/SAE 21434 — démarche de concept",
+  "echelles": {
+    "impact": {
+      "Severe": 4,
+      "Major": 3,
+      "Moderate": 2,
+      "Negligible": 1
     },
-    {
-      "id": "TS-02",
-      "title": "RF Replay Attack on Unencrypted Unlock Code",
-      "asset": "Rolling Code Counter & MAC Integrity",
-      "attack_path": "SDR (Software Defined Radio) captures rolling code frame and replays sequence during RF jam.",
-      "feasibility_score": 3,
-      "feasibility_rating": "MEDIUM",
-      "max_impact": "High",
-      "risk_level": "CRITICAL (Risk 5)",
-      "csg": "CSG-02: Ensure strict freshness value manager (FVM) and anti-replay counters on RF frames."
-    },
-    {
-      "id": "TS-03",
-      "title": "UDS SecurityAccess Key Bruteforce on Door ECU",
-      "asset": "ECU Firmware & Cryptographic Master Key",
-      "attack_path": "OBD-II diagnostic tool sends Seed-Key request 0x27 and bruteforces 16-bit key.",
-      "feasibility_score": 0,
-      "feasibility_rating": "HIGH",
-      "max_impact": "High",
-      "risk_level": "CRITICAL (Risk 5)",
-      "csg": "CSG-03: Implement 32-bit/128-bit HSM Seed-Key algorithm with exponential penalty delay per failed attempt."
-    },
-    {
-      "id": "TS-04",
-      "title": "CAN Frame Injection & Spoofing on Powertrain Bus",
-      "asset": "Engine Start Authorization CAN Message",
-      "attack_path": "Physical compromise of headlight/radar wiring harness to inject CAN ID 0x120 start command.",
-      "feasibility_score": 5,
-      "feasibility_rating": "MEDIUM",
-      "max_impact": "Severe",
-      "risk_level": "CRITICAL (Risk 5)",
-      "csg": "CSG-04: Mandate AUTOSAR SecOC (Secure Onboard Communication) with AES-CMAC authenticators on Start CAN frames."
+    "attack_feasibility": {
+      "High": 1,
+      "Medium": 2,
+      "Low": 3,
+      "Very Low": 4
     }
-  ]
+  },
+  "scenarios": [
+    {
+      "id": "T01",
+      "threat_scenario": "Relay attack sur la communication clé/véhicule",
+      "damage_scenario": "Accès non autorisé au véhicule / vol",
+      "attack_path": "Matériel relais RF prolongeant la portée entre la clé et le véhicule",
+      "impact": "Severe",
+      "impact_value": 4,
+      "attack_feasibility": "Medium",
+      "feasibility_value": 2,
+      "risk": 3,
+      "cybersecurity_goal": "Détecter et empêcher les attaques par relais",
+      "traitement": "Réduire",
+      "mesure_envisagee": "Mesure de distance robuste (ex. UWB / ToF)",
+      "verification": "Test de résistance au relay attack"
+    },
+    {
+      "id": "T02",
+      "threat_scenario": "Rejeu ou spoofing d'une commande d'ouverture",
+      "damage_scenario": "Ouverture non autorisée",
+      "attack_path": "Capture puis réémission d'une trame RF ou CAN",
+      "impact": "Severe",
+      "impact_value": 4,
+      "attack_feasibility": "Medium",
+      "feasibility_value": 2,
+      "risk": 3,
+      "cybersecurity_goal": "Garantir l'authenticité et la fraîcheur des commandes",
+      "traitement": "Réduire",
+      "mesure_envisagee": "Authenticator + information de fraîcheur (rolling code / anti-replay)",
+      "verification": "Test de rejeu et validation du rejet"
+    },
+    {
+      "id": "T03",
+      "threat_scenario": "Accès diagnostic UDS non autorisé au BCM/PEPS",
+      "damage_scenario": "Compromission de la fonction d'autorisation",
+      "attack_path": "Session UDS non autorisée via le lien diagnostic",
+      "impact": "Major",
+      "impact_value": 3,
+      "attack_feasibility": "Low",
+      "feasibility_value": 3,
+      "risk": 2,
+      "cybersecurity_goal": "Empêcher l'accès diagnostic non autorisé",
+      "traitement": "Réduire",
+      "mesure_envisagee": "Contrôle d'accès SecurityAccess, cloisonnement des sessions",
+      "verification": "Essais d'accès diagnostic"
+    },
+    {
+      "id": "T04",
+      "threat_scenario": "Modification non autorisée du firmware",
+      "damage_scenario": "Exécution de code non approuvé sur le calculateur",
+      "attack_path": "Mise à jour malveillante via le lien diagnostic",
+      "impact": "Severe",
+      "impact_value": 4,
+      "attack_feasibility": "Low",
+      "feasibility_value": 3,
+      "risk": 3,
+      "cybersecurity_goal": "Empêcher l'exécution de code non approuvé",
+      "traitement": "Réduire",
+      "mesure_envisagee": "Secure Boot, Secure Update",
+      "verification": "Vérification du démarrage sécurisé"
+    },
+    {
+      "id": "T05",
+      "threat_scenario": "Injection CAN d'un message d'autorisation",
+      "damage_scenario": "Ouverture ou démarrage non autorisé",
+      "attack_path": "Injection d'une trame d'autorisation sur le bus",
+      "impact": "Severe",
+      "impact_value": 4,
+      "attack_feasibility": "Medium",
+      "feasibility_value": 2,
+      "risk": 3,
+      "cybersecurity_goal": "Garantir l'authenticité des messages d'autorisation",
+      "traitement": "Réduire",
+      "mesure_envisagee": "Authentification des I-PDU concernés (ex. AUTOSAR SecOC)",
+      "verification": "Test d'injection sur le périmètre protégé"
+    },
+    {
+      "id": "T06",
+      "threat_scenario": "Extraction ou compromission d'un secret cryptographique",
+      "damage_scenario": "Perte de confiance dans le mécanisme d'autorisation",
+      "attack_path": "Accès aux clés stockées sur le calculateur",
+      "impact": "Severe",
+      "impact_value": 4,
+      "attack_feasibility": "Low",
+      "feasibility_value": 3,
+      "risk": 3,
+      "cybersecurity_goal": "Protéger les secrets cryptographiques",
+      "traitement": "Réduire",
+      "mesure_envisagee": "Stockage en zone matérielle protégée",
+      "verification": "Revue de la gestion des clés"
+    }
+  ],
+  "contexte_r155": "Cette étude de cas illustre l'identification du risque, la traçabilité et le raisonnement de traitement. Elle ne constitue ni une évaluation de conformité ni une évaluation en vue d'une homologation."
 }

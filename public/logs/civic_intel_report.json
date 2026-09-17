@@ -1,37 +1,53 @@
 {
-  "author": "Chesnel Ekogha",
-  "date": "2026-09-05T01:27:55.678828",
-  "sources": [
-    "CERT-FR",
-    "ANSSI Bulletins"
+  "nature": "simulation pédagogique",
+  "donnees": "démonstration",
+  "avertissement": "Données de démonstration produites par un lab pédagogique. Aucun véhicule, ECU physique, infrastructure tierce ou système de production n'a été sollicité. Ce fichier n'a aucune valeur d'audit.",
+  "prototype": "Chaîne de traitement CTI — secteur public",
+  "sources": {
+    "type": "jeux de données d'exemple locaux",
+    "flux_cert_fr_anssi_misp_connectes": false
+  },
+  "chaine": [
+    "Sources (fichiers d'exemple)",
+    "Ingestion",
+    "Normalisation STIX2",
+    "Enrichissement",
+    "Corrélation EBIOS RM",
+    "Restitution"
   ],
-  "alerts": [
+  "avis_demonstration": [
     {
-      "id": "CERTFR-2026-ALE-004",
-      "target_sector": "Collectivit\u00e9s Territoriales / Mairies",
-      "threat_type": "Ransomware (LockBit 3.0 / Akira)",
-      "cvss": 9.8,
-      "impact": "CRITICAL",
-      "vector": "VPN SSL Vulnerability (Unpatched Fortinet/PaloAlto) & Phishing",
-      "mitigation": "Disable legacy SSL-VPN, mandate MFA & apply patch CERTFR-2026-AVI-142."
+      "id": "DEMO-ADVISORY-001",
+      "objet": "Vulnérabilités multiples dans un hyperviseur",
+      "severite": "CRITICAL"
     },
     {
-      "id": "CERTFR-2026-ALE-003",
-      "target_sector": "\u00c9tablissements de Sant\u00e9 (CH / CHU)",
-      "threat_type": "DDoS & Data Exfiltration",
-      "cvss": 8.5,
-      "impact": "HIGH",
-      "vector": "Exposed Medical Imaging DICOM / PACS Endpoints",
-      "mitigation": "Isolate PACS networks via VLAN, enforce IP Whitelisting & Reverse-Proxy authentication."
+      "id": "DEMO-ADVISORY-002",
+      "objet": "Injection SQL dans une application métier",
+      "severite": "HIGH"
     },
     {
-      "id": "CERTFR-2026-ALE-002",
-      "target_sector": "Minist\u00e8res & Administrations Centrales",
-      "threat_type": "APT Supply Chain Compromise",
-      "cvss": 9.1,
-      "impact": "CRITICAL",
-      "vector": "Compromised Third-Party IT Service Provider (MSSP)",
-      "mitigation": "Audit MSSP admin credentials, enforce PAM (Privileged Access Management) & EDR telemetry."
+      "id": "DEMO-ADVISORY-003",
+      "objet": "Exécution de code dans un navigateur",
+      "severite": "MEDIUM"
     }
-  ]
+  ],
+  "vulnerabilites_demonstration": [
+    {
+      "id": "CVE-20XX-XXXX",
+      "composant": "Sample hypervisor",
+      "cvss": 8.8
+    },
+    {
+      "id": "CVE-20XX-YYYY",
+      "composant": "Sample network OS",
+      "cvss": 9.8
+    }
+  ],
+  "volumetrie_demonstration": {
+    "ioc": 245,
+    "avis": 9,
+    "evenements": 1209
+  },
+  "note": "Les identifiants ci-dessus sont volontairement fictifs et ne reprennent aucune publication officielle. Ils ne doivent pas être lus comme des données de veille réelles."
 }

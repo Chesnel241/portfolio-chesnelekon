@@ -1,18 +1,29 @@
 {
-  "timestamp": "2026-09-04T23:36:32.828590Z",
-  "lab_name": "Replay Attack & Cryptographic Nonce Defense",
-  "vulnerable_system_result": {
-    "attack_type": "RF Fixed Code Replay",
-    "impact": "CRITICAL - Unauthorized Vehicle Access / Session Hijacking",
-    "success": true
+  "nature": "simulation pédagogique",
+  "donnees": "démonstration",
+  "avertissement": "Données de démonstration produites par un lab pédagogique. Aucun véhicule, ECU physique, infrastructure tierce ou système de production n'a été sollicité. Ce fichier n'a aucune valeur d'audit.",
+  "lab": "Attaque par rejeu & contre-mesures — simulation logicielle",
+  "environnement": {
+    "modele": "objets Python (émetteur / attaquant / récepteur)",
+    "signal_radio": false,
+    "ecu_reel": false,
+    "vehicule_physique": false
   },
-  "secured_system_result": {
-    "countermeasures": [
-      "HMAC-SHA256 Signature",
-      "Monotonic Nonce Tracking",
-      "Strict 30s Time Window"
+  "phase_1_message_statique": {
+    "description": "Le message ne porte aucune information de fraîcheur.",
+    "rejeu_accepte_par_le_recepteur_simule": true,
+    "observation": "Rien ne permet au récepteur de distinguer l'original de la copie."
+  },
+  "phase_2_message_protege": {
+    "description": "Le message porte un compteur monotone, un horodatage et un authenticator.",
+    "mecanismes": [
+      "compteur monotone",
+      "horodatage",
+      "HMAC-SHA256"
     ],
-    "replayed_packets_blocked": 1,
-    "success": false
-  }
+    "rejeu_accepte_par_le_recepteur_simule": false,
+    "motif_du_rejet": "compteur déjà consommé",
+    "observation": "Le rejet vaut pour ce scénario simulé et ne mesure l'efficacité d'aucun système réel."
+  },
+  "idee_cle": "Un authenticator seul ne suffit pas ; il faut aussi une information de fraîcheur."
 }
