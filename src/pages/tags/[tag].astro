@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
+import { articleCountLabel, readingTimeMinutes } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  const byTag = new Map<string, CollectionEntry<'blog'>[]>();
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const existing = byTag.get(tag);
+      if (existing) {
+        existing.push(post);
+      } else {
+        byTag.set(tag, [post]);
+      }
+    }
+  }
+
+  // Le paramètre est passé brut : Astro écrit le répertoire tel quel et les
+  // liens sont encodés côté appelant (voir tagHref).
+  return [...byTag.entries()].map(([tag, taggedPosts]) => ({
+    params: { tag },
+    props: { tag, posts: taggedPosts },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<Base
+  title={`Articles — ${tag}`}
+  description={`Tous les articles du blog de Chesnel Ekogha associés au tag ${tag}.`}
+>
+  <section class="section" style="border-top: none;">
+    <p class="tag-page__back"><a href="/tags">&larr; Tous les tags</a></p>
+
+    <SectionHead label={`tag/${tag}`} title={`Articles — ${tag}`} linkHref="/blog" linkLabel="Tous les articles →" />
+
+    <p class="tag-page__count">{articleCountLabel(posts.length)} avec ce tag.</p>
+
+    <div class="timeline">
+      {posts.map((post) => (
+        <ArticleRow
+          slug={post.id}
+          title={post.data.title}
+          excerpt={post.data.excerpt}
+          date={post.data.date}
+          tags={post.data.tags}
+          readingTime={readingTimeMinutes(post.body ?? '')}
+        />
+      ))}
+    </div>
+  </section>
+
+  <style>
+    .tag-page__back {
+      margin-bottom: 1rem;
+    }
+
+    .tag-page__count {
+      font-family: var(--font-mono);
+      font-size: var(--fs-000);
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</Base>
