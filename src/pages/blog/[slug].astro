@@ -23,9 +23,50 @@ const formatted = post.data.date.toLocaleDateString('fr-FR', {
 });
 
 const readingTime = readingTimeLabel(readingTimeMinutes(post.body ?? ''));
+
+const siteUrl = Astro.site ?? Astro.url;
+const canonicalUrl = new URL(`/blog/${post.id}/`, siteUrl).href;
+const ogImage = `/og/blog/${post.id}.png`;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
+const publishedTime = post.data.date.toISOString();
+
+// Donnée structurée propre aux pages d'article.
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.excerpt,
+  datePublished: publishedTime,
+  dateModified: publishedTime,
+  inLanguage: 'fr-FR',
+  keywords: post.data.tags.join(', '),
+  image: ogImageUrl,
+  author: {
+    '@type': 'Person',
+    name: 'Chesnel Ekogha',
+    jobTitle: 'Ingénieur Cybersécurité Automobile',
+    url: new URL('/', siteUrl).href,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Chesnel Ekogha',
+    url: new URL('/', siteUrl).href,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+};
 ---
 
-<Base title={post.data.title} description={post.data.excerpt}>
+<Base
+  title={post.data.title}
+  description={post.data.excerpt}
+  image={ogImage}
+  ogType="article"
+  publishedTime={publishedTime}
+  schema={articleSchema}
+>
   <article class="section prose" style="border-top: none;">
     <p><a href="/blog">&larr; Tous les articles</a></p>
     <p class="hero__eyebrow">{formatted} &middot; {readingTime}</p>

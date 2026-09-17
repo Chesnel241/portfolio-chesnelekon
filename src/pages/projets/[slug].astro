@@ -34,9 +34,44 @@ const natureLabel = {
   'simulation pédagogique': 'Simulation pédagogique',
   prototype: 'Prototype',
 }[nature];
+
+const siteUrl = Astro.site ?? Astro.url;
+const canonicalUrl = new URL(`/projets/${project.id}/`, siteUrl).href;
+const ogImage = `/og/projets/${project.id}.png`;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
+
+// Donnée structurée propre aux pages projet.
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: project.data.title,
+  description: project.data.summary,
+  url: canonicalUrl,
+  inLanguage: 'fr-FR',
+  genre: natureLabel,
+  creativeWorkStatus: project.data.status,
+  keywords: project.data.stack.join(', '),
+  image: ogImageUrl,
+  author: {
+    '@type': 'Person',
+    name: 'Chesnel Ekogha',
+    jobTitle: 'Ingénieur Cybersécurité Automobile',
+    url: new URL('/', siteUrl).href,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+  ...(project.data.githubUrl ? { codeRepository: project.data.githubUrl } : {}),
+};
 ---
 
-<Base title={project.data.title} description={project.data.summary}>
+<Base
+  title={project.data.title}
+  description={project.data.summary}
+  image={ogImage}
+  schema={projectSchema}
+>
   <article class="section" style="border-top: none; padding-top: 2rem;">
     <a href="/projets" style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 1.5rem; text-decoration: none;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>

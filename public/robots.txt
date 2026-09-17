@@ -10,5 +10,8 @@ Allow: /images/
 # Restrict raw log endpoints from aggressive search engine bots
 Disallow: /logs/
 
+# Sitemap index (généré au build par @astrojs/sitemap)
+Sitemap: https://portfolio-chesnelekon.vercel.app/sitemap-index.xml
+
 # Security Policy Reference
 Security: https://portfolio-chesnelekon.vercel.app/.well-known/security.txt
